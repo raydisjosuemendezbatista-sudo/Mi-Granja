@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Mi Granja</title>
+<meta name="theme-color" content="#3F7D44">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mi Granja">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#F6F3E9; --card:#FFFFFF; --surface-alt:#FBF8F0; --border:#E7E0CB;
+    --text:#20301E; --text-secondary:#5C6B52; --text-muted:#96998A;
+    --accent:#3F7D44; --accent-dark:#1F4A29; --accent-bg:#E1EFDC;
+    --gold:#DFA324; --gold-dark:#8A6115; --gold-bg:#FBEACB;
+    --danger:#C0453B; --danger-bg:#F8E1DE;
+    --success:#3F7D44; --success-bg:#E1EFDC;
+    --info:#3E6E8E; --info-bg:#DEEAF1;
+    --shadow:0 1px 3px rgba(31,74,41,0.07), 0 6px 16px rgba(31,74,41,0.06);
+    --shadow-md:0 10px 26px rgba(31,74,41,0.12);
+    --shadow-lg:0 18px 40px rgba(31,74,41,0.18);
+    --radius:18px; --radius-sm:12px; --radius-lg:22px;
+    --nav-h:72px;
+  }
+  [data-theme="dark"]{
+    --bg:#10150D; --card:#1B2317; --surface-alt:#1F281A; --border:#2C3524;
+    --text:#EEEEE1; --text-secondary:#AFB6A0; --text-muted:#71786A;
+    --accent:#6FC172; --accent-dark:#8FE08F; --accent-bg:#213320;
+    --gold:#EFBE49; --gold-dark:#F3D488; --gold-bg:#372B10;
+    --danger:#EE968D; --danger-bg:#3A211E;
+    --success:#7ED17E; --success-bg:#213320;
+    --info:#7FB4D6; --info-bg:#1C2E38;
+    --shadow:0 1px 3px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
+    --shadow-md:0 10px 26px rgba(0,0,0,0.4);
+    --shadow-lg:0 18px 44px rgba(0,0,0,0.5);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding-bottom:calc(var(--nav-h) + 8px); -webkit-font-smoothing:antialiased;
+    transition:background .25s ease, color .25s ease;
+  }
+  ::selection{background:var(--accent); color:#fff;}
+  .app{max-width:560px; margin:0 auto; padding:14px 16px 6px;}
+  h1{font-size:21px; font-weight:800; margin:0; letter-spacing:-0.01em;}
+  h2{font-size:15.5px; font-weight:700; margin:0 0 0.75rem; color:var(--text);}
+  .subtitle{color:var(--text-secondary); font-size:13px; margin:2px 0 14px; font-weight:500;}
+
+  /* ---------- Header ---------- */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:2px 0 10px; margin-bottom:4px;
+  }
+  .topbar-id{display:flex; align-items:center; gap:10px;}
+  .farm-avatar{
+    width:42px; height:42px; border-radius:14px; flex-shrink:0;
+    background:linear-gradient(145deg, var(--accent), var(--accent-dark));
+    display:flex; align-items:center; justify-content:center; font-size:21px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .farm-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .greeting{font-size:12px; color:var(--text-secondary); font-weight:600; margin-bottom:1px;}
+  .theme-toggle{
+    border:1px solid var(--border); background:var(--card); border-radius:14px;
+    width:42px; height:42px; font-size:18px; color:var(--text); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);
+    transition:transform .15s ease;
+  }
+  .theme-toggle:active{transform:scale(0.9);}
+
+  /* ---------- Hero card (dashboard) ---------- */
+  .hero-card{
+    background:linear-gradient(150deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius:var(--radius-lg); padding:20px 20px 18px; color:#fff;
+    box-shadow:var(--shadow-md); margin-bottom:12px; position:relative; overflow:hidden;
+    animation:cardIn .35s ease both;
+  }
+  .hero-card::after{
+    content:"🥚"; position:absolute; right:-6px; bottom:-22px; font-size:110px;
+    opacity:0.14; transform:rotate(-8deg); line-height:1;
+  }
+  .hero-label{font-size:13px; font-weight:700; opacity:0.92; display:flex; align-items:center; gap:6px;}
+  .hero-value{font-size:44px; font-weight:800; line-height:1.1; margin:4px 0 12px; letter-spacing:-0.02em;}
+  .hero-sub{display:flex; gap:18px; position:relative; z-index:1;}
+  .hero-sub-item{font-size:12.5px; opacity:0.9; font-weight:600;}
+  .hero-sub-item b{display:block; font-size:17px; font-weight:800; margin-top:1px;}
+
+  /* ---------- Cards / grids ---------- */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+  .stat-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:0.9rem 0.85rem; box-shadow:var(--shadow); animation:cardIn .35s ease both;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .icon-chip{
+    width:30px; height:30px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    font-size:15px; background:var(--accent-bg); flex-shrink:0;
+  }
+  .stat-card[data-tone="gold"] .icon-chip{background:var(--gold-bg);}
+  .stat-card[data-tone="green"] .icon-chip{background:var(--accent-bg);}
+  .stat-card[data-tone="red"] .icon-chip{background:var(--danger-bg);}
+  .stat-card[data-tone="info"] .icon-chip{background:var(--info-bg);}
+  .stat-label{font-size:11.5px; color:var(--text-secondary); font-weight:600; line-height:1.3;}
+  .stat-value{font-size:19px; font-weight:800; color:var(--accent-dark); letter-spacing:-0.01em;}
+  .stat-card[data-tone="gold"] .stat-value{color:var(--gold-dark);}
+  .stat-card[data-tone="red"] .stat-value{color:var(--danger);}
+  .stat-card[data-tone="info"] .stat-value{color:var(--info);}
+  .stat-value.money::before{content:attr(data-cur) ' ';font-size:12px; font-weight:700; color:var(--text-secondary);}
+  .stat-card.profit-card{
+    background:linear-gradient(140deg, var(--gold-bg), var(--card) 70%);
+    border-color:var(--gold-bg); flex-direction:row; align-items:center; justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .stat-card.profit-card .stat-value{font-size:23px;}
+  .section-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1rem; margin-bottom:1rem; box-shadow:var(--shadow); animation:cardIn .4s ease both;
+  }
+  .chart-wrap{position:relative; height:190px; margin-top:0.5rem;}
+
+  @keyframes cardIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- Buttons ---------- */
+  button{font-family:inherit; cursor:pointer;}
+  .btn{
+    padding:12px 16px; border-radius:13px; border:none;
+    background:var(--accent); color:#fff; font-size:15px; font-weight:700;
+    transition:transform .12s ease, opacity .12s ease;
+  }
+  .btn:active{opacity:0.88; transform:scale(0.97);}
+  .btn.block{width:100%;}
+  .btn.secondary{background:var(--surface-alt); border:1px solid var(--border); color:var(--text);}
+  .btn.danger{background:var(--danger); color:#fff;}
+  .btn.small{padding:7px 12px; font-size:13px; border-radius:9px;}
+  .btn.ghost-toggle{background:var(--accent-bg); color:var(--accent-dark); border:1px solid transparent;}
+  .btn.ghost-toggle.is-active{background:var(--accent); color:#fff;}
+
+  .fab-add{
+    position:fixed; right:18px; bottom:calc(var(--nav-h) + 14px); width:58px; height:58px; border-radius:19px;
+    background:linear-gradient(150deg, var(--accent), var(--accent-dark)); color:#fff; font-size:28px; border:none;
+    box-shadow:0 10px 22px rgba(31,74,41,0.35); display:flex; align-items:center; justify-content:center;
+    z-index:40; line-height:0; transition:transform .15s cubic-bezier(.4,0,.2,1);
+  }
+  [data-theme="dark"] .fab-add{box-shadow:0 10px 26px rgba(0,0,0,0.55);}
+  .fab-add:active{transform:scale(0.88) rotate(6deg);}
+
+  /* ---------- Bottom nav ---------- */
+  .bottomnav{
+    position:fixed; left:0; right:0; bottom:0; background:var(--card);
+    border-top:1px solid var(--border); display:grid; grid-template-columns:repeat(5,1fr);
+    z-index:50; padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+    box-shadow:0 -6px 18px rgba(0,0,0,0.05); border-radius:20px 20px 0 0;
+  }
+  .navbtn{
+    background:none; border:none; padding:6px 2px; text-align:center;
+    color:var(--text-muted); font-size:10px; font-weight:600; border-radius:12px;
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    transition:background .15s ease, color .15s ease, transform .1s ease;
+  }
+  .navbtn:active{transform:scale(0.93);}
+  .navbtn .ic{
+    display:flex; align-items:center; justify-content:center; font-size:18px;
+    width:32px; height:26px; border-radius:9px; transition:background .15s ease;
+  }
+  .navbtn.active{color:var(--accent-dark);}
+  .navbtn.active .ic{background:var(--accent-bg);}
+
+  /* ---------- "Más" sheet ---------- */
+  .more-sheet-overlay{
+    display:none; position:fixed; inset:0; background:rgba(16,21,13,0.5);
+    z-index:101; align-items:flex-end; justify-content:center;
+  }
+  .more-sheet-overlay.open{display:flex;}
+  .more-sheet{
+    background:var(--card); width:100%; max-width:560px; border-radius:22px 22px 0 0;
+    padding:0.6rem 1.15rem calc(1.4rem + env(safe-area-inset-bottom));
+    animation:slideup .22s cubic-bezier(.22,1,.36,1);
+  }
+  .more-sheet h3{font-size:16px; margin:0 0 12px; font-weight:800; color:var(--text);}
+  .more-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  .more-item{
+    background:var(--surface-alt); border:1.5px solid var(--border); border-radius:16px;
+    padding:18px 8px; display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:var(--text-secondary); font-size:13px; font-weight:700;
+    transition:background .15s ease, border-color .15s ease, transform .12s ease;
+  }
+  .more-item:active{transform:scale(0.96);}
+  .more-item .ic{font-size:26px; width:auto; height:auto; background:none;}
+  .more-item.active{background:var(--accent-bg); border-color:var(--accent-bg); color:var(--accent-dark);}
+
+  /* ---------- Views ---------- */
+  .view{display:none;}
+  .view.active{display:block;}
+
+  .subtabs{display:flex; gap:8px; margin-bottom:1rem; background:var(--surface-alt); padding:4px; border-radius:14px; border:1px solid var(--border);}
+  .subtab{
+    flex:1; background:transparent; border:none; border-radius:11px;
+    color:var(--text-secondary); font-weight:700; font-size:13.5px; padding:9px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .subtab.active{background:var(--card); color:var(--accent-dark); box-shadow:var(--shadow);}
+
+  /* ---------- List entries ---------- */
+  .entry{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:12px 0; border-bottom:1px solid var(--border); animation:cardIn .3s ease both;
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry-icon{
+    width:38px; height:38px; border-radius:12px; flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; font-size:17px; background:var(--accent-bg); margin-top:1px;
+  }
+  .entry-icon.gold{background:var(--gold-bg);}
+  .entry-icon.red{background:var(--danger-bg);}
+  .entry-icon.info{background:var(--info-bg);}
+  .entry-main{min-width:0; flex:1;}
+  .entry-title{font-size:14.5px; font-weight:700;}
+  .entry-sub{font-size:12.5px; color:var(--text-secondary); margin-top:2px; font-weight:500;}
+  .entry-note{font-size:12px; color:var(--text-muted); margin-top:3px; font-style:italic;}
+  .entry-right{text-align:right; flex-shrink:0;}
+  .entry-value{font-size:16px; font-weight:800; color:var(--accent-dark);}
+  .entry-value.gold{color:var(--gold-dark);}
+  .entry-value.red{color:var(--danger);}
+  .entry-value.green{color:var(--success);}
+  .entry-actions{display:flex; gap:4px; margin-top:8px; justify-content:flex-end; flex-wrap:wrap;}
+  .icon-btn{
+    background:var(--surface-alt); border:1px solid var(--border); border-radius:9px;
+    color:var(--text-secondary); font-size:12px; padding:5px 10px; font-weight:600;
+  }
+  .icon-btn.danger{color:var(--danger); border-color:var(--danger-bg); background:var(--danger-bg);}
+  .badge{
+    display:inline-block; font-size:11px; padding:3px 9px; border-radius:99px;
+    background:var(--accent-bg); color:var(--accent-dark); font-weight:700;
+  }
+  .badge.status-vendida{background:var(--danger-bg); color:var(--danger);}
+  .badge.status-muerta{background:var(--danger-bg); color:var(--danger);}
+  .badge.status-activa{background:var(--success-bg); color:var(--success);}
+  .badge.stock-low{background:var(--danger-bg); color:var(--danger);}
+
+  .progress-track{
+    height:8px; border-radius:99px; background:var(--border); overflow:hidden; margin-top:8px; width:100%;
+  }
+  .progress-fill{height:100%; border-radius:99px; background:linear-gradient(90deg, var(--gold), var(--accent));}
+
+  .stepper{display:inline-flex; align-items:center; gap:6px; background:var(--surface-alt); border:1px solid var(--border); border-radius:10px; padding:2px;}
+  .stepper .icon-btn{border:none; background:transparent; padding:5px 9px;}
+
+  .empty{
+    color:var(--text-muted); font-size:13.5px; text-align:center; padding:2.2rem 1rem;
+  }
+  .empty .ic{font-size:34px; display:block; margin-bottom:10px;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    display:none; position:fixed; inset:0; background:rgba(16,21,13,0.5);
+    z-index:100; align-items:flex-end; justify-content:center; backdrop-filter:blur(1px);
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:var(--card); width:100%; max-width:560px; border-radius:22px 22px 0 0;
+    padding:0.6rem 1.15rem calc(1.5rem + env(safe-area-inset-bottom));
+    max-height:88vh; overflow-y:auto; animation:slideup .22s cubic-bezier(.22,1,.36,1);
+  }
+  .modal-handle{width:38px; height:4px; border-radius:99px; background:var(--border); margin:8px auto 14px;}
+  @keyframes slideup{from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;}}
+  .modal h3{font-size:17.5px; margin:0 0 1rem; font-weight:800;}
+  .field{margin-bottom:0.85rem;}
+  .field label{display:block; font-size:12.5px; color:var(--text-secondary); margin-bottom:5px; font-weight:700;}
+  input,select,textarea{
+    width:100%; padding:11px 13px; border-radius:12px;
+    border:1.5px solid var(--border); background:var(--surface-alt); color:var(--text);
+    font-size:15.5px; font-family:inherit; transition:border-color .15s ease;
+  }
+  input:focus,select:focus,textarea:focus{outline:none; border-color:var(--accent);}
+  textarea{resize:vertical; min-height:56px;}
+  .field .err{color:var(--danger); font-size:12px; margin-top:4px; display:none; font-weight:600;}
+  .modal-actions{display:flex; gap:8px; margin-top:0.4rem;}
+  .modal-actions .btn{flex:1;}
+
+  /* ---------- Confirm ---------- */
+  .confirm-overlay{
+    display:none; position:fixed; inset:0; background:rgba(16,21,13,0.5);
+    z-index:110; align-items:center; justify-content:center; padding:1.5rem;
+  }
+  .confirm-overlay.open{display:flex;}
+  .confirm-box{
+    background:var(--card); border-radius:var(--radius-lg); padding:1.3rem; max-width:340px; width:100%;
+    box-shadow:var(--shadow-lg); animation:cardIn .2s ease both;
+  }
+  .confirm-box p{font-size:14.5px; margin:0 0 1.1rem; font-weight:600;}
+  .confirm-actions{display:flex; gap:8px;}
+  .confirm-actions .btn{flex:1;}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed; left:50%; bottom:calc(var(--nav-h) + 22px); transform:translateX(-50%) translateY(10px);
+    background:var(--accent-dark); color:#fff; padding:11px 20px; border-radius:99px;
+    font-size:13.5px; font-weight:600; opacity:0; transition:opacity 0.2s, transform 0.2s; z-index:200;
+    pointer-events:none; white-space:nowrap; max-width:90vw; overflow:hidden; text-overflow:ellipsis;
+    box-shadow:var(--shadow-lg);
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  .row-inline{display:flex; gap:8px;}
+  .row-inline > *{flex:1;}
+  .divider{height:1px; background:var(--border); margin:0.9rem 0;}
+  .config-item{display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid var(--border);}
+  .config-item:last-child{border-bottom:none;}
+  .config-item .lbl{font-size:14.5px; font-weight:600;}
+  .config-item .val{font-size:13px; color:var(--text-secondary);}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="topbar">
+    <div class="topbar-id">
+      <div class="farm-avatar"><img src="data:image/webp;base64,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" alt="Logo de Mi Granja"></div>
+      <div>
+        <div class="greeting">Resumen de hoy</div>
+        <h1 id="farmTitle">Mi Granja</h1>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Cambiar tema">🌓</button>
+  </div>
+
+  <!-- ============ INICIO ============ -->
+  <div class="view active" id="view-inicio">
+
+    <div class="hero-card">
+      <div class="hero-label">🥚 Huevos de hoy</div>
+      <div class="hero-value" id="d-eggsToday">0</div>
+      <div class="hero-sub">
+        <div class="hero-sub-item">Esta semana<b id="d-eggsWeek">0</b></div>
+        <div class="hero-sub-item">Este mes<b id="d-eggsMonth">0</b></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="gold">
+        <div class="icon-chip">📈</div>
+        <div class="stat-label">Promedio por día</div>
+        <div class="stat-value" id="d-eggsAvg">0</div>
+      </div>
+      <div class="stat-card" data-tone="green">
+        <div class="icon-chip">🐔</div>
+        <div class="stat-label">Gallinas activas</div>
+        <div class="stat-value" id="d-totalHens">0</div>
+      </div>
+      <div class="stat-card" data-tone="green">
+        <div class="icon-chip">🐣</div>
+        <div class="stat-label">Nacimientos recientes</div>
+        <div class="stat-value" id="d-recentBirths">0</div>
+      </div>
+      <div class="stat-card" data-tone="info">
+        <div class="icon-chip">🌾</div>
+        <div class="stat-label">Gastos del mes</div>
+        <div class="stat-value money" id="d-expensesMonth" data-cur="">0</div>
+      </div>
+      <div class="stat-card" data-tone="green">
+        <div class="icon-chip">💵</div>
+        <div class="stat-label">Ingresos del mes</div>
+        <div class="stat-value money" id="d-incomeMonth" data-cur="">0</div>
+      </div>
+    </div>
+
+    <div class="stat-card profit-card">
+      <div>
+        <div class="stat-label">📊 Ganancia estimada del mes</div>
+        <div class="stat-value money" id="d-profitMonth" data-cur="">0</div>
+      </div>
+      <div class="icon-chip" style="width:40px;height:40px;font-size:19px;">💰</div>
+    </div>
+
+    <div class="section-card">
+      <h2>🥚 Producción de huevos — últimos 7 días</h2>
+      <div class="chart-wrap"><canvas id="chartDashboard"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ============ HUEVOS ============ -->
+  <div class="view" id="view-huevos">
+    <div class="subtitle">Registro de producción de huevos</div>
+    <div class="grid3" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="gold"><div class="stat-label">Hoy</div><div class="stat-value" id="e-today">0</div></div>
+      <div class="stat-card" data-tone="gold"><div class="stat-label">Semana</div><div class="stat-value" id="e-week">0</div></div>
+      <div class="stat-card" data-tone="gold"><div class="stat-label">Mes</div><div class="stat-value" id="e-month">0</div></div>
+    </div>
+    <div class="section-card">
+      <h2>📊 Producción diaria (últimos 14 días)</h2>
+      <div class="chart-wrap"><canvas id="chartEggs"></canvas></div>
+    </div>
+    <div class="section-card">
+      <h2>Historial de registros</h2>
+      <div id="eggsList"></div>
+    </div>
+  </div>
+
+  <!-- ============ GALLINAS ============ -->
+  <div class="view" id="view-gallinas">
+    <div class="subtitle">Control de tus gallinas por lote</div>
+    <div class="grid2" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="green"><div class="stat-label">Total activas</div><div class="stat-value" id="h-total">0</div></div>
+      <div class="stat-card" data-tone="green"><div class="stat-label">Lotes registrados</div><div class="stat-value" id="h-batches">0</div></div>
+    </div>
+    <div class="section-card">
+      <h2>🐔 Lotes de gallinas</h2>
+      <div id="hensList"></div>
+    </div>
+  </div>
+
+  <!-- ============ NACIMIENTOS ============ -->
+  <div class="view" id="view-nacimientos">
+    <div class="subtitle">Control de incubación y nacimientos</div>
+    <div class="grid3" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="green"><div class="stat-label">Total nacidos</div><div class="stat-value" id="b-total">0</div></div>
+      <div class="stat-card" data-tone="green"><div class="stat-label">Camadas</div><div class="stat-value" id="b-batches">0</div></div>
+      <div class="stat-card" data-tone="gold"><div class="stat-label">% promedio</div><div class="stat-value" id="b-avgpct">0%</div></div>
+    </div>
+    <div class="section-card">
+      <h2>📊 Porcentaje de nacimiento por camada</h2>
+      <div class="chart-wrap"><canvas id="chartBirths"></canvas></div>
+    </div>
+    <div class="section-card">
+      <h2>Historial de camadas</h2>
+      <div id="birthsList"></div>
+    </div>
+  </div>
+
+  <!-- ============ ALIMENTACIÓN ============ -->
+  <div class="view" id="view-alimentacion">
+    <div class="subtitle">Registro de consumo de alimento</div>
+    <div class="grid2" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="info"><div class="stat-label">Consumo del mes</div><div class="stat-value" id="f-amountMonth">0</div></div>
+      <div class="stat-card" data-tone="info"><div class="stat-label">Costo del mes</div><div class="stat-value money" id="f-costMonth" data-cur="">0</div></div>
+    </div>
+    <div class="section-card">
+      <h2>🌾 Historial de alimentación</h2>
+      <div id="feedList"></div>
+    </div>
+  </div>
+
+  <!-- ============ FINANZAS ============ -->
+  <div class="view" id="view-finanzas">
+    <div class="subtitle">Gastos, ingresos y ganancia</div>
+    <div class="subtabs">
+      <button class="subtab active" data-fintab="gastos">💸 Gastos</button>
+      <button class="subtab" data-fintab="ingresos">💵 Ingresos</button>
+    </div>
+    <div class="grid3" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="red"><div class="stat-label">Gastos mes</div><div class="stat-value money" id="fin-expMonth" data-cur="">0</div></div>
+      <div class="stat-card" data-tone="green"><div class="stat-label">Ingresos mes</div><div class="stat-value money" id="fin-incMonth" data-cur="">0</div></div>
+      <div class="stat-card" data-tone="gold"><div class="stat-label">Ganancia mes</div><div class="stat-value money" id="fin-profitMonth" data-cur="">0</div></div>
+    </div>
+    <div class="section-card">
+      <h2>📈 Últimos 6 meses</h2>
+      <div class="chart-wrap"><canvas id="chartFinance"></canvas></div>
+    </div>
+    <div class="section-card" id="finPanelGastos">
+      <h2>Historial de gastos</h2>
+      <div id="expensesList"></div>
+    </div>
+    <div class="section-card" id="finPanelIngresos" style="display:none;">
+      <h2>Historial de ingresos</h2>
+      <div id="incomeList"></div>
+    </div>
+  </div>
+
+  <!-- ============ INVENTARIO ============ -->
+  <div class="view" id="view-inventario">
+    <div class="subtitle">Control de existencias</div>
+    <div class="section-card">
+      <h2>📦 Inventario actual</h2>
+      <div id="inventoryList"></div>
+    </div>
+  </div>
+
+  <!-- ============ CONFIGURACIÓN ============ -->
+  <div class="view" id="view-config">
+    <div class="subtitle">Ajustes de la aplicación</div>
+    <div class="section-card">
+      <div class="field">
+        <label>Nombre de la granja</label>
+        <input type="text" id="cfgFarmName" placeholder="Nombre de tu granja">
+      </div>
+      <div class="field">
+        <label>Cantidad de gallinas (referencia manual)</label>
+        <input type="number" id="cfgHenCount" min="0" step="1">
+      </div>
+      <div class="field">
+        <label>Moneda</label>
+        <input type="text" id="cfgCurrency" placeholder="RD$">
+      </div>
+      <button class="btn block" id="cfgSaveBtn">Guardar configuración</button>
+    </div>
+    <div class="section-card">
+      <h2>🎨 Tema</h2>
+      <div class="row-inline">
+        <button class="btn ghost-toggle" id="cfgLightBtn">☀️ Claro</button>
+        <button class="btn ghost-toggle" id="cfgDarkBtn">🌙 Oscuro</button>
+      </div>
+    </div>
+    <div class="section-card">
+      <h2>🗂️ Datos</h2>
+      <p style="font-size:13px; opacity:0.8; margin:0 0 12px 0; line-height:1.5;">
+        ℹ️ Tus datos se guardan únicamente en <strong>este dispositivo/navegador</strong>, no en internet ni en un servidor. Si abres la app en otro teléfono o navegador, verás un registro vacío. Usa <strong>Exportar datos</strong> regularmente para respaldar tu información, y <strong>Importar datos</strong> si necesitas restaurarla o pasarla a otro dispositivo.
+      </p>
+      <button class="btn secondary block" id="exportBtn" style="margin-bottom:8px;">⬇️ Exportar datos (JSON)</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none;">
+      <button class="btn secondary block" id="importBtn" style="margin-bottom:8px;">⬆️ Importar datos</button>
+      <button class="btn danger block" id="wipeBtn">🗑️ Borrar todos los datos</button>
+    </div>
+  </div>
+
+</div>
+
+<button class="fab-add" id="fabAdd">+</button>
+
+<div class="bottomnav">
+  <button class="navbtn active" data-view="inicio"><span class="ic">🏠</span>Inicio</button>
+  <button class="navbtn" data-view="huevos"><span class="ic">🥚</span>Huevos</button>
+  <button class="navbtn" data-view="gallinas"><span class="ic">🐔</span>Gallinas</button>
+  <button class="navbtn" data-view="finanzas"><span class="ic">💰</span>Finanzas</button>
+  <button class="navbtn" id="navMoreBtn" type="button"><span class="ic">⋯</span>Más</button>
+</div>
+
+<div class="more-sheet-overlay" id="moreSheetOverlay">
+  <div class="more-sheet">
+    <div class="modal-handle"></div>
+    <h3>Más opciones</h3>
+    <div class="more-grid">
+      <button class="navbtn more-item" data-view="nacimientos"><span class="ic">🐣</span>Nacimientos</button>
+      <button class="navbtn more-item" data-view="alimentacion"><span class="ic">🌾</span>Alimentación</button>
+      <button class="navbtn more-item" data-view="inventario"><span class="ic">📦</span>Inventario</button>
+      <button class="navbtn more-item" data-view="config"><span class="ic">⚙️</span>Configuración</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h3 id="modalTitle">Título</h3>
+    <div id="modalFields"></div>
+    <div class="modal-actions">
+      <button class="btn secondary" id="modalCancel">Cancelar</button>
+      <button class="btn" id="modalSave">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <p id="confirmText">¿Confirmas esta acción?</p>
+    <div class="confirm-actions">
+      <button class="btn secondary" id="confirmCancel">Cancelar</button>
+      <button class="btn danger" id="confirmOk">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+/* =========================================================
+   UTILIDADES GENERALES
+   ========================================================= */
+function uid(){ return Date.now() + '_' + Math.floor(Math.random()*10000); }
+function todayISO(){ return new Date().toISOString().slice(0,10); }
+function toDate(iso){ return new Date(iso + 'T00:00:00'); }
+function fmtDate(iso){
+  if(!iso) return '—';
+  try{
+    return toDate(iso).toLocaleDateString('es-DO', {day:'numeric', month:'short', year:'numeric'});
+  }catch(e){ return iso; }
+}
+function round(n){ return Math.round((n + Number.EPSILON) * 100) / 100; }
+function safeNum(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._tm);
+  showToast._tm = setTimeout(()=> t.classList.remove('show'), 2000);
+}
+function isSameMonth(iso, ref){
+  const d = toDate(iso), r = ref || new Date();
+  return d.getFullYear() === r.getFullYear() && d.getMonth() === r.getMonth();
+}
+function daysAgo(iso){
+  const d = toDate(iso); const n = new Date();
+  return Math.floor((n.setHours(0,0,0,0) - d.getTime()) / 86400000);
+}
+function monthKey(iso){ const d = toDate(iso); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function monthLabel(key){
+  const [y,m] = key.split('-').map(Number);
+  const d = new Date(y, m-1, 1);
+  return d.toLocaleDateString('es-DO', {month:'short', year:'2-digit'});
+}
+
+/* =========================================================
+   ALMACENAMIENTO (localStorage) — claves separadas por módulo
+   ========================================================= */
+const LS = {
+  config: 'granja_config_v2',
+  eggs: 'granja_eggs_v2',
+  hens: 'granja_hens_v2',
+  births: 'granja_births_v2',
+  feed: 'granja_feed_v2',
+  expenses: 'granja_expenses_v2',
+  income: 'granja_income_v2',
+  inventory: 'granja_inventory_v2'
+};
+
+function loadJSON(key, fallback){
+  try{
+    const raw = localStorage.getItem(key);
+    if(!raw) return fallback;
+    const parsed = JSON.parse(raw);
+    return Array.isArray(fallback) ? (Array.isArray(parsed) ? parsed : fallback) : (parsed && typeof parsed === 'object' ? parsed : fallback);
+  }catch(e){ return fallback; }
+}
+function saveJSON(key, value){
+  try{ localStorage.setItem(key, JSON.stringify(value)); }
+  catch(e){ showToast('No se pudo guardar (almacenamiento lleno o no disponible).'); }
+}
+
+/* Estado en memoria */
+let state = {
+  config: loadJSON(LS.config, { farmName:'Mi Granja', henCount:0, currency:'RD$', theme:'auto' }),
+  eggs: loadJSON(LS.eggs, []),
+  hens: loadJSON(LS.hens, []),
+  births: loadJSON(LS.births, []),
+  feed: loadJSON(LS.feed, []),
+  expenses: loadJSON(LS.expenses, []),
+  income: loadJSON(LS.income, []),
+  inventory: loadJSON(LS.inventory, [])
+};
+
+/* =========================================================
+   MIGRACIÓN de la versión anterior (registro_huevos_entries / births)
+   ========================================================= */
+(function migrateOldData(){
+  let migrated = false;
+  if(state.eggs.length === 0){
+    try{
+      const oldEggs = JSON.parse(localStorage.getItem('registro_huevos_entries') || 'null');
+      if(Array.isArray(oldEggs) && oldEggs.length){
+        state.eggs = oldEggs.map(e => ({
+          id: String(e.id || uid()),
+          date: (e.date ? String(e.date).slice(0,10) : todayISO()),
+          count: safeNum(e.count),
+          note: ''
+        }));
+        migrated = true;
+      }
+    }catch(e){}
+  }
+  if(state.births.length === 0){
+    try{
+      const oldBirths = JSON.parse(localStorage.getItem('registro_huevos_births') || 'null');
+      if(Array.isArray(oldBirths) && oldBirths.length){
+        state.births = oldBirths.map(b => ({
+          id: String(b.id || uid()),
+          incubationDate: '',
+          estimatedDate: '',
+          actualDate: (b.date ? String(b.date).slice(0,10) : todayISO()),
+          incubatedEggs: 0,
+          hatchedChicks: safeNum(b.count),
+          notes: ''
+        }));
+        migrated = true;
+      }
+    }catch(e){}
+  }
+  if(migrated){
+    saveJSON(LS.eggs, state.eggs);
+    saveJSON(LS.births, state.births);
+  }
+})();
+
+function persist(key){ saveJSON(LS[key], state[key]); }
+
+/* =========================================================
+   TEMA
+   ========================================================= */
+function applyTheme(){
+  const t = state.config.theme || 'auto';
+  if(t === 'auto'){
+    document.documentElement.removeAttribute('data-theme');
+  }else{
+    document.documentElement.setAttribute('data-theme', t);
+  }
+  document.getElementById('themeToggle').textContent = (t === 'dark') ? '🌙' : (t === 'light' ? '☀️' : '🌓');
+  document.getElementById('cfgLightBtn') && document.getElementById('cfgLightBtn').classList.toggle('is-active', t==='light');
+  document.getElementById('cfgDarkBtn') && document.getElementById('cfgDarkBtn').classList.toggle('is-active', t==='dark');
+}
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  const order = ['auto','light','dark'];
+  const cur = state.config.theme || 'auto';
+  const next = order[(order.indexOf(cur)+1) % order.length];
+  state.config.theme = next;
+  persist('config');
+  applyTheme();
+});
+
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
+const views = ['inicio','huevos','gallinas','nacimientos','alimentacion','finanzas','inventario','config'];
+let currentView = 'inicio';
+
+const OVERFLOW_VIEWS = ['nacimientos','alimentacion','inventario','config'];
+const OVERFLOW_META = {
+  nacimientos: {icon:'🐣', label:'Nacim.'},
+  alimentacion: {icon:'🌾', label:'Aliment.'},
+  inventario: {icon:'📦', label:'Invent.'},
+  config: {icon:'⚙️', label:'Config'}
+};
+const MORE_DEFAULT = {icon:'⋯', label:'Más'};
+
+function setView(v){
+  currentView = v;
+  views.forEach(name=>{
+    document.getElementById('view-'+name).classList.toggle('active', name === v);
+  });
+  document.querySelectorAll('.navbtn[data-view]').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.view === v);
+  });
+  const moreBtn = document.getElementById('navMoreBtn');
+  if(moreBtn){
+    moreBtn.classList.toggle('active', OVERFLOW_VIEWS.includes(v));
+    const meta = OVERFLOW_META[v] || MORE_DEFAULT;
+    moreBtn.innerHTML = `<span class="ic">${meta.icon}</span>${meta.label}`;
+  }
+  document.getElementById('fabAdd').style.display = (v === 'inicio' || v === 'config') ? 'none' : 'flex';
+  renderAll();
+}
+document.querySelectorAll('.navbtn[data-view]').forEach(btn=>{
+  btn.addEventListener('click', ()=> { setView(btn.dataset.view); closeMoreSheet(); });
+});
+
+/* =========================================================
+   HOJA "MÁS" — módulos secundarios de la navegación
+   ========================================================= */
+const moreSheetOverlay = document.getElementById('moreSheetOverlay');
+function openMoreSheet(){ moreSheetOverlay.classList.add('open'); }
+function closeMoreSheet(){ moreSheetOverlay.classList.remove('open'); }
+document.getElementById('navMoreBtn').addEventListener('click', ()=>{
+  moreSheetOverlay.classList.contains('open') ? closeMoreSheet() : openMoreSheet();
+});
+moreSheetOverlay.addEventListener('click', (e)=>{ if(e.target === moreSheetOverlay) closeMoreSheet(); });
+
+document.querySelectorAll('.subtab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.subtab').forEach(b=> b.classList.remove('active'));
+    btn.classList.add('active');
+    const isGastos = btn.dataset.fintab === 'gastos';
+    document.getElementById('finPanelGastos').style.display = isGastos ? 'block' : 'none';
+    document.getElementById('finPanelIngresos').style.display = isGastos ? 'none' : 'block';
+  });
+});
+
+/* =========================================================
+   MODAL GENÉRICO (agregar / editar)
+   ========================================================= */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalFields = document.getElementById('modalFields');
+const modalTitle = document.getElementById('modalTitle');
+let modalOnSave = null;
+let modalFieldDefs = [];
+
+function openModal(title, fieldDefs, initialValues, onSave){
+  modalTitle.textContent = title;
+  modalFieldDefs = fieldDefs;
+  modalOnSave = onSave;
+  modalFields.innerHTML = fieldDefs.map(f=>{
+    const val = (initialValues && initialValues[f.key] !== undefined) ? initialValues[f.key] : (f.default !== undefined ? f.default : '');
+    let inputHtml = '';
+    if(f.type === 'select'){
+      inputHtml = `<select id="mf_${f.key}">` + f.options.map(o=>
+        `<option value="${o.value}" ${String(o.value)===String(val)?'selected':''}>${o.label}</option>`
+      ).join('') + `</select>`;
+    }else if(f.type === 'textarea'){
+      inputHtml = `<textarea id="mf_${f.key}" placeholder="${f.placeholder||''}">${val ? String(val).replace(/</g,'&lt;') : ''}</textarea>`;
+    }else{
+      const step = f.type === 'number' ? (f.step || 'any') : null;
+      inputHtml = `<input type="${f.type||'text'}" id="mf_${f.key}" ${step?`step="${step}"`:''} ${f.min!==undefined?`min="${f.min}"`:''} placeholder="${f.placeholder||''}" value="${val !== undefined && val !== null ? String(val).replace(/"/g,'&quot;') : ''}">`;
+    }
+    return `<div class="field">
+      <label>${f.label}${f.required?' *':''}</label>
+      ${inputHtml}
+      <div class="err" id="err_${f.key}"></div>
+    </div>`;
+  }).join('');
+  modalOverlay.classList.add('open');
+}
+function closeModal(){
+  modalOverlay.classList.remove('open');
+  modalOnSave = null;
+}
+document.getElementById('modalCancel').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e)=>{ if(e.target === modalOverlay) closeModal(); });
+
+document.getElementById('modalSave').addEventListener('click', ()=>{
+  const values = {};
+  let valid = true;
+  modalFieldDefs.forEach(f=>{
+    const el = document.getElementById('mf_'+f.key);
+    const errEl = document.getElementById('err_'+f.key);
+    errEl.style.display = 'none';
+    let v = el.value;
+    if(f.type === 'number'){
+      v = v === '' ? NaN : parseFloat(v);
+      if(f.required && (isNaN(v) )){
+        errEl.textContent = 'Ingresa un valor válido.'; errEl.style.display='block'; valid=false; return;
+      }
+      if(!isNaN(v) && f.min !== undefined && v < f.min){
+        errEl.textContent = 'El valor no puede ser negativo.'; errEl.style.display='block'; valid=false; return;
+      }
+      if(isNaN(v)) v = 0;
+    }else{
+      if(f.required && !String(v).trim()){
+        errEl.textContent = 'Este campo es obligatorio.'; errEl.style.display='block'; valid=false; return;
+      }
+    }
+    values[f.key] = v;
+  });
+  if(!valid) return;
+  if(modalOnSave) modalOnSave(values);
+  closeModal();
+});
+
+/* =========================================================
+   CONFIRMACIÓN GENÉRICA
+   ========================================================= */
+const confirmOverlay = document.getElementById('confirmOverlay');
+let confirmAction = null;
+function askConfirm(text, action){
+  document.getElementById('confirmText').textContent = text;
+  confirmAction = action;
+  confirmOverlay.classList.add('open');
+}
+document.getElementById('confirmCancel').addEventListener('click', ()=>{
+  confirmOverlay.classList.remove('open'); confirmAction = null;
+});
+document.getElementById('confirmOk').addEventListener('click', ()=>{
+  if(confirmAction) confirmAction();
+  confirmOverlay.classList.remove('open'); confirmAction = null;
+});
+
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* =========================================================
+   HUEVOS
+   ========================================================= */
+function eggFieldDefs(){
+  return [
+    {key:'date', label:'Fecha', type:'date', required:true, default: todayISO()},
+    {key:'count', label:'Cantidad de huevos', type:'number', required:true, min:0, step:'1'},
+    {key:'note', label:'Nota (opcional)', type:'textarea', placeholder:'Ej: lote norte'}
+  ];
+}
+function addEggEntry(){
+  openModal('Registrar huevos', eggFieldDefs(), {date: todayISO()}, (vals)=>{
+    state.eggs.push({ id: uid(), date: vals.date, count: vals.count, note: vals.note||'' });
+    persist('eggs');
+    renderAll();
+    showToast('Registro de huevos agregado.');
+  });
+}
+function editEggEntry(id){
+  const item = state.eggs.find(e=> e.id === id);
+  if(!item) return;
+  openModal('Editar registro de huevos', eggFieldDefs(), item, (vals)=>{
+    item.date = vals.date; item.count = vals.count; item.note = vals.note||'';
+    persist('eggs');
+    renderAll();
+    showToast('Registro actualizado.');
+  });
+}
+function deleteEggEntry(id){
+  askConfirm('¿Eliminar este registro de huevos?', ()=>{
+    state.eggs = state.eggs.filter(e=> e.id !== id);
+    persist('eggs');
+    renderAll();
+    showToast('Registro eliminado.');
+  });
+}
+function eggsInRange(days){
+  const cutoff = days === null ? -Infinity : -(days-1);
+  return state.eggs.filter(e=> daysAgo(e.date) <= (days===null?Infinity:days-1) && daysAgo(e.date) >= 0);
+}
+function sumEggs(list){ return list.reduce((s,e)=> s + safeNum(e.count), 0); }
+
+function renderEggs(){
+  const today = state.eggs.filter(e=> e.date === todayISO());
+  const week = state.eggs.filter(e=> daysAgo(e.date) >=0 && daysAgo(e.date) <= 6);
+  const month = state.eggs.filter(e=> isSameMonth(e.date));
+
+  document.getElementById('e-today').textContent = sumEggs(today);
+  document.getElementById('e-week').textContent = sumEggs(week);
+  document.getElementById('e-month').textContent = sumEggs(month);
+
+  document.getElementById('d-eggsToday').textContent = sumEggs(today);
+  document.getElementById('d-eggsWeek').textContent = sumEggs(week);
+  document.getElementById('d-eggsMonth').textContent = sumEggs(month);
+
+  const distinctDays = new Set(state.eggs.map(e=> e.date)).size;
+  const totalAll = sumEggs(state.eggs);
+  document.getElementById('e-week') && (document.getElementById('d-eggsAvg').textContent = distinctDays ? round(totalAll/distinctDays) : 0);
+
+  const list = document.getElementById('eggsList');
+  if(state.eggs.length === 0){
+    list.innerHTML = '<div class="empty"><span class="ic">🥚</span>Aún no hay registros de huevos.<br>Toca "+" para agregar el primero.</div>';
+  }else{
+    const sorted = [...state.eggs].sort((a,b)=> b.date.localeCompare(a.date));
+    list.innerHTML = sorted.map(e=> `
+      <div class="entry">
+        <div class="entry-icon gold">🥚</div>
+        <div class="entry-main">
+          <div class="entry-title">${fmtDate(e.date)}</div>
+          ${e.note ? `<div class="entry-note">${escapeHtml(e.note)}</div>` : ''}
+        </div>
+        <div class="entry-right">
+          <div class="entry-value gold">${e.count}</div>
+          <div class="entry-actions">
+            <button class="icon-btn" onclick="editEggEntry('${e.id}')">Editar</button>
+            <button class="icon-btn danger" onclick="deleteEggEntry('${e.id}')">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  renderEggsChart();
+}
+
+/* =========================================================
+   GALLINAS
+   ========================================================= */
+function henFieldDefs(){
+  return [
+    {key:'count', label:'Cantidad', type:'number', required:true, min:0, step:'1'},
+    {key:'breed', label:'Raza', type:'text', placeholder:'Ej: Rhode Island Red'},
+    {key:'entryDate', label:'Fecha de entrada', type:'date', required:true, default: todayISO()},
+    {key:'status', label:'Estado', type:'select', options:[
+      {value:'activa', label:'Activa'}, {value:'vendida', label:'Vendida'}, {value:'muerta', label:'Muerta'}
+    ], default:'activa'},
+    {key:'notes', label:'Notas (opcional)', type:'textarea'}
+  ];
+}
+function addHenBatch(){
+  openModal('Agregar lote de gallinas', henFieldDefs(), {entryDate: todayISO(), status:'activa'}, (vals)=>{
+    state.hens.push({ id: uid(), count: vals.count, breed: vals.breed||'', entryDate: vals.entryDate, status: vals.status, notes: vals.notes||'' });
+    persist('hens');
+    renderAll();
+    showToast('Lote de gallinas agregado.');
+  });
+}
+function editHenBatch(id){
+  const item = state.hens.find(h=> h.id === id);
+  if(!item) return;
+  openModal('Editar lote de gallinas', henFieldDefs(), item, (vals)=>{
+    Object.assign(item, vals);
+    persist('hens');
+    renderAll();
+    showToast('Lote actualizado.');
+  });
+}
+function deleteHenBatch(id){
+  askConfirm('¿Eliminar este lote de gallinas?', ()=>{
+    state.hens = state.hens.filter(h=> h.id !== id);
+    persist('hens');
+    renderAll();
+    showToast('Lote eliminado.');
+  });
+}
+function ageLabel(entryDate){
+  const days = daysAgo(entryDate);
+  if(days < 0) return 'Aún no ingresa';
+  if(days < 30) return days + ' días';
+  if(days < 365) return Math.floor(days/30) + ' meses';
+  return Math.floor(days/365) + ' años';
+}
+function henStatusIcon(status){
+  return status === 'activa' ? '🐔' : (status === 'vendida' ? '💰' : '⚰️');
+}
+function renderHens(){
+  const activeHens = state.hens.filter(h=> h.status === 'activa');
+  const totalActive = activeHens.reduce((s,h)=> s + safeNum(h.count), 0);
+  document.getElementById('h-total').textContent = totalActive;
+  document.getElementById('h-batches').textContent = state.hens.length;
+  document.getElementById('d-totalHens').textContent = totalActive > 0 ? totalActive : safeNum(state.config.henCount);
+
+  const list = document.getElementById('hensList');
+  if(state.hens.length === 0){
+    list.innerHTML = '<div class="empty"><span class="ic">🐔</span>Aún no hay lotes de gallinas.<br>Toca "+" para agregar el primero.</div>';
+    return;
+  }
+  const sorted = [...state.hens].sort((a,b)=> b.entryDate.localeCompare(a.entryDate));
+  list.innerHTML = sorted.map(h=> `
+    <div class="entry">
+      <div class="entry-icon">${henStatusIcon(h.status)}</div>
+      <div class="entry-main">
+        <div class="entry-title">${h.breed ? escapeHtml(h.breed) : 'Sin raza especificada'} <span class="badge status-${h.status}">${h.status}</span></div>
+        <div class="entry-sub">Entrada: ${fmtDate(h.entryDate)} · Edad: ${ageLabel(h.entryDate)}</div>
+        ${h.notes ? `<div class="entry-note">${escapeHtml(h.notes)}</div>` : ''}
+        <div class="entry-actions" style="justify-content:flex-start;">
+          <button class="icon-btn" onclick="editHenBatch('${h.id}')">Editar</button>
+          <button class="icon-btn danger" onclick="deleteHenBatch('${h.id}')">Eliminar</button>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-value">${h.count}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* =========================================================
+   NACIMIENTOS
+   ========================================================= */
+function birthFieldDefs(){
+  return [
+    {key:'incubationDate', label:'Fecha de incubación', type:'date'},
+    {key:'estimatedDate', label:'Fecha estimada de nacimiento', type:'date'},
+    {key:'actualDate', label:'Fecha real de nacimiento', type:'date', required:true, default: todayISO()},
+    {key:'incubatedEggs', label:'Huevos incubados', type:'number', min:0, step:'1'},
+    {key:'hatchedChicks', label:'Pollitos nacidos', type:'number', required:true, min:0, step:'1'},
+    {key:'notes', label:'Notas (opcional)', type:'textarea'}
+  ];
+}
+function addBirthBatch(){
+  openModal('Registrar camada', birthFieldDefs(), {actualDate: todayISO()}, (vals)=>{
+    state.births.push({ id: uid(), ...vals });
+    persist('births');
+    renderAll();
+    showToast('Camada registrada.');
+  });
+}
+function editBirthBatch(id){
+  const item = state.births.find(b=> b.id === id);
+  if(!item) return;
+  openModal('Editar camada', birthFieldDefs(), item, (vals)=>{
+    Object.assign(item, vals);
+    persist('births');
+    renderAll();
+    showToast('Camada actualizada.');
+  });
+}
+function deleteBirthBatch(id){
+  askConfirm('¿Eliminar esta camada?', ()=>{
+    state.births = state.births.filter(b=> b.id !== id);
+    persist('births');
+    renderAll();
+    showToast('Camada eliminada.');
+  });
+}
+function birthPct(b){
+  const inc = safeNum(b.incubatedEggs);
+  if(inc <= 0) return null;
+  return round((safeNum(b.hatchedChicks) / inc) * 100);
+}
+function renderBirths(){
+  const totalChicks = state.births.reduce((s,b)=> s + safeNum(b.hatchedChicks), 0);
+  document.getElementById('b-total').textContent = totalChicks;
+  document.getElementById('b-batches').textContent = state.births.length;
+
+  const pcts = state.births.map(birthPct).filter(p=> p !== null);
+  document.getElementById('b-avgpct').textContent = (pcts.length ? round(pcts.reduce((a,b)=>a+b,0)/pcts.length) : 0) + '%';
+
+  const recent = state.births.filter(b=> b.actualDate && daysAgo(b.actualDate) >= 0 && daysAgo(b.actualDate) <= 30);
+  document.getElementById('d-recentBirths').textContent = recent.reduce((s,b)=> s+safeNum(b.hatchedChicks),0);
+
+  const list = document.getElementById('birthsList');
+  if(state.births.length === 0){
+    list.innerHTML = '<div class="empty"><span class="ic">🐣</span>Aún no hay camadas registradas.<br>Toca "+" para agregar la primera.</div>';
+  }else{
+    const sorted = [...state.births].sort((a,b)=> (b.actualDate||'').localeCompare(a.actualDate||''));
+    list.innerHTML = sorted.map(b=>{
+      const pct = birthPct(b);
+      const pctBar = pct !== null ? `<div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div>` : '';
+      return `
+      <div class="entry">
+        <div class="entry-icon">🐣</div>
+        <div class="entry-main">
+          <div class="entry-title">${fmtDate(b.actualDate)} ${pct!==null?`<span class="badge">${pct}%</span>`:''}</div>
+          <div class="entry-sub">Incubación: ${fmtDate(b.incubationDate)} · Estimado: ${fmtDate(b.estimatedDate)}</div>
+          <div class="entry-sub">Incubados: ${safeNum(b.incubatedEggs)} · Nacidos: ${safeNum(b.hatchedChicks)}</div>
+          ${pctBar}
+          ${b.notes ? `<div class="entry-note">${escapeHtml(b.notes)}</div>` : ''}
+          <div class="entry-actions" style="justify-content:flex-start;">
+            <button class="icon-btn" onclick="editBirthBatch('${b.id}')">Editar</button>
+            <button class="icon-btn danger" onclick="deleteBirthBatch('${b.id}')">Eliminar</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  renderBirthsChart();
+}
+
+/* =========================================================
+   ALIMENTACIÓN
+   ========================================================= */
+function feedFieldDefs(){
+  return [
+    {key:'date', label:'Fecha', type:'date', required:true, default: todayISO()},
+    {key:'type', label:'Tipo de alimento', type:'text', required:true, placeholder:'Ej: maíz, concentrado'},
+    {key:'amount', label:'Cantidad utilizada', type:'number', required:true, min:0, step:'0.01'},
+    {key:'unit', label:'Unidad', type:'select', options:[
+      {value:'kg', label:'kg'}, {value:'lb', label:'lb'}, {value:'sacos', label:'sacos'}, {value:'unidad', label:'unidad'}
+    ], default:'kg'},
+    {key:'cost', label:'Costo', type:'number', min:0, step:'0.01'},
+    {key:'notes', label:'Notas (opcional)', type:'textarea'}
+  ];
+}
+function addFeedEntry(){
+  openModal('Registrar alimentación', feedFieldDefs(), {date: todayISO(), unit:'kg'}, (vals)=>{
+    state.feed.push({ id: uid(), ...vals });
+    persist('feed');
+    renderAll();
+    showToast('Registro de alimentación agregado.');
+  });
+}
+function editFeedEntry(id){
+  const item = state.feed.find(f=> f.id === id);
+  if(!item) return;
+  openModal('Editar registro de alimentación', feedFieldDefs(), item, (vals)=>{
+    Object.assign(item, vals);
+    persist('feed');
+    renderAll();
+    showToast('Registro actualizado.');
+  });
+}
+function deleteFeedEntry(id){
+  askConfirm('¿Eliminar este registro de alimentación?', ()=>{
+    state.feed = state.feed.filter(f=> f.id !== id);
+    persist('feed');
+    renderAll();
+    showToast('Registro eliminado.');
+  });
+}
+function renderFeed(){
+  const month = state.feed.filter(f=> isSameMonth(f.date));
+  document.getElementById('f-amountMonth').textContent = round(month.reduce((s,f)=> s+safeNum(f.amount),0));
+  document.getElementById('f-costMonth').textContent = round(month.reduce((s,f)=> s+safeNum(f.cost),0));
+
+  const list = document.getElementById('feedList');
+  if(state.feed.length === 0){
+    list.innerHTML = '<div class="empty"><span class="ic">🌾</span>Aún no hay registros de alimentación.<br>Toca "+" para agregar el primero.</div>';
+    return;
+  }
+  const sorted = [...state.feed].sort((a,b)=> b.date.localeCompare(a.date));
+  list.innerHTML = sorted.map(f=> `
+    <div class="entry">
+      <div class="entry-icon info">🌾</div>
+      <div class="entry-main">
+        <div class="entry-title">${escapeHtml(f.type)}</div>
+        <div class="entry-sub">${fmtDate(f.date)} · ${safeNum(f.amount)} ${f.unit}${f.cost?` · ${state.config.currency||''} ${round(safeNum(f.cost))}`:''}</div>
+        ${f.notes ? `<div class="entry-note">${escapeHtml(f.notes)}</div>` : ''}
+      </div>
+      <div class="entry-right">
+        <div class="entry-actions">
+          <button class="icon-btn" onclick="editFeedEntry('${f.id}')">Editar</button>
+          <button class="icon-btn danger" onclick="deleteFeedEntry('${f.id}')">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* =========================================================
+   GASTOS
+   ========================================================= */
+const EXPENSE_CATEGORIES = ['Alimento','Medicamentos','Gallinas','Equipamiento','Transporte','Otros'];
+function expenseFieldDefs(){
+  return [
+    {key:'date', label:'Fecha', type:'date', required:true, default: todayISO()},
+    {key:'category', label:'Categoría', type:'select', options: EXPENSE_CATEGORIES.map(c=>({value:c,label:c})), default:'Otros'},
+    {key:'description', label:'Descripción', type:'text', placeholder:'Ej: compra de vitaminas'},
+    {key:'amount', label:'Costo', type:'number', required:true, min:0, step:'0.01'}
+  ];
+}
+function addExpense(){
+  openModal('Registrar gasto', expenseFieldDefs(), {date: todayISO(), category:'Otros'}, (vals)=>{
+    state.expenses.push({ id: uid(), ...vals });
+    persist('expenses');
+    renderAll();
+    showToast('Gasto agregado.');
+  });
+}
+function editExpense(id){
+  const item = state.expenses.find(e=> e.id === id);
+  if(!item) return;
+  openModal('Editar gasto', expenseFieldDefs(), item, (vals)=>{
+    Object.assign(item, vals);
+    persist('expenses');
+    renderAll();
+    showToast('Gasto actualizado.');
+  });
+}
+function deleteExpense(id){
+  askConfirm('¿Eliminar este gasto?', ()=>{
+    state.expenses = state.expenses.filter(e=> e.id !== id);
+    persist('expenses');
+    renderAll();
+    showToast('Gasto eliminado.');
+  });
+}
+
+/* =========================================================
+   INGRESOS
+   ========================================================= */
+const INCOME_TYPES = ['Venta de huevos','Venta de pollitos','Venta de gallinas','Otros'];
+function incomeFieldDefs(){
+  return [
+    {key:'date', label:'Fecha', type:'date', required:true, default: todayISO()},
+    {key:'type', label:'Tipo de ingreso', type:'select', options: INCOME_TYPES.map(c=>({value:c,label:c})), default:'Venta de huevos'},
+    {key:'description', label:'Descripción (opcional)', type:'text'},
+    {key:'quantity', label:'Cantidad', type:'number', required:true, min:0, step:'0.01'},
+    {key:'price', label:'Precio unitario', type:'number', required:true, min:0, step:'0.01'}
+  ];
+}
+function addIncome(){
+  openModal('Registrar ingreso', incomeFieldDefs(), {date: todayISO(), type:'Venta de huevos'}, (vals)=>{
+    state.income.push({ id: uid(), ...vals });
+    persist('income');
+    renderAll();
+    showToast('Ingreso agregado.');
+  });
+}
+function editIncome(id){
+  const item = state.income.find(i=> i.id === id);
+  if(!item) return;
+  openModal('Editar ingreso', incomeFieldDefs(), item, (vals)=>{
+    Object.assign(item, vals);
+    persist('income');
+    renderAll();
+    showToast('Ingreso actualizado.');
+  });
+}
+function deleteIncome(id){
+  askConfirm('¿Eliminar este ingreso?', ()=>{
+    state.income = state.income.filter(i=> i.id !== id);
+    persist('income');
+    renderAll();
+    showToast('Ingreso eliminado.');
+  });
+}
+function incomeTotal(i){ return round(safeNum(i.quantity) * safeNum(i.price)); }
+
+function renderFinance(){
+  const cur = state.config.currency || 'RD$';
+  document.querySelectorAll('.stat-value.money').forEach(el=> el.setAttribute('data-cur', cur));
+
+  const expMonth = state.expenses.filter(e=> isSameMonth(e.date));
+  const feedMonth = state.feed.filter(f=> isSameMonth(f.date));
+  const incMonth = state.income.filter(i=> isSameMonth(i.date));
+
+  const totalExpMonth = round(expMonth.reduce((s,e)=> s+safeNum(e.amount),0) + feedMonth.reduce((s,f)=> s+safeNum(f.cost),0));
+  const totalIncMonth = round(incMonth.reduce((s,i)=> s+incomeTotal(i),0));
+  const profitMonth = round(totalIncMonth - totalExpMonth);
+
+  document.getElementById('fin-expMonth').textContent = totalExpMonth;
+  document.getElementById('fin-incMonth').textContent = totalIncMonth;
+  document.getElementById('fin-profitMonth').textContent = profitMonth;
+  document.getElementById('d-expensesMonth').textContent = totalExpMonth;
+  document.getElementById('d-incomeMonth').textContent = totalIncMonth;
+  document.getElementById('d-profitMonth').textContent = profitMonth;
+
+  const expList = document.getElementById('expensesList');
+  if(state.expenses.length === 0){
+    expList.innerHTML = '<div class="empty"><span class="ic">💸</span>Aún no hay gastos registrados.</div>';
+  }else{
+    const sorted = [...state.expenses].sort((a,b)=> b.date.localeCompare(a.date));
+    expList.innerHTML = sorted.map(e=> `
+      <div class="entry">
+        <div class="entry-icon red">💸</div>
+        <div class="entry-main">
+          <div class="entry-title">${escapeHtml(e.description || e.category)}</div>
+          <div class="entry-sub">${fmtDate(e.date)} · <span class="badge">${e.category}</span></div>
+          <div class="entry-actions" style="justify-content:flex-start;">
+            <button class="icon-btn" onclick="editExpense('${e.id}')">Editar</button>
+            <button class="icon-btn danger" onclick="deleteExpense('${e.id}')">Eliminar</button>
+          </div>
+        </div>
+        <div class="entry-right">
+          <div class="entry-value red">${cur} ${round(safeNum(e.amount))}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const incList = document.getElementById('incomeList');
+  if(state.income.length === 0){
+    incList.innerHTML = '<div class="empty"><span class="ic">💵</span>Aún no hay ingresos registrados.</div>';
+  }else{
+    const sorted = [...state.income].sort((a,b)=> b.date.localeCompare(a.date));
+    incList.innerHTML = sorted.map(i=> `
+      <div class="entry">
+        <div class="entry-icon">💵</div>
+        <div class="entry-main">
+          <div class="entry-title">${escapeHtml(i.description || i.type)}</div>
+          <div class="entry-sub">${fmtDate(i.date)} · <span class="badge">${i.type}</span></div>
+          <div class="entry-sub">${safeNum(i.quantity)} x ${cur}${round(safeNum(i.price))}</div>
+          <div class="entry-actions" style="justify-content:flex-start;">
+            <button class="icon-btn" onclick="editIncome('${i.id}')">Editar</button>
+            <button class="icon-btn danger" onclick="deleteIncome('${i.id}')">Eliminar</button>
+          </div>
+        </div>
+        <div class="entry-right">
+          <div class="entry-value green">${cur} ${incomeTotal(i)}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+  renderFinanceChart();
+}
+
+/* =========================================================
+   INVENTARIO
+   ========================================================= */
+const INVENTORY_CATEGORIES = ['Huevos','Alimento','Medicamentos','Otros'];
+const LOW_STOCK_THRESHOLD = 5;
+function inventoryFieldDefs(){
+  return [
+    {key:'category', label:'Categoría', type:'select', options: INVENTORY_CATEGORIES.map(c=>({value:c,label:c})), default:'Otros'},
+    {key:'name', label:'Nombre del producto', type:'text', required:true, placeholder:'Ej: Huevos grado A'},
+    {key:'quantity', label:'Cantidad', type:'number', required:true, min:0, step:'0.01'},
+    {key:'unit', label:'Unidad', type:'text', placeholder:'Ej: unidades, kg, cajas'},
+    {key:'notes', label:'Notas (opcional)', type:'textarea'}
+  ];
+}
+function addInventoryItem(){
+  openModal('Agregar al inventario', inventoryFieldDefs(), {category:'Otros'}, (vals)=>{
+    state.inventory.push({ id: uid(), ...vals });
+    persist('inventory');
+    renderAll();
+    showToast('Producto agregado al inventario.');
+  });
+}
+function editInventoryItem(id){
+  const item = state.inventory.find(i=> i.id === id);
+  if(!item) return;
+  openModal('Editar producto', inventoryFieldDefs(), item, (vals)=>{
+    Object.assign(item, vals);
+    persist('inventory');
+    renderAll();
+    showToast('Producto actualizado.');
+  });
+}
+function deleteInventoryItem(id){
+  askConfirm('¿Eliminar este producto del inventario?', ()=>{
+    state.inventory = state.inventory.filter(i=> i.id !== id);
+    persist('inventory');
+    renderAll();
+    showToast('Producto eliminado.');
+  });
+}
+function adjustInventory(id, delta){
+  const item = state.inventory.find(i=> i.id === id);
+  if(!item) return;
+  const newQty = safeNum(item.quantity) + delta;
+  item.quantity = newQty < 0 ? 0 : round(newQty);
+  persist('inventory');
+  renderAll();
+}
+function inventoryIcon(category){
+  return category === 'Huevos' ? '🥚' : (category === 'Alimento' ? '🌾' : (category === 'Medicamentos' ? '💊' : '📦'));
+}
+function renderInventory(){
+  const list = document.getElementById('inventoryList');
+  if(state.inventory.length === 0){
+    list.innerHTML = '<div class="empty"><span class="ic">📦</span>Aún no hay productos en inventario.<br>Toca "+" para agregar el primero.</div>';
+    return;
+  }
+  const sorted = [...state.inventory].sort((a,b)=> a.category.localeCompare(b.category));
+  list.innerHTML = sorted.map(i=>{
+    const low = safeNum(i.quantity) <= LOW_STOCK_THRESHOLD;
+    return `
+    <div class="entry">
+      <div class="entry-icon info">${inventoryIcon(i.category)}</div>
+      <div class="entry-main">
+        <div class="entry-title">${escapeHtml(i.name)} <span class="badge">${i.category}</span> ${low ? '<span class="badge stock-low">⚠️ Stock bajo</span>' : ''}</div>
+        ${i.notes ? `<div class="entry-note">${escapeHtml(i.notes)}</div>` : ''}
+        <div class="entry-actions" style="justify-content:flex-start; margin-top:8px; align-items:center;">
+          <div class="stepper">
+            <button class="icon-btn" onclick="adjustInventory('${i.id}', -1)">−</button>
+            <span style="font-size:12px; font-weight:700; padding:0 4px;">${safeNum(i.quantity)} ${escapeHtml(i.unit||'')}</span>
+            <button class="icon-btn" onclick="adjustInventory('${i.id}', 1)">+</button>
+          </div>
+          <button class="icon-btn" onclick="editInventoryItem('${i.id}')">Editar</button>
+          <button class="icon-btn danger" onclick="deleteInventoryItem('${i.id}')">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  `;
+  }).join('');
+}
+
+/* =========================================================
+   CONFIGURACIÓN
+   ========================================================= */
+function loadConfigForm(){
+  document.getElementById('cfgFarmName').value = state.config.farmName || '';
+  document.getElementById('cfgHenCount').value = state.config.henCount || 0;
+  document.getElementById('cfgCurrency').value = state.config.currency || 'RD$';
+  document.getElementById('farmTitle').textContent = state.config.farmName || 'Mi Granja';
+}
+document.getElementById('cfgSaveBtn').addEventListener('click', ()=>{
+  state.config.farmName = document.getElementById('cfgFarmName').value.trim() || 'Mi Granja';
+  state.config.henCount = safeNum(document.getElementById('cfgHenCount').value);
+  state.config.currency = document.getElementById('cfgCurrency').value.trim() || 'RD$';
+  persist('config');
+  document.getElementById('farmTitle').textContent = state.config.farmName;
+  showToast('Configuración guardada.');
+  renderAll();
+});
+document.getElementById('cfgLightBtn').addEventListener('click', ()=>{
+  state.config.theme = 'light'; persist('config'); applyTheme();
+});
+document.getElementById('cfgDarkBtn').addEventListener('click', ()=>{
+  state.config.theme = 'dark'; persist('config'); applyTheme();
+});
+
+/* Exportar / Importar / Borrar todo */
+document.getElementById('exportBtn').addEventListener('click', ()=>{
+  const data = { exportedAt: new Date().toISOString(), state };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'granja_datos_' + todayISO() + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(()=> URL.revokeObjectURL(url), 1000);
+  showToast('Datos exportados.');
+});
+document.getElementById('importBtn').addEventListener('click', ()=>{
+  document.getElementById('importFile').click();
+});
+document.getElementById('importFile').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev)=>{
+    try{
+      const parsed = JSON.parse(ev.target.result);
+      const incoming = parsed.state || parsed;
+      askConfirm('¿Importar estos datos? Esto reemplazará la información actual.', ()=>{
+        state.config = incoming.config || state.config;
+        state.eggs = Array.isArray(incoming.eggs) ? incoming.eggs : [];
+        state.hens = Array.isArray(incoming.hens) ? incoming.hens : [];
+        state.births = Array.isArray(incoming.births) ? incoming.births : [];
+        state.feed = Array.isArray(incoming.feed) ? incoming.feed : [];
+        state.expenses = Array.isArray(incoming.expenses) ? incoming.expenses : [];
+        state.income = Array.isArray(incoming.income) ? incoming.income : [];
+        state.inventory = Array.isArray(incoming.inventory) ? incoming.inventory : [];
+        Object.keys(LS).forEach(k=> persist(k));
+        applyTheme();
+        loadConfigForm();
+        renderAll();
+        showToast('Datos importados correctamente.');
+      });
+    }catch(err){
+      showToast('El archivo no es un JSON válido.');
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+});
+document.getElementById('wipeBtn').addEventListener('click', ()=>{
+  askConfirm('¿Borrar TODOS los datos de la aplicación? Esta acción no se puede deshacer.', ()=>{
+    state = { config: { farmName:'Mi Granja', henCount:0, currency:'RD$', theme: state.config.theme }, eggs:[], hens:[], births:[], feed:[], expenses:[], income:[], inventory:[] };
+    Object.keys(LS).forEach(k=> persist(k));
+    loadConfigForm();
+    applyTheme();
+    renderAll();
+    showToast('Todos los datos fueron borrados.');
+  });
+});
+
+/* =========================================================
+   BOTÓN FLOTANTE "+" — abre el formulario según la vista activa
+   ========================================================= */
+document.getElementById('fabAdd').addEventListener('click', ()=>{
+  switch(currentView){
+    case 'huevos': addEggEntry(); break;
+    case 'gallinas': addHenBatch(); break;
+    case 'nacimientos': addBirthBatch(); break;
+    case 'alimentacion': addFeedEntry(); break;
+    case 'finanzas':
+      const isGastos = document.querySelector('.subtab.active').dataset.fintab === 'gastos';
+      isGastos ? addExpense() : addIncome();
+      break;
+    case 'inventario': addInventoryItem(); break;
+  }
+});
+
+/* =========================================================
+   GRÁFICOS (Chart.js)
+   ========================================================= */
+let charts = {};
+function chartColors(){
+  const styles = getComputedStyle(document.documentElement);
+  return {
+    accent: styles.getPropertyValue('--accent').trim() || '#3F7D44',
+    text: styles.getPropertyValue('--text-secondary').trim() || '#5C6B52',
+    grid: styles.getPropertyValue('--border').trim() || '#E7E0CB',
+    success: styles.getPropertyValue('--success').trim() || '#3F7D44',
+    danger: styles.getPropertyValue('--danger').trim() || '#C0453B',
+    gold: styles.getPropertyValue('--gold').trim() || '#DFA324'
+  };
+}
+function destroyChart(key){
+  if(charts[key]){ charts[key].destroy(); charts[key] = null; }
+}
+function baseOptions(colors){
+  return {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ labels:{ color: colors.text, font:{size:11} } } },
+    scales:{
+      x:{ ticks:{ color: colors.text, font:{size:10} }, grid:{ color: colors.grid } },
+      y:{ ticks:{ color: colors.text, font:{size:10} }, grid:{ color: colors.grid }, beginAtZero:true }
+    }
+  };
+}
+function last7DaysLabelsAndData(list, valueKey){
+  const labels = [], data = [];
+  for(let i=6;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const iso = d.toISOString().slice(0,10);
+    labels.push(d.toLocaleDateString('es-DO',{weekday:'short'}));
+    data.push(round(list.filter(e=> e.date === iso).reduce((s,e)=> s+safeNum(e[valueKey]),0)));
+  }
+  return {labels, data};
+}
+function lastNDaysLabelsAndData(n, list, valueKey){
+  const labels = [], data = [];
+  for(let i=n-1;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const iso = d.toISOString().slice(0,10);
+    labels.push(d.getDate()+'/'+(d.getMonth()+1));
+    data.push(round(list.filter(e=> e.date === iso).reduce((s,e)=> s+safeNum(e[valueKey]),0)));
+  }
+  return {labels, data};
+}
+function renderDashboardChart(){
+  const canvas = document.getElementById('chartDashboard');
+  if(!canvas || currentView !== 'inicio') return;
+  const colors = chartColors();
+  const {labels, data} = last7DaysLabelsAndData(state.eggs, 'count');
+  destroyChart('dashboard');
+  charts.dashboard = new Chart(canvas, {
+    type:'line',
+    data:{ labels, datasets:[{ label:'Huevos', data, borderColor: colors.gold, backgroundColor: colors.gold+'33', fill:true, tension:0.35, pointBackgroundColor: colors.gold }] },
+    options: baseOptions(colors)
+  });
+}
+function renderEggsChart(){
+  const canvas = document.getElementById('chartEggs');
+  if(!canvas || currentView !== 'huevos') return;
+  const colors = chartColors();
+  const {labels, data} = lastNDaysLabelsAndData(14, state.eggs, 'count');
+  destroyChart('eggs');
+  charts.eggs = new Chart(canvas, {
+    type:'bar',
+    data:{ labels, datasets:[{ label:'Huevos por día', data, backgroundColor: colors.gold, borderRadius:5 }] },
+    options: baseOptions(colors)
+  });
+}
+function renderBirthsChart(){
+  const canvas = document.getElementById('chartBirths');
+  if(!canvas || currentView !== 'nacimientos') return;
+  const colors = chartColors();
+  const sorted = [...state.births].sort((a,b)=> (a.actualDate||'').localeCompare(b.actualDate||'')).slice(-10);
+  const labels = sorted.map(b=> fmtDate(b.actualDate));
+  const data = sorted.map(b=> birthPct(b) ?? 0);
+  destroyChart('births');
+  charts.births = new Chart(canvas, {
+    type:'bar',
+    data:{ labels, datasets:[{ label:'% nacimiento', data, backgroundColor: colors.success, borderRadius:5 }] },
+    options: Object.assign(baseOptions(colors), { scales: Object.assign(baseOptions(colors).scales, { y:{ beginAtZero:true, max:100, ticks:{color:colors.text} } }) })
+  });
+}
+function renderFinanceChart(){
+  const canvas = document.getElementById('chartFinance');
+  if(!canvas || currentView !== 'finanzas') return;
+  const colors = chartColors();
+  const keys = [];
+  for(let i=5;i>=0;i--){
+    const d = new Date(); d.setMonth(d.getMonth()-i);
+    keys.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'));
+  }
+  const labels = keys.map(monthLabel);
+  const expData = keys.map(k=> round(
+    state.expenses.filter(e=> monthKey(e.date)===k).reduce((s,e)=> s+safeNum(e.amount),0) +
+    state.feed.filter(f=> monthKey(f.date)===k).reduce((s,f)=> s+safeNum(f.cost),0)
+  ));
+  const incData = keys.map(k=> round(state.income.filter(i=> monthKey(i.date)===k).reduce((s,i)=> s+incomeTotal(i),0)));
+  const profitData = keys.map((k,idx)=> round(incData[idx]-expData[idx]));
+  destroyChart('finance');
+  charts.finance = new Chart(canvas, {
+    type:'bar',
+    data:{ labels, datasets:[
+      { label:'Ingresos', data: incData, backgroundColor: colors.success, borderRadius:5 },
+      { label:'Gastos', data: expData, backgroundColor: colors.danger, borderRadius:5 },
+      { label:'Ganancia', data: profitData, type:'line', borderColor: colors.gold, backgroundColor:'transparent', tension:0.3 }
+    ]},
+    options: baseOptions(colors)
+  });
+}
+
+/* =========================================================
+   RENDER GENERAL
+   ========================================================= */
+function renderAll(){
+  renderEggs();
+  renderHens();
+  renderBirths();
+  renderFeed();
+  renderFinance();
+  renderInventory();
+  if(currentView === 'inicio') renderDashboardChart();
+}
+
+/* =========================================================
+   INICIALIZACIÓN
+   ========================================================= */
+applyTheme();
+loadConfigForm();
+renderAll();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
