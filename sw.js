@@ -1,7 +1,9 @@
-// Service worker mínimo — necesario para que el navegador
-// permita "Instalar aplicación" (PWA). Cachea el archivo principal
-// para que la app también abra sin internet una vez visitada.
-const CACHE_NAME = 'mi-granja-v1';
+// Service worker de "Mi Granja".
+// Estrategia: red primero, caché como respaldo (para que la app
+// abra sin internet). Así, cada vez que publiques cambios y alguien
+// tenga internet al abrir la app, siempre recibe la versión más
+// nueva automáticamente, sin tener que borrar caché ni reinstalar.
+const CACHE_NAME = 'mi-granja-v2';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -21,7 +23,15 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    fetch(event.request)
+      .then((response) => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy)).catch(() => {});
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });

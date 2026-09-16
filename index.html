@@ -47,11 +47,11 @@
   body{
     margin:0; background:var(--bg); color:var(--text);
     font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    padding-bottom:calc(var(--nav-h) + 8px); -webkit-font-smoothing:antialiased;
+    padding-bottom:0; -webkit-font-smoothing:antialiased;
     transition:background .25s ease, color .25s ease;
   }
   ::selection{background:var(--accent); color:#fff;}
-  .app{max-width:560px; margin:0 auto; padding:14px 16px 6px;}
+  .app{max-width:560px; margin:0 auto; padding:14px 16px calc(var(--nav-h) + 100px);}
   h1{font-size:21px; font-weight:800; margin:0; letter-spacing:-0.01em;}
   h2{font-size:15.5px; font-weight:700; margin:0 0 0.75rem; color:var(--text);}
   .subtitle{color:var(--text-secondary); font-size:13px; margin:2px 0 14px; font-weight:500;}
@@ -82,7 +82,7 @@
   .hero-card{
     background:linear-gradient(150deg, var(--accent) 0%, var(--accent-dark) 100%);
     border-radius:var(--radius-lg); padding:20px 20px 18px; color:#fff;
-    box-shadow:var(--shadow-md); margin-bottom:12px; position:relative; overflow:hidden;
+    box-shadow:var(--shadow-md); margin-top:14px; margin-bottom:12px; position:relative; overflow:hidden;
     animation:cardIn .35s ease both;
   }
   .hero-card::after{
@@ -1646,7 +1646,20 @@ renderAll();
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+      // Revisa si hay una versión nueva cada vez que se abre la app.
+      reg.update().catch(() => {});
+    }).catch(() => {});
+  });
+
+  // Cuando una nueva versión del service worker toma el control,
+  // recarga la página automáticamente para mostrar los cambios
+  // sin que la persona tenga que borrar caché ni reinstalar.
+  let alreadyRefreshed = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (alreadyRefreshed) return;
+    alreadyRefreshed = true;
+    window.location.reload();
   });
 }
 </script>
