@@ -2,7 +2,7 @@
 // permita "Instalar aplicación" (PWA). Cachea el archivo principal
 // para que la app también abra sin internet una vez visitada.
 const CACHE_NAME = 'mi-granja-v1';
-const ASSETS = ['./', './index.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
+const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
