@@ -308,9 +308,36 @@
     background:var(--accent-dark); color:#fff; padding:11px 20px; border-radius:99px;
     font-size:13.5px; font-weight:600; opacity:0; transition:opacity 0.2s, transform 0.2s; z-index:200;
     pointer-events:none; white-space:nowrap; max-width:90vw; overflow:hidden; text-overflow:ellipsis;
-    box-shadow:var(--shadow-lg);
+    box-shadow:var(--shadow-lg); display:flex; align-items:center; gap:12px;
   }
-  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto;}
+  .toast .undo-btn{
+    background:rgba(255,255,255,0.18); border:none; color:#fff; font-weight:800; font-size:13px;
+    padding:5px 12px; border-radius:99px; cursor:pointer; flex-shrink:0;
+  }
+  .toast .undo-btn:active{background:rgba(255,255,255,0.32);}
+
+  /* ---------- Aviso de respaldo ---------- */
+  .backup-banner{
+    display:flex; align-items:center; gap:10px; background:var(--gold-bg); border:1px solid var(--gold-dark);
+    color:var(--gold-dark); border-radius:var(--radius-md); padding:11px 14px; margin-bottom:12px; font-size:13px; font-weight:600;
+  }
+  .backup-banner button{
+    margin-left:auto; flex-shrink:0; background:var(--gold-dark); color:#fff; border:none; border-radius:99px;
+    padding:6px 12px; font-size:12.5px; font-weight:800; cursor:pointer;
+  }
+  .backup-banner .close-x{ background:transparent; color:var(--gold-dark); font-size:16px; padding:0 2px; margin-left:4px; }
+
+  /* ---------- Buscador de listas ---------- */
+  .list-search{
+    width:100%; padding:9px 12px; border-radius:var(--radius-sm); border:1px solid var(--border);
+    background:var(--card); color:var(--text); font-size:13.5px; margin-bottom:10px; font-family:inherit;
+  }
+  .list-search:focus{outline:none; border-color:var(--accent);}
+
+  /* ---------- Incubación: aviso próximo a nacer ---------- */
+  .entry.urgent{box-shadow:0 0 0 2px var(--danger) inset;}
+  .badge.urgent{background:var(--danger-bg); color:var(--danger);}
 
   .row-inline{display:flex; gap:8px;}
   .row-inline > *{flex:1;}
@@ -329,7 +356,7 @@
     <div class="topbar-id">
       <div class="farm-avatar"><img src="data:image/webp;base64,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" alt="Logo de Mi Granja"></div>
       <div>
-        <div class="greeting">Resumen de hoy</div>
+        <div class="greeting" id="greetingText">Resumen de hoy</div>
         <h1 id="farmTitle">Mi Granja</h1>
       </div>
     </div>
@@ -338,6 +365,8 @@
 
   <!-- ============ INICIO ============ -->
   <div class="view active" id="view-inicio">
+
+    <div id="backupBannerSlot"></div>
 
     <div class="hero-card">
       <div class="hero-label">🥚 Huevos de hoy</div>
@@ -404,6 +433,7 @@
     </div>
     <div class="section-card">
       <h2>Historial de registros</h2>
+      <input type="text" class="list-search" id="searchEggs" placeholder="🔎 Buscar por fecha o nota...">
       <div id="eggsList"></div>
     </div>
   </div>
@@ -417,25 +447,46 @@
     </div>
     <div class="section-card">
       <h2>🐔 Lotes de gallinas</h2>
+      <input type="text" class="list-search" id="searchHens" placeholder="🔎 Buscar por raza, estado o nota...">
       <div id="hensList"></div>
     </div>
   </div>
 
   <!-- ============ NACIMIENTOS ============ -->
   <div class="view" id="view-nacimientos">
-    <div class="subtitle">Control de incubación y nacimientos</div>
+    <div class="subtitle">Pollitos que ya nacieron (independiente de Incubación)</div>
     <div class="grid3" style="margin-bottom:10px;">
       <div class="stat-card" data-tone="green"><div class="stat-label">Total nacidos</div><div class="stat-value" id="b-total">0</div></div>
-      <div class="stat-card" data-tone="green"><div class="stat-label">Camadas</div><div class="stat-value" id="b-batches">0</div></div>
+      <div class="stat-card" data-tone="green"><div class="stat-label">Registros</div><div class="stat-value" id="b-batches">0</div></div>
       <div class="stat-card" data-tone="gold"><div class="stat-label">% promedio</div><div class="stat-value" id="b-avgpct">0%</div></div>
     </div>
     <div class="section-card">
-      <h2>📊 Porcentaje de nacimiento por camada</h2>
+      <h2>📊 Porcentaje de nacimiento (según incubación vinculada)</h2>
       <div class="chart-wrap"><canvas id="chartBirths"></canvas></div>
     </div>
     <div class="section-card">
-      <h2>Historial de camadas</h2>
+      <h2>Historial de nacimientos</h2>
+      <input type="text" class="list-search" id="searchBirths" placeholder="🔎 Buscar por fecha o nota...">
       <div id="birthsList"></div>
+    </div>
+  </div>
+
+  <!-- ============ INCUBACIÓN ============ -->
+  <div class="view" id="view-incubacion">
+    <div class="subtitle">Huevos puestos a incubar (independiente de Nacimientos)</div>
+    <div class="grid3" style="margin-bottom:10px;">
+      <div class="stat-card" data-tone="gold"><div class="stat-label">En incubación</div><div class="stat-value" id="inc-active">0</div></div>
+      <div class="stat-card" data-tone="gold"><div class="stat-label">Huevos incubando</div><div class="stat-value" id="inc-eggs">0</div></div>
+      <div class="stat-card" data-tone="green"><div class="stat-label">Finalizadas</div><div class="stat-value" id="inc-finished">0</div></div>
+    </div>
+    <input type="text" class="list-search" id="searchIncubations" placeholder="🔎 Buscar por fecha, especie o nota...">
+    <div class="section-card">
+      <h2>🟡 En incubación</h2>
+      <div id="incubationActiveList"></div>
+    </div>
+    <div class="section-card">
+      <h2>📜 Historial / Finalizadas</h2>
+      <div id="incubationHistoryList"></div>
     </div>
   </div>
 
@@ -448,6 +499,7 @@
     </div>
     <div class="section-card">
       <h2>🌾 Historial de alimentación</h2>
+      <input type="text" class="list-search" id="searchFeed" placeholder="🔎 Buscar por tipo, fecha o nota...">
       <div id="feedList"></div>
     </div>
   </div>
@@ -469,11 +521,17 @@
       <div class="chart-wrap"><canvas id="chartFinance"></canvas></div>
     </div>
     <div class="section-card" id="finPanelGastos">
+      <h2>💸 Gastos por categoría (este mes)</h2>
+      <div id="expenseCategoryBreakdown"></div>
+    </div>
+    <div class="section-card" id="finPanelGastosList">
       <h2>Historial de gastos</h2>
+      <input type="text" class="list-search" id="searchExpenses" placeholder="🔎 Buscar por descripción, categoría o fecha...">
       <div id="expensesList"></div>
     </div>
     <div class="section-card" id="finPanelIngresos" style="display:none;">
       <h2>Historial de ingresos</h2>
+      <input type="text" class="list-search" id="searchIncome" placeholder="🔎 Buscar por descripción, tipo o fecha...">
       <div id="incomeList"></div>
     </div>
   </div>
@@ -483,6 +541,7 @@
     <div class="subtitle">Control de existencias</div>
     <div class="section-card">
       <h2>📦 Inventario actual</h2>
+      <input type="text" class="list-search" id="searchInventory" placeholder="🔎 Buscar por nombre o categoría...">
       <div id="inventoryList"></div>
     </div>
   </div>
@@ -541,10 +600,27 @@
     <div class="modal-handle"></div>
     <h3>Más opciones</h3>
     <div class="more-grid">
+      <button class="navbtn more-item" data-view="incubacion"><span class="ic">🥚</span>Incubación</button>
       <button class="navbtn more-item" data-view="nacimientos"><span class="ic">🐣</span>Nacimientos</button>
       <button class="navbtn more-item" data-view="alimentacion"><span class="ic">🌾</span>Alimentación</button>
       <button class="navbtn more-item" data-view="inventario"><span class="ic">📦</span>Inventario</button>
       <button class="navbtn more-item" data-view="config"><span class="ic">⚙️</span>Configuración</button>
+    </div>
+  </div>
+</div>
+
+<div class="more-sheet-overlay" id="quickAddOverlay">
+  <div class="more-sheet">
+    <div class="modal-handle"></div>
+    <h3>Registrar en la granja</h3>
+    <div class="more-grid">
+      <button class="navbtn more-item" data-quick="eggs"><span class="ic">🥚</span>Huevos</button>
+      <button class="navbtn more-item" data-quick="incubation"><span class="ic">🥚</span>Incubación</button>
+      <button class="navbtn more-item" data-quick="birth"><span class="ic">🐣</span>Nacimiento</button>
+      <button class="navbtn more-item" data-quick="hens"><span class="ic">🐔</span>Gallinas</button>
+      <button class="navbtn more-item" data-quick="feed"><span class="ic">🌾</span>Alimentación</button>
+      <button class="navbtn more-item" data-quick="income"><span class="ic">💰</span>Ingreso</button>
+      <button class="navbtn more-item" data-quick="expense"><span class="ic">💸</span>Gasto</button>
     </div>
   </div>
 </div>
@@ -571,7 +647,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast"><span class="toast-msg" id="toastMsg"></span></div>
 <script>
 /* =========================================================
    UTILIDADES GENERALES
@@ -589,10 +665,39 @@ function round(n){ return Math.round((n + Number.EPSILON) * 100) / 100; }
 function safeNum(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
 function showToast(msg){
   const t = document.getElementById('toast');
-  t.textContent = msg;
+  t.innerHTML = '<span class="toast-msg"></span>';
+  t.querySelector('.toast-msg').textContent = msg;
   t.classList.add('show');
   clearTimeout(showToast._tm);
   showToast._tm = setTimeout(()=> t.classList.remove('show'), 2000);
+}
+/* Toast con opción de "Deshacer" — para eliminaciones.
+   restoreFn() debe devolver el estado al punto anterior al borrado. */
+function showUndoToast(msg, restoreFn){
+  const t = document.getElementById('toast');
+  t.innerHTML = '';
+  const span = document.createElement('span');
+  span.className = 'toast-msg';
+  span.textContent = msg;
+  const btn = document.createElement('button');
+  btn.className = 'undo-btn';
+  btn.type = 'button';
+  btn.textContent = 'Deshacer';
+  let undone = false;
+  btn.addEventListener('click', ()=>{
+    if(undone) return;
+    undone = true;
+    clearTimeout(showUndoToast._tm);
+    t.classList.remove('show');
+    restoreFn();
+    renderAll();
+  });
+  t.appendChild(span);
+  t.appendChild(btn);
+  t.classList.add('show');
+  clearTimeout(showToast._tm);
+  clearTimeout(showUndoToast._tm);
+  showUndoToast._tm = setTimeout(()=> t.classList.remove('show'), 5000);
 }
 function isSameMonth(iso, ref){
   const d = toDate(iso), r = ref || new Date();
@@ -608,6 +713,35 @@ function monthLabel(key){
   const d = new Date(y, m-1, 1);
   return d.toLocaleDateString('es-DO', {month:'short', year:'2-digit'});
 }
+function addDaysISO(iso, days){
+  const d = toDate(iso);
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0,10);
+}
+const INCUBATION_DAYS = 21; // valor por defecto (gallina), usado como referencia general
+const INCUBATION_SPECIES = {
+  gallina: {label: 'Gallina', days: 21},
+  pata: {label: 'Pata', days: 28},
+  codorniz: {label: 'Codorniz', days: 18},
+  pava: {label: 'Pava', days: 28},
+  personalizado: {label: 'Personalizado', days: null}
+};
+function calcEstimatedHatchDate(incubationDateISO, days){
+  return addDaysISO(incubationDateISO, days || INCUBATION_DAYS);
+}
+function daysUntilEstimate(estISO){
+  if(!estISO) return null;
+  const d = toDate(estISO);
+  const now = new Date(); now.setHours(0,0,0,0);
+  return Math.round((d - now) / 86400000);
+}
+function longDateEs(d){
+  return (d || new Date()).toLocaleDateString('es-DO', {day:'numeric', month:'long', year:'numeric'});
+}
+function updateGreeting(){
+  const el = document.getElementById('greetingText');
+  if(el) el.textContent = 'Resumen · ' + longDateEs(new Date());
+}
 
 /* =========================================================
    ALMACENAMIENTO (localStorage) — claves separadas por módulo
@@ -617,6 +751,7 @@ const LS = {
   eggs: 'granja_eggs_v2',
   hens: 'granja_hens_v2',
   births: 'granja_births_v2',
+  incubations: 'granja_incubations_v1',
   feed: 'granja_feed_v2',
   expenses: 'granja_expenses_v2',
   income: 'granja_income_v2',
@@ -642,6 +777,7 @@ let state = {
   eggs: loadJSON(LS.eggs, []),
   hens: loadJSON(LS.hens, []),
   births: loadJSON(LS.births, []),
+  incubations: loadJSON(LS.incubations, []),
   feed: loadJSON(LS.feed, []),
   expenses: loadJSON(LS.expenses, []),
   income: loadJSON(LS.income, []),
@@ -690,6 +826,37 @@ let state = {
   }
 })();
 
+/* Separar incubación de nacimientos en registros antiguos mezclados,
+   sin borrar ni duplicar información. Se ejecuta una sola vez. */
+(function migrateIncubationsFromBirths(){
+  const MIGR_FLAG = 'granja_incubation_split_v1_done';
+  if(localStorage.getItem(MIGR_FLAG)) return;
+  let changed = false;
+  state.births.forEach(b=>{
+    if(!b.linkedIncubationId && (b.incubationDate || safeNum(b.incubatedEggs) > 0)){
+      const incDate = b.incubationDate || b.actualDate || todayISO();
+      const estDate = b.estimatedDate || calcEstimatedHatchDate(incDate);
+      const newInc = {
+        id: uid(),
+        incubationDate: incDate,
+        eggsCount: safeNum(b.incubatedEggs),
+        estimatedDate: estDate,
+        notes: '',
+        status: 'finalizada',
+        finishedDate: b.actualDate || estDate
+      };
+      state.incubations.push(newInc);
+      b.linkedIncubationId = newInc.id;
+      changed = true;
+    }
+  });
+  if(changed){
+    saveJSON(LS.incubations, state.incubations);
+    saveJSON(LS.births, state.births);
+  }
+  localStorage.setItem(MIGR_FLAG, '1');
+})();
+
 function persist(key){ saveJSON(LS[key], state[key]); }
 
 /* =========================================================
@@ -718,12 +885,13 @@ document.getElementById('themeToggle').addEventListener('click', ()=>{
 /* =========================================================
    NAVEGACIÓN
    ========================================================= */
-const views = ['inicio','huevos','gallinas','nacimientos','alimentacion','finanzas','inventario','config'];
+const views = ['inicio','huevos','gallinas','nacimientos','incubacion','alimentacion','finanzas','inventario','config'];
 let currentView = 'inicio';
 
-const OVERFLOW_VIEWS = ['nacimientos','alimentacion','inventario','config'];
+const OVERFLOW_VIEWS = ['nacimientos','incubacion','alimentacion','inventario','config'];
 const OVERFLOW_META = {
   nacimientos: {icon:'🐣', label:'Nacim.'},
+  incubacion: {icon:'🥚', label:'Incub.'},
   alimentacion: {icon:'🌾', label:'Aliment.'},
   inventario: {icon:'📦', label:'Invent.'},
   config: {icon:'⚙️', label:'Config'}
@@ -744,7 +912,7 @@ function setView(v){
     const meta = OVERFLOW_META[v] || MORE_DEFAULT;
     moreBtn.innerHTML = `<span class="ic">${meta.icon}</span>${meta.label}`;
   }
-  document.getElementById('fabAdd').style.display = (v === 'inicio' || v === 'config') ? 'none' : 'flex';
+  document.getElementById('fabAdd').style.display = (v === 'config') ? 'none' : 'flex';
   renderAll();
 }
 document.querySelectorAll('.navbtn[data-view]').forEach(btn=>{
@@ -762,12 +930,35 @@ document.getElementById('navMoreBtn').addEventListener('click', ()=>{
 });
 moreSheetOverlay.addEventListener('click', (e)=>{ if(e.target === moreSheetOverlay) closeMoreSheet(); });
 
+/* =========================================================
+   HOJA DE ACCIONES RÁPIDAS — botón "+" en Inicio
+   ========================================================= */
+const quickAddOverlay = document.getElementById('quickAddOverlay');
+function openQuickAdd(){ quickAddOverlay.classList.add('open'); }
+function closeQuickAdd(){ quickAddOverlay.classList.remove('open'); }
+quickAddOverlay.addEventListener('click', (e)=>{ if(e.target === quickAddOverlay) closeQuickAdd(); });
+document.querySelectorAll('#quickAddOverlay [data-quick]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    closeQuickAdd();
+    switch(btn.dataset.quick){
+      case 'eggs': addEggEntry(); break;
+      case 'incubation': addIncubation(); break;
+      case 'birth': addBirthBatch(); break;
+      case 'hens': addHenBatch(); break;
+      case 'feed': addFeedEntry(); break;
+      case 'income': addIncome(); break;
+      case 'expense': addExpense(); break;
+    }
+  });
+});
+
 document.querySelectorAll('.subtab').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.subtab').forEach(b=> b.classList.remove('active'));
     btn.classList.add('active');
     const isGastos = btn.dataset.fintab === 'gastos';
     document.getElementById('finPanelGastos').style.display = isGastos ? 'block' : 'none';
+    document.getElementById('finPanelGastosList').style.display = isGastos ? 'block' : 'none';
     document.getElementById('finPanelIngresos').style.display = isGastos ? 'none' : 'block';
   });
 });
@@ -805,6 +996,16 @@ function openModal(title, fieldDefs, initialValues, onSave){
     </div>`;
   }).join('');
   modalOverlay.classList.add('open');
+
+  // Auto-completa "Días de incubación" según la especie elegida (solo si ambos campos existen en este formulario).
+  const speciesEl = document.getElementById('mf_species');
+  const daysEl = document.getElementById('mf_incubationDays');
+  if(speciesEl && daysEl){
+    speciesEl.addEventListener('change', ()=>{
+      const sp = INCUBATION_SPECIES[speciesEl.value];
+      if(sp && sp.days){ daysEl.value = sp.days; }
+    });
+  }
 }
 function closeModal(){
   modalOverlay.classList.remove('open');
@@ -863,6 +1064,20 @@ document.getElementById('confirmOk').addEventListener('click', ()=>{
 function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 /* =========================================================
+   BUSCADOR DE LISTAS (genérico, reutilizado por todos los módulos)
+   ========================================================= */
+const searchTerms = { eggs:'', hens:'', births:'', incubations:'', feed:'', expenses:'', income:'', inventory:'' };
+function matchesSearch(term, text){
+  if(!term) return true;
+  return String(text||'').toLowerCase().includes(term);
+}
+function bindSearch(inputId, key, renderFn){
+  const el = document.getElementById(inputId);
+  if(!el) return;
+  el.addEventListener('input', ()=>{ searchTerms[key] = el.value.toLowerCase(); renderFn(); });
+}
+
+/* =========================================================
    HUEVOS
    ========================================================= */
 function eggFieldDefs(){
@@ -892,10 +1107,13 @@ function editEggEntry(id){
 }
 function deleteEggEntry(id){
   askConfirm('¿Eliminar este registro de huevos?', ()=>{
-    state.eggs = state.eggs.filter(e=> e.id !== id);
+    const idx = state.eggs.findIndex(e=> e.id === id);
+    if(idx === -1) return;
+    const removed = state.eggs[idx];
+    state.eggs.splice(idx,1);
     persist('eggs');
     renderAll();
-    showToast('Registro eliminado.');
+    showUndoToast('Registro eliminado.', ()=>{ state.eggs.splice(idx,0,removed); persist('eggs'); });
   });
 }
 function eggsInRange(days){
@@ -922,10 +1140,13 @@ function renderEggs(){
   document.getElementById('e-week') && (document.getElementById('d-eggsAvg').textContent = distinctDays ? round(totalAll/distinctDays) : 0);
 
   const list = document.getElementById('eggsList');
+  const filtered = state.eggs.filter(e=> matchesSearch(searchTerms.eggs, fmtDate(e.date)+' '+(e.note||'')));
   if(state.eggs.length === 0){
     list.innerHTML = '<div class="empty"><span class="ic">🥚</span>Aún no hay registros de huevos.<br>Toca "+" para agregar el primero.</div>';
+  }else if(filtered.length === 0){
+    list.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
   }else{
-    const sorted = [...state.eggs].sort((a,b)=> b.date.localeCompare(a.date));
+    const sorted = [...filtered].sort((a,b)=> b.date.localeCompare(a.date));
     list.innerHTML = sorted.map(e=> `
       <div class="entry">
         <div class="entry-icon gold">🥚</div>
@@ -980,10 +1201,13 @@ function editHenBatch(id){
 }
 function deleteHenBatch(id){
   askConfirm('¿Eliminar este lote de gallinas?', ()=>{
-    state.hens = state.hens.filter(h=> h.id !== id);
+    const idx = state.hens.findIndex(h=> h.id === id);
+    if(idx === -1) return;
+    const removed = state.hens[idx];
+    state.hens.splice(idx,1);
     persist('hens');
     renderAll();
-    showToast('Lote eliminado.');
+    showUndoToast('Lote eliminado.', ()=>{ state.hens.splice(idx,0,removed); persist('hens'); });
   });
 }
 function ageLabel(entryDate){
@@ -1008,7 +1232,12 @@ function renderHens(){
     list.innerHTML = '<div class="empty"><span class="ic">🐔</span>Aún no hay lotes de gallinas.<br>Toca "+" para agregar el primero.</div>';
     return;
   }
-  const sorted = [...state.hens].sort((a,b)=> b.entryDate.localeCompare(a.entryDate));
+  const filtered = state.hens.filter(h=> matchesSearch(searchTerms.hens, (h.breed||'')+' '+h.status+' '+(h.notes||'')));
+  if(filtered.length === 0){
+    list.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
+    return;
+  }
+  const sorted = [...filtered].sort((a,b)=> b.entryDate.localeCompare(a.entryDate));
   list.innerHTML = sorted.map(h=> `
     <div class="entry">
       <div class="entry-icon">${henStatusIcon(h.status)}</div>
@@ -1032,45 +1261,62 @@ function renderHens(){
    NACIMIENTOS
    ========================================================= */
 function birthFieldDefs(){
+  const incOptions = [{value:'', label:'Ninguna (sin vincular)'}].concat(
+    [...state.incubations]
+      .sort((a,b)=> (b.incubationDate||'').localeCompare(a.incubationDate||''))
+      .map(i=> ({
+        value: i.id,
+        label: fmtDate(i.incubationDate) + ' · ' + safeNum(i.eggsCount) + ' huevos' + (i.status==='finalizada' ? ' (finalizada)' : ' (en incubación)')
+      }))
+  );
   return [
-    {key:'incubationDate', label:'Fecha de incubación', type:'date'},
-    {key:'estimatedDate', label:'Fecha estimada de nacimiento', type:'date'},
-    {key:'actualDate', label:'Fecha real de nacimiento', type:'date', required:true, default: todayISO()},
-    {key:'incubatedEggs', label:'Huevos incubados', type:'number', min:0, step:'1'},
+    {key:'actualDate', label:'Fecha de nacimiento', type:'date', required:true, default: todayISO()},
     {key:'hatchedChicks', label:'Pollitos nacidos', type:'number', required:true, min:0, step:'1'},
+    {key:'linkedIncubationId', label:'Vincular con incubación (opcional)', type:'select', options: incOptions, default:''},
     {key:'notes', label:'Notas (opcional)', type:'textarea'}
   ];
 }
 function addBirthBatch(){
-  openModal('Registrar camada', birthFieldDefs(), {actualDate: todayISO()}, (vals)=>{
-    state.births.push({ id: uid(), ...vals });
+  openModal('Registrar nacimiento', birthFieldDefs(), {actualDate: todayISO(), linkedIncubationId:''}, (vals)=>{
+    state.births.push({ id: uid(), actualDate: vals.actualDate, hatchedChicks: vals.hatchedChicks, linkedIncubationId: vals.linkedIncubationId||'', notes: vals.notes||'' });
     persist('births');
     renderAll();
-    showToast('Camada registrada.');
+    showToast('Nacimiento registrado.');
   });
 }
 function editBirthBatch(id){
   const item = state.births.find(b=> b.id === id);
   if(!item) return;
-  openModal('Editar camada', birthFieldDefs(), item, (vals)=>{
-    Object.assign(item, vals);
+  openModal('Editar nacimiento', birthFieldDefs(), item, (vals)=>{
+    item.actualDate = vals.actualDate;
+    item.hatchedChicks = vals.hatchedChicks;
+    item.linkedIncubationId = vals.linkedIncubationId||'';
+    item.notes = vals.notes||'';
     persist('births');
     renderAll();
-    showToast('Camada actualizada.');
+    showToast('Nacimiento actualizado.');
   });
 }
 function deleteBirthBatch(id){
-  askConfirm('¿Eliminar esta camada?', ()=>{
-    state.births = state.births.filter(b=> b.id !== id);
+  askConfirm('¿Eliminar este nacimiento?', ()=>{
+    const idx = state.births.findIndex(b=> b.id === id);
+    if(idx === -1) return;
+    const removed = state.births[idx];
+    state.births.splice(idx,1);
     persist('births');
     renderAll();
-    showToast('Camada eliminada.');
+    showUndoToast('Nacimiento eliminado.', ()=>{ state.births.splice(idx,0,removed); persist('births'); });
   });
 }
 function birthPct(b){
-  const inc = safeNum(b.incubatedEggs);
-  if(inc <= 0) return null;
-  return round((safeNum(b.hatchedChicks) / inc) * 100);
+  let eggs = 0;
+  if(b.linkedIncubationId){
+    const inc = state.incubations.find(i=> i.id === b.linkedIncubationId);
+    if(inc) eggs = safeNum(inc.eggsCount);
+  }
+  if(!eggs) eggs = safeNum(b.incubatedEggs); // compatibilidad con registros antiguos
+  if(eggs <= 0) return null;
+  return round((safeNum(b.hatchedChicks) / eggs) * 100);
 }
 function renderBirths(){
   const totalChicks = state.births.reduce((s,b)=> s + safeNum(b.hatchedChicks), 0);
@@ -1084,20 +1330,27 @@ function renderBirths(){
   document.getElementById('d-recentBirths').textContent = recent.reduce((s,b)=> s+safeNum(b.hatchedChicks),0);
 
   const list = document.getElementById('birthsList');
+  const filteredBirths = state.births.filter(b=> matchesSearch(searchTerms.births, fmtDate(b.actualDate)+' '+(b.notes||'')));
   if(state.births.length === 0){
-    list.innerHTML = '<div class="empty"><span class="ic">🐣</span>Aún no hay camadas registradas.<br>Toca "+" para agregar la primera.</div>';
+    list.innerHTML = '<div class="empty"><span class="ic">🐣</span>Aún no hay nacimientos registrados.<br>Toca "+" para agregar el primero.</div>';
+  }else if(filteredBirths.length === 0){
+    list.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
   }else{
-    const sorted = [...state.births].sort((a,b)=> (b.actualDate||'').localeCompare(a.actualDate||''));
+    const sorted = [...filteredBirths].sort((a,b)=> (b.actualDate||'').localeCompare(a.actualDate||''));
     list.innerHTML = sorted.map(b=>{
       const pct = birthPct(b);
       const pctBar = pct !== null ? `<div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div>` : '';
+      const linkedInc = b.linkedIncubationId ? state.incubations.find(i=> i.id === b.linkedIncubationId) : null;
+      const incLine = linkedInc
+        ? `Incubación vinculada: ${fmtDate(linkedInc.incubationDate)} · ${safeNum(linkedInc.eggsCount)} huevos`
+        : (b.incubationDate ? `Incubación: ${fmtDate(b.incubationDate)}` : '');
       return `
       <div class="entry">
         <div class="entry-icon">🐣</div>
         <div class="entry-main">
           <div class="entry-title">${fmtDate(b.actualDate)} ${pct!==null?`<span class="badge">${pct}%</span>`:''}</div>
-          <div class="entry-sub">Incubación: ${fmtDate(b.incubationDate)} · Estimado: ${fmtDate(b.estimatedDate)}</div>
-          <div class="entry-sub">Incubados: ${safeNum(b.incubatedEggs)} · Nacidos: ${safeNum(b.hatchedChicks)}</div>
+          ${incLine ? `<div class="entry-sub">${incLine}</div>` : ''}
+          <div class="entry-sub">Pollitos nacidos: ${safeNum(b.hatchedChicks)}</div>
           ${pctBar}
           ${b.notes ? `<div class="entry-note">${escapeHtml(b.notes)}</div>` : ''}
           <div class="entry-actions" style="justify-content:flex-start;">
@@ -1109,6 +1362,154 @@ function renderBirths(){
     }).join('');
   }
   renderBirthsChart();
+}
+
+/* =========================================================
+   INCUBACIÓN (independiente de Nacimientos)
+   ========================================================= */
+function incubationFieldDefs(){
+  return [
+    {key:'incubationDate', label:'Fecha de incubación', type:'date', required:true, default: todayISO()},
+    {key:'eggsCount', label:'Huevos incubados', type:'number', required:true, min:0, step:'1'},
+    {key:'species', label:'Especie', type:'select', options:[
+      {value:'gallina', label:'Gallina (21 días)'},
+      {value:'pata', label:'Pata (28 días)'},
+      {value:'codorniz', label:'Codorniz (18 días)'},
+      {value:'pava', label:'Pava (28 días)'},
+      {value:'personalizado', label:'Otra / personalizado'}
+    ], default:'gallina'},
+    {key:'incubationDays', label:'Días de incubación (ajusta si elegiste "Otra")', type:'number', required:true, min:1, step:'1', default: INCUBATION_DAYS},
+    {key:'notes', label:'Notas (opcional)', type:'textarea'}
+  ];
+}
+function addIncubation(){
+  openModal('Registrar incubación', incubationFieldDefs(), {incubationDate: todayISO(), species:'gallina', incubationDays: INCUBATION_DAYS}, (vals)=>{
+    const estimatedDate = calcEstimatedHatchDate(vals.incubationDate, vals.incubationDays);
+    state.incubations.push({
+      id: uid(),
+      incubationDate: vals.incubationDate,
+      eggsCount: vals.eggsCount,
+      species: vals.species,
+      incubationDays: vals.incubationDays,
+      estimatedDate,
+      notes: vals.notes||'',
+      status: 'incubando',
+      finishedDate: ''
+    });
+    persist('incubations');
+    renderAll();
+    showToast('Incubación registrada. Nacimiento estimado: ' + fmtDate(estimatedDate));
+  });
+}
+function editIncubation(id){
+  const item = state.incubations.find(i=> i.id === id);
+  if(!item) return;
+  openModal('Editar incubación', incubationFieldDefs(), {...item, incubationDays: item.incubationDays || INCUBATION_DAYS, species: item.species || 'gallina'}, (vals)=>{
+    item.incubationDate = vals.incubationDate;
+    item.eggsCount = vals.eggsCount;
+    item.species = vals.species;
+    item.incubationDays = vals.incubationDays;
+    item.estimatedDate = calcEstimatedHatchDate(vals.incubationDate, vals.incubationDays);
+    item.notes = vals.notes||'';
+    persist('incubations');
+    renderAll();
+    showToast('Incubación actualizada.');
+  });
+}
+function deleteIncubation(id){
+  const linkedBirths = state.births.filter(b=> b.linkedIncubationId === id);
+  const warning = linkedBirths.length
+    ? `Ojo: hay ${linkedBirths.length} nacimiento${linkedBirths.length===1?'':'s'} vinculado${linkedBirths.length===1?'':'s'} a esta incubación — se quedará${linkedBirths.length===1?'':'n'} sin esa referencia. `
+    : '';
+  askConfirm(warning + '¿Eliminar esta incubación?', ()=>{
+    const idx = state.incubations.findIndex(i=> i.id === id);
+    if(idx === -1) return;
+    const removed = state.incubations[idx];
+    state.incubations.splice(idx,1);
+    linkedBirths.forEach(b=> { b.linkedIncubationId = ''; });
+    persist('incubations');
+    persist('births');
+    renderAll();
+    showUndoToast('Incubación eliminada.', ()=>{
+      state.incubations.splice(idx,0,removed);
+      linkedBirths.forEach(b=> { b.linkedIncubationId = removed.id; });
+      persist('incubations');
+      persist('births');
+    });
+  });
+}
+function finishIncubation(id){
+  askConfirm('¿Marcar esta incubación como finalizada? Se conservará en el historial.', ()=>{
+    const item = state.incubations.find(i=> i.id === id);
+    if(!item) return;
+    item.status = 'finalizada';
+    item.finishedDate = todayISO();
+    persist('incubations');
+    renderAll();
+    showToast('Incubación finalizada.');
+  });
+}
+function incubationCountdownText(inc){
+  const days = daysUntilEstimate(inc.estimatedDate);
+  if(days === null) return '';
+  if(days > 0) return `Faltan ${days} día${days===1?'':'s'}`;
+  if(days === 0) return 'Hoy es el día estimado';
+  return 'Fecha estimada superada';
+}
+function incubationCard(inc){
+  const isActive = inc.status !== 'finalizada';
+  const days = isActive ? daysUntilEstimate(inc.estimatedDate) : null;
+  const isUrgent = isActive && days !== null && days <= 2 && days >= 0;
+  const statusBadge = isActive ? '🟡 En incubación' : '🟢 Finalizada';
+  const countdown = isActive ? incubationCountdownText(inc) : '';
+  const speciesLabel = inc.species && INCUBATION_SPECIES[inc.species] ? INCUBATION_SPECIES[inc.species].label : '';
+  return `
+  <div class="entry${isUrgent ? ' urgent' : ''}">
+    <div class="entry-icon gold">🥚</div>
+    <div class="entry-main">
+      <div class="entry-title">${safeNum(inc.eggsCount)} huevos${speciesLabel?` · ${speciesLabel}`:''} <span class="badge${isUrgent?' urgent':''}">${statusBadge}</span></div>
+      <div class="entry-sub">Incubación: ${fmtDate(inc.incubationDate)} · Nacimiento estimado: ${fmtDate(inc.estimatedDate)}</div>
+      ${countdown ? `<div class="entry-sub"${isUrgent?' style="font-weight:800; color:var(--danger);"':''}>${isUrgent?'⚠️ ':''}${countdown}</div>` : ''}
+      ${(!isActive && inc.finishedDate) ? `<div class="entry-sub">Finalizada: ${fmtDate(inc.finishedDate)}</div>` : ''}
+      ${inc.notes ? `<div class="entry-note">${escapeHtml(inc.notes)}</div>` : ''}
+      <div class="entry-actions" style="justify-content:flex-start; flex-wrap:wrap; gap:6px;">
+        <button class="icon-btn" onclick="editIncubation('${inc.id}')">Editar</button>
+        ${isActive ? `<button class="icon-btn" onclick="finishIncubation('${inc.id}')">Finalizar incubación</button>` : ''}
+        <button class="icon-btn danger" onclick="deleteIncubation('${inc.id}')">Eliminar</button>
+      </div>
+    </div>
+  </div>`;
+}
+function renderIncubations(){
+  const active = state.incubations.filter(i=> i.status !== 'finalizada');
+  const finished = state.incubations.filter(i=> i.status === 'finalizada');
+
+  const elActive = document.getElementById('inc-active');
+  const elEggs = document.getElementById('inc-eggs');
+  const elFinished = document.getElementById('inc-finished');
+  if(elActive) elActive.textContent = active.length;
+  if(elEggs) elEggs.textContent = active.reduce((s,i)=> s+safeNum(i.eggsCount),0);
+  if(elFinished) elFinished.textContent = finished.length;
+
+  const activeList = document.getElementById('incubationActiveList');
+  const historyList = document.getElementById('incubationHistoryList');
+  const matchInc = i=> matchesSearch(searchTerms.incubations, fmtDate(i.incubationDate)+' '+(i.species?INCUBATION_SPECIES[i.species]?.label||'':'')+' '+(i.notes||''));
+  const filteredActive = active.filter(matchInc);
+  const filteredFinished = finished.filter(matchInc);
+  if(activeList){
+    activeList.innerHTML = active.length === 0
+      ? '<div class="empty"><span class="ic">🥚</span>No hay incubaciones activas.<br>Toca "+" para agregar una.</div>'
+      : (filteredActive.length === 0
+        ? '<div class="empty">No hay resultados para esa búsqueda.</div>'
+        : [...filteredActive].sort((a,b)=> (a.estimatedDate||'').localeCompare(b.estimatedDate||'')).map(incubationCard).join(''));
+  }
+  if(historyList){
+    historyList.innerHTML = finished.length === 0
+      ? '<div class="empty"><span class="ic">🥚</span>Aún no hay incubaciones finalizadas.</div>'
+      : (filteredFinished.length === 0
+        ? '<div class="empty">No hay resultados para esa búsqueda.</div>'
+        : [...filteredFinished].sort((a,b)=> (b.finishedDate||'').localeCompare(a.finishedDate||'')).map(incubationCard).join(''));
+  }
 }
 
 /* =========================================================
@@ -1146,10 +1547,13 @@ function editFeedEntry(id){
 }
 function deleteFeedEntry(id){
   askConfirm('¿Eliminar este registro de alimentación?', ()=>{
-    state.feed = state.feed.filter(f=> f.id !== id);
+    const idx = state.feed.findIndex(f=> f.id === id);
+    if(idx === -1) return;
+    const removed = state.feed[idx];
+    state.feed.splice(idx,1);
     persist('feed');
     renderAll();
-    showToast('Registro eliminado.');
+    showUndoToast('Registro eliminado.', ()=>{ state.feed.splice(idx,0,removed); persist('feed'); });
   });
 }
 function renderFeed(){
@@ -1158,11 +1562,16 @@ function renderFeed(){
   document.getElementById('f-costMonth').textContent = round(month.reduce((s,f)=> s+safeNum(f.cost),0));
 
   const list = document.getElementById('feedList');
+  const filteredFeed = state.feed.filter(f=> matchesSearch(searchTerms.feed, (f.type||'')+' '+fmtDate(f.date)+' '+(f.notes||'')));
   if(state.feed.length === 0){
     list.innerHTML = '<div class="empty"><span class="ic">🌾</span>Aún no hay registros de alimentación.<br>Toca "+" para agregar el primero.</div>';
     return;
   }
-  const sorted = [...state.feed].sort((a,b)=> b.date.localeCompare(a.date));
+  if(filteredFeed.length === 0){
+    list.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
+    return;
+  }
+  const sorted = [...filteredFeed].sort((a,b)=> b.date.localeCompare(a.date));
   list.innerHTML = sorted.map(f=> `
     <div class="entry">
       <div class="entry-icon info">🌾</div>
@@ -1213,10 +1622,13 @@ function editExpense(id){
 }
 function deleteExpense(id){
   askConfirm('¿Eliminar este gasto?', ()=>{
-    state.expenses = state.expenses.filter(e=> e.id !== id);
+    const idx = state.expenses.findIndex(e=> e.id === id);
+    if(idx === -1) return;
+    const removed = state.expenses[idx];
+    state.expenses.splice(idx,1);
     persist('expenses');
     renderAll();
-    showToast('Gasto eliminado.');
+    showUndoToast('Gasto eliminado.', ()=>{ state.expenses.splice(idx,0,removed); persist('expenses'); });
   });
 }
 
@@ -1253,10 +1665,13 @@ function editIncome(id){
 }
 function deleteIncome(id){
   askConfirm('¿Eliminar este ingreso?', ()=>{
-    state.income = state.income.filter(i=> i.id !== id);
+    const idx = state.income.findIndex(i=> i.id === id);
+    if(idx === -1) return;
+    const removed = state.income[idx];
+    state.income.splice(idx,1);
     persist('income');
     renderAll();
-    showToast('Ingreso eliminado.');
+    showUndoToast('Ingreso eliminado.', ()=>{ state.income.splice(idx,0,removed); persist('income'); });
   });
 }
 function incomeTotal(i){ return round(safeNum(i.quantity) * safeNum(i.price)); }
@@ -1280,11 +1695,35 @@ function renderFinance(){
   document.getElementById('d-incomeMonth').textContent = totalIncMonth;
   document.getElementById('d-profitMonth').textContent = profitMonth;
 
+  const breakdownEl = document.getElementById('expenseCategoryBreakdown');
+  if(breakdownEl){
+    const byCat = {};
+    expMonth.forEach(e=> { byCat[e.category] = (byCat[e.category]||0) + safeNum(e.amount); });
+    if(feedMonth.length){ byCat['Alimento'] = (byCat['Alimento']||0) + feedMonth.reduce((s,f)=> s+safeNum(f.cost),0); }
+    const cats = Object.entries(byCat).filter(([,v])=> v>0).sort((a,b)=> b[1]-a[1]);
+    const totalCat = cats.reduce((s,[,v])=> s+v, 0);
+    breakdownEl.innerHTML = cats.length === 0
+      ? '<div class="empty">Sin gastos registrados este mes.</div>'
+      : cats.map(([cat,val])=>{
+          const pct = totalCat > 0 ? Math.round((val/totalCat)*100) : 0;
+          return `
+          <div style="margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700; margin-bottom:4px;">
+              <span>${escapeHtml(cat)}</span><span>${cur} ${round(val)} · ${pct}%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+          </div>`;
+        }).join('');
+  }
+
   const expList = document.getElementById('expensesList');
+  const filteredExp = state.expenses.filter(e=> matchesSearch(searchTerms.expenses, (e.description||'')+' '+(e.category||'')+' '+fmtDate(e.date)));
   if(state.expenses.length === 0){
     expList.innerHTML = '<div class="empty"><span class="ic">💸</span>Aún no hay gastos registrados.</div>';
+  }else if(filteredExp.length === 0){
+    expList.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
   }else{
-    const sorted = [...state.expenses].sort((a,b)=> b.date.localeCompare(a.date));
+    const sorted = [...filteredExp].sort((a,b)=> b.date.localeCompare(a.date));
     expList.innerHTML = sorted.map(e=> `
       <div class="entry">
         <div class="entry-icon red">💸</div>
@@ -1304,10 +1743,13 @@ function renderFinance(){
   }
 
   const incList = document.getElementById('incomeList');
+  const filteredInc = state.income.filter(i=> matchesSearch(searchTerms.income, (i.description||'')+' '+(i.type||'')+' '+fmtDate(i.date)));
   if(state.income.length === 0){
     incList.innerHTML = '<div class="empty"><span class="ic">💵</span>Aún no hay ingresos registrados.</div>';
+  }else if(filteredInc.length === 0){
+    incList.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
   }else{
-    const sorted = [...state.income].sort((a,b)=> b.date.localeCompare(a.date));
+    const sorted = [...filteredInc].sort((a,b)=> b.date.localeCompare(a.date));
     incList.innerHTML = sorted.map(i=> `
       <div class="entry">
         <div class="entry-icon">💵</div>
@@ -1363,10 +1805,13 @@ function editInventoryItem(id){
 }
 function deleteInventoryItem(id){
   askConfirm('¿Eliminar este producto del inventario?', ()=>{
-    state.inventory = state.inventory.filter(i=> i.id !== id);
+    const idx = state.inventory.findIndex(i=> i.id === id);
+    if(idx === -1) return;
+    const removed = state.inventory[idx];
+    state.inventory.splice(idx,1);
     persist('inventory');
     renderAll();
-    showToast('Producto eliminado.');
+    showUndoToast('Producto eliminado.', ()=>{ state.inventory.splice(idx,0,removed); persist('inventory'); });
   });
 }
 function adjustInventory(id, delta){
@@ -1386,7 +1831,12 @@ function renderInventory(){
     list.innerHTML = '<div class="empty"><span class="ic">📦</span>Aún no hay productos en inventario.<br>Toca "+" para agregar el primero.</div>';
     return;
   }
-  const sorted = [...state.inventory].sort((a,b)=> a.category.localeCompare(b.category));
+  const filtered = state.inventory.filter(i=> matchesSearch(searchTerms.inventory, (i.name||'')+' '+(i.category||'')));
+  if(filtered.length === 0){
+    list.innerHTML = '<div class="empty">No hay resultados para esa búsqueda.</div>';
+    return;
+  }
+  const sorted = [...filtered].sort((a,b)=> a.category.localeCompare(b.category));
   list.innerHTML = sorted.map(i=>{
     const low = safeNum(i.quantity) <= LOW_STOCK_THRESHOLD;
     return `
@@ -1447,8 +1897,43 @@ document.getElementById('exportBtn').addEventListener('click', ()=>{
   a.click();
   document.body.removeChild(a);
   setTimeout(()=> URL.revokeObjectURL(url), 1000);
+  localStorage.setItem('granja_last_export_v1', todayISO());
+  renderBackupBanner();
   showToast('Datos exportados.');
 });
+
+/* =========================================================
+   RECORDATORIO DE RESPALDO — si pasaron 30+ días sin exportar
+   ========================================================= */
+const BACKUP_REMINDER_DAYS = 30;
+function renderBackupBanner(){
+  const slot = document.getElementById('backupBannerSlot');
+  if(!slot) return;
+  const dismissedOn = localStorage.getItem('granja_backup_banner_dismissed_v1');
+  if(dismissedOn === todayISO()){ slot.innerHTML=''; return; }
+
+  const lastExport = localStorage.getItem('granja_last_export_v1');
+  const hasAnyData = state.eggs.length || state.hens.length || state.births.length || state.incubations.length || state.feed.length || state.expenses.length || state.income.length || state.inventory.length;
+  if(!hasAnyData){ slot.innerHTML=''; return; }
+
+  const daysSince = lastExport ? daysAgo(lastExport) : Infinity;
+  if(daysSince < BACKUP_REMINDER_DAYS){ slot.innerHTML=''; return; }
+
+  const msg = lastExport
+    ? `Hace ${daysSince} días que no exportas tus datos.`
+    : 'Aún no has exportado un respaldo de tus datos.';
+  slot.innerHTML = `
+    <div class="backup-banner">
+      💾 ${msg}
+      <button id="backupBannerExport">Exportar ahora</button>
+      <button class="close-x" id="backupBannerClose">✕</button>
+    </div>`;
+  document.getElementById('backupBannerExport').addEventListener('click', ()=> document.getElementById('exportBtn').click());
+  document.getElementById('backupBannerClose').addEventListener('click', ()=>{
+    localStorage.setItem('granja_backup_banner_dismissed_v1', todayISO());
+    slot.innerHTML = '';
+  });
+}
 document.getElementById('importBtn').addEventListener('click', ()=>{
   document.getElementById('importFile').click();
 });
@@ -1459,12 +1944,37 @@ document.getElementById('importFile').addEventListener('change', (e)=>{
   reader.onload = (ev)=>{
     try{
       const parsed = JSON.parse(ev.target.result);
-      const incoming = parsed.state || parsed;
+      const incoming = (parsed && typeof parsed === 'object' && parsed.state && typeof parsed.state === 'object') ? parsed.state : parsed;
+
+      // Validación: que realmente parezca un respaldo de Mi Granja antes de tocar nada.
+      const expectedKeys = ['config','eggs','hens','births','incubations','feed','expenses','income','inventory'];
+      const looksValid = incoming && typeof incoming === 'object' && expectedKeys.some(k=> k in incoming);
+      if(!looksValid){
+        showToast('Este archivo no parece ser un respaldo de Mi Granja.');
+        e.target.value = '';
+        return;
+      }
+      const arrayFields = ['eggs','hens','births','incubations','feed','expenses','income','inventory'];
+      const badField = arrayFields.find(k=> incoming[k] !== undefined && !Array.isArray(incoming[k]));
+      if(badField){
+        showToast(`El archivo tiene un formato inválido en "${badField}".`);
+        e.target.value = '';
+        return;
+      }
+      const arraysWithData = arrayFields.filter(k=> Array.isArray(incoming[k]) && incoming[k].length > 0);
+      const malformedItem = arraysWithData.some(k=> incoming[k].some(item=> !item || typeof item !== 'object' || !item.id));
+      if(malformedItem){
+        showToast('El archivo tiene registros con formato inválido.');
+        e.target.value = '';
+        return;
+      }
+
       askConfirm('¿Importar estos datos? Esto reemplazará la información actual.', ()=>{
-        state.config = incoming.config || state.config;
+        state.config = (incoming.config && typeof incoming.config === 'object') ? incoming.config : state.config;
         state.eggs = Array.isArray(incoming.eggs) ? incoming.eggs : [];
         state.hens = Array.isArray(incoming.hens) ? incoming.hens : [];
         state.births = Array.isArray(incoming.births) ? incoming.births : [];
+        state.incubations = Array.isArray(incoming.incubations) ? incoming.incubations : [];
         state.feed = Array.isArray(incoming.feed) ? incoming.feed : [];
         state.expenses = Array.isArray(incoming.expenses) ? incoming.expenses : [];
         state.income = Array.isArray(incoming.income) ? incoming.income : [];
@@ -1484,7 +1994,7 @@ document.getElementById('importFile').addEventListener('change', (e)=>{
 });
 document.getElementById('wipeBtn').addEventListener('click', ()=>{
   askConfirm('¿Borrar TODOS los datos de la aplicación? Esta acción no se puede deshacer.', ()=>{
-    state = { config: { farmName:'Mi Granja', henCount:0, currency:'RD$', theme: state.config.theme }, eggs:[], hens:[], births:[], feed:[], expenses:[], income:[], inventory:[] };
+    state = { config: { farmName:'Mi Granja', henCount:0, currency:'RD$', theme: state.config.theme }, eggs:[], hens:[], births:[], incubations:[], feed:[], expenses:[], income:[], inventory:[] };
     Object.keys(LS).forEach(k=> persist(k));
     loadConfigForm();
     applyTheme();
@@ -1498,9 +2008,11 @@ document.getElementById('wipeBtn').addEventListener('click', ()=>{
    ========================================================= */
 document.getElementById('fabAdd').addEventListener('click', ()=>{
   switch(currentView){
+    case 'inicio': openQuickAdd(); break;
     case 'huevos': addEggEntry(); break;
     case 'gallinas': addHenBatch(); break;
     case 'nacimientos': addBirthBatch(); break;
+    case 'incubacion': addIncubation(); break;
     case 'alimentacion': addFeedEntry(); break;
     case 'finanzas':
       const isGastos = document.querySelector('.subtab.active').dataset.fintab === 'gastos';
@@ -1628,9 +2140,12 @@ function renderFinanceChart(){
    RENDER GENERAL
    ========================================================= */
 function renderAll(){
+  updateGreeting();
+  renderBackupBanner();
   renderEggs();
   renderHens();
   renderBirths();
+  renderIncubations();
   renderFeed();
   renderFinance();
   renderInventory();
@@ -1642,6 +2157,14 @@ function renderAll(){
    ========================================================= */
 applyTheme();
 loadConfigForm();
+bindSearch('searchEggs', 'eggs', renderEggs);
+bindSearch('searchHens', 'hens', renderHens);
+bindSearch('searchBirths', 'births', renderBirths);
+bindSearch('searchIncubations', 'incubations', renderIncubations);
+bindSearch('searchFeed', 'feed', renderFeed);
+bindSearch('searchExpenses', 'expenses', renderFinance);
+bindSearch('searchIncome', 'income', renderFinance);
+bindSearch('searchInventory', 'inventory', renderInventory);
 renderAll();
 
 if ('serviceWorker' in navigator) {
