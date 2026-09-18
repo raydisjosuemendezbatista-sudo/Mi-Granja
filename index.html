@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H9SN6T0RZV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H9SN6T0RZV');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <title>Mi Granja</title>
@@ -368,7 +377,7 @@
 
     <div id="backupBannerSlot"></div>
 
-    <div class="hero-card">
+    <div class="hero-card" onclick="setView('huevos')" style="cursor:pointer;">
       <div class="hero-label">🥚 Huevos de hoy</div>
       <div class="hero-value" id="d-eggsToday">0</div>
       <div class="hero-sub">
@@ -378,17 +387,17 @@
     </div>
 
     <div class="grid2" style="margin-bottom:10px;">
-      <div class="stat-card" data-tone="gold">
+      <div class="stat-card" data-tone="gold" onclick="setView('huevos')" style="cursor:pointer;">
         <div class="icon-chip">📈</div>
         <div class="stat-label">Promedio por día</div>
         <div class="stat-value" id="d-eggsAvg">0</div>
       </div>
-      <div class="stat-card" data-tone="green">
+      <div class="stat-card" data-tone="green" onclick="setView('gallinas')" style="cursor:pointer;">
         <div class="icon-chip">🐔</div>
         <div class="stat-label">Gallinas activas</div>
         <div class="stat-value" id="d-totalHens">0</div>
       </div>
-      <div class="stat-card" data-tone="green">
+      <div class="stat-card" data-tone="green" onclick="setView('nacimientos')" style="cursor:pointer;">
         <div class="icon-chip">🐣</div>
         <div class="stat-label">Nacimientos recientes</div>
         <div class="stat-value" id="d-recentBirths">0</div>
@@ -398,19 +407,19 @@
         <div class="stat-label">En incubación</div>
         <div class="stat-value" id="d-incubatingEggs">0</div>
       </div>
-      <div class="stat-card" data-tone="info">
+      <div class="stat-card" data-tone="info" onclick="goToFinanceTab('gastos')" style="cursor:pointer;">
         <div class="icon-chip">🌾</div>
         <div class="stat-label">Gastos del mes</div>
         <div class="stat-value money" id="d-expensesMonth" data-cur="">0</div>
       </div>
-      <div class="stat-card" data-tone="green">
+      <div class="stat-card" data-tone="green" onclick="goToFinanceTab('ingresos')" style="cursor:pointer;">
         <div class="icon-chip">💵</div>
         <div class="stat-label">Ingresos del mes</div>
         <div class="stat-value money" id="d-incomeMonth" data-cur="">0</div>
       </div>
     </div>
 
-    <div class="stat-card profit-card">
+    <div class="stat-card profit-card" onclick="goToFinanceTab('gastos')" style="cursor:pointer;">
       <div>
         <div class="stat-label">📊 Ganancia estimada del mes</div>
         <div class="stat-value money" id="d-profitMonth" data-cur="">0</div>
@@ -713,6 +722,17 @@ function daysAgo(iso){
   return Math.floor((n.setHours(0,0,0,0) - d.getTime()) / 86400000);
 }
 function monthKey(iso){ const d = toDate(iso); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function chickAgeText(actualDateISO){
+  const days = daysAgo(actualDateISO);
+  if(days < 0) return 'Nace en el futuro';
+  if(days === 0) return 'Nacieron hoy';
+  if(days === 1) return '1 día de nacidos';
+  if(days < 7) return `${days} días de nacidos`;
+  const weeks = Math.floor(days / 7);
+  const rem = days % 7;
+  const weeksTxt = `${weeks} semana${weeks===1?'':'s'}`;
+  return rem === 0 ? `${weeksTxt} de nacidos` : `${weeksTxt} y ${rem} día${rem===1?'':'s'} de nacidos`;
+}
 function monthLabel(key){
   const [y,m] = key.split('-').map(Number);
   const d = new Date(y, m-1, 1);
@@ -919,6 +939,12 @@ function setView(v){
   }
   document.getElementById('fabAdd').style.display = (v === 'config') ? 'none' : 'flex';
   renderAll();
+}
+/* Navega a Finanzas y activa la pestaña de Gastos o Ingresos directamente. */
+function goToFinanceTab(tab){
+  setView('finanzas');
+  const btn = document.querySelector(`.subtab[data-fintab="${tab}"]`);
+  if(btn) btn.click();
 }
 document.querySelectorAll('.navbtn[data-view]').forEach(btn=>{
   btn.addEventListener('click', ()=> { setView(btn.dataset.view); closeMoreSheet(); });
@@ -1349,11 +1375,13 @@ function renderBirths(){
       const incLine = linkedInc
         ? `Incubación vinculada: ${fmtDate(linkedInc.incubationDate)} · ${safeNum(linkedInc.eggsCount)} huevos`
         : (b.incubationDate ? `Incubación: ${fmtDate(b.incubationDate)}` : '');
+      const ageTxt = chickAgeText(b.actualDate);
       return `
       <div class="entry">
         <div class="entry-icon">🐣</div>
         <div class="entry-main">
           <div class="entry-title">${fmtDate(b.actualDate)} ${pct!==null?`<span class="badge">${pct}%</span>`:''}</div>
+          <div class="entry-sub" style="font-weight:800; color:var(--accent-dark);">🕓 ${ageTxt}</div>
           ${incLine ? `<div class="entry-sub">${incLine}</div>` : ''}
           <div class="entry-sub">Pollitos nacidos: ${safeNum(b.hatchedChicks)}</div>
           ${pctBar}
