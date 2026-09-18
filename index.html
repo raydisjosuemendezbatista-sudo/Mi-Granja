@@ -393,6 +393,11 @@
         <div class="stat-label">Nacimientos recientes</div>
         <div class="stat-value" id="d-recentBirths">0</div>
       </div>
+      <div class="stat-card" data-tone="gold" onclick="setView('incubacion')" style="cursor:pointer;">
+        <div class="icon-chip">🥚</div>
+        <div class="stat-label">En incubación</div>
+        <div class="stat-value" id="d-incubatingEggs">0</div>
+      </div>
       <div class="stat-card" data-tone="info">
         <div class="icon-chip">🌾</div>
         <div class="stat-label">Gastos del mes</div>
@@ -454,7 +459,7 @@
 
   <!-- ============ NACIMIENTOS ============ -->
   <div class="view" id="view-nacimientos">
-    <div class="subtitle">Pollitos que ya nacieron (independiente de Incubación)</div>
+    <div class="subtitle">Pollitos que ya nacieron</div>
     <div class="grid3" style="margin-bottom:10px;">
       <div class="stat-card" data-tone="green"><div class="stat-label">Total nacidos</div><div class="stat-value" id="b-total">0</div></div>
       <div class="stat-card" data-tone="green"><div class="stat-label">Registros</div><div class="stat-value" id="b-batches">0</div></div>
@@ -473,7 +478,7 @@
 
   <!-- ============ INCUBACIÓN ============ -->
   <div class="view" id="view-incubacion">
-    <div class="subtitle">Huevos puestos a incubar (independiente de Nacimientos)</div>
+    <div class="subtitle">Huevos puestos a incubar</div>
     <div class="grid3" style="margin-bottom:10px;">
       <div class="stat-card" data-tone="gold"><div class="stat-label">En incubación</div><div class="stat-value" id="inc-active">0</div></div>
       <div class="stat-card" data-tone="gold"><div class="stat-label">Huevos incubando</div><div class="stat-value" id="inc-eggs">0</div></div>
@@ -1490,6 +1495,9 @@ function renderIncubations(){
   if(elActive) elActive.textContent = active.length;
   if(elEggs) elEggs.textContent = active.reduce((s,i)=> s+safeNum(i.eggsCount),0);
   if(elFinished) elFinished.textContent = finished.length;
+
+  const dashEl = document.getElementById('d-incubatingEggs');
+  if(dashEl) dashEl.textContent = active.reduce((s,i)=> s+safeNum(i.eggsCount),0);
 
   const activeList = document.getElementById('incubationActiveList');
   const historyList = document.getElementById('incubationHistoryList');
