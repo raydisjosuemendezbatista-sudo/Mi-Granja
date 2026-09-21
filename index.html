@@ -1447,9 +1447,32 @@ function deleteHenBatch(id){
 function ageLabel(entryDate){
   const days = daysAgo(entryDate);
   if(days < 0) return 'Aún no ingresa';
-  if(days < 30) return days + ' días';
-  if(days < 365) return Math.floor(days/30) + ' meses';
-  return Math.floor(days/365) + ' años';
+  const unit = (n, singular, plural) => n + (n === 1 ? ' ' + singular : ' ' + plural);
+
+  if(days < 7) return unit(days, 'día', 'días');
+
+  if(days < 30){
+    const weeks = Math.floor(days/7);
+    const remDays = days % 7;
+    let label = unit(weeks, 'semana', 'semanas');
+    if(remDays > 0) label += ' y ' + unit(remDays, 'día', 'días');
+    return label;
+  }
+
+  if(days < 365){
+    const months = Math.floor(days/30);
+    const remDays = days % 30;
+    let label = unit(months, 'mes', 'meses');
+    if(remDays > 0) label += ' y ' + unit(remDays, 'día', 'días');
+    return label;
+  }
+
+  const years = Math.floor(days/365);
+  const remDays = days % 365;
+  const months = Math.floor(remDays/30);
+  let label = unit(years, 'año', 'años');
+  if(months > 0) label += ' y ' + unit(months, 'mes', 'meses');
+  return label;
 }
 function henStatusIcon(status){
   return status === 'activa' ? '🐔' : (status === 'vendida' ? '💰' : '⚰️');
