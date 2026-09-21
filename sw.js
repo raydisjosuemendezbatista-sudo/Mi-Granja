@@ -3,8 +3,8 @@
 // abra sin internet). Así, cada vez que publiques cambios y alguien
 // tenga internet al abrir la app, siempre recibe la versión más
 // nueva automáticamente, sin tener que borrar caché ni reinstalar.
-const CACHE_NAME = 'mi-granja-v8';
-const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
+const CACHE_NAME = 'mi-granja-v9';
+const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './icon-512-rounded.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
