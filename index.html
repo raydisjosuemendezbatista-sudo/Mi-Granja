@@ -26,336 +26,535 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root{
-    --bg:#F6F3E9; --card:#FFFFFF; --surface-alt:#FBF8F0; --border:#E7E0CB;
-    --text:#20301E; --text-secondary:#5C6B52; --text-muted:#96998A;
-    --accent:#3F7D44; --accent-dark:#1F4A29; --accent-bg:#E1EFDC;
-    --gold:#DFA324; --gold-dark:#8A6115; --gold-bg:#FBEACB;
-    --danger:#C0453B; --danger-bg:#F8E1DE;
-    --success:#3F7D44; --success-bg:#E1EFDC;
-    --info:#3E6E8E; --info-bg:#DEEAF1;
-    --shadow:0 1px 3px rgba(31,74,41,0.07), 0 6px 16px rgba(31,74,41,0.06);
-    --shadow-md:0 10px 26px rgba(31,74,41,0.12);
-    --shadow-lg:0 18px 40px rgba(31,74,41,0.18);
-    --radius:18px; --radius-sm:12px; --radius-lg:22px;
-    --nav-h:72px;
+    --bg:#F3F1E6; --card:#FFFFFF; --surface-alt:#FAF7EE; --border:#E6DFC9;
+    --text:#1B2A19; --text-secondary:#5B6853; --text-muted:#93977F;
+    --accent:#2E7D4F; --accent-dark:#1B4A2F; --accent-bg:#DFF0DF; --accent-glow:rgba(46,125,79,.28);
+    --gold:#D79A22; --gold-dark:#8A5E11; --gold-bg:#FBECC9;
+    --danger:#C4453A; --danger-bg:#F9E1DD;
+    --success:#2E7D4F; --success-bg:#DFF0DF;
+    --info:#3572A5; --info-bg:#DEEBF6;
+    --shadow:0 1px 2px rgba(20,40,20,.05), 0 8px 20px -6px rgba(20,40,20,.10);
+    --shadow-md:0 12px 28px -8px rgba(20,40,20,.18);
+    --shadow-lg:0 24px 56px -12px rgba(20,40,20,.28);
+    --glass-bg:rgba(255,255,255,.72); --glass-border:rgba(255,255,255,.5);
+    --radius:20px; --radius-sm:13px; --radius-md:16px; --radius-lg:26px;
+    --nav-h:78px;
+    --ease:cubic-bezier(.22,1,.36,1);
   }
   [data-theme="dark"]{
-    --bg:#10150D; --card:#1B2317; --surface-alt:#1F281A; --border:#2C3524;
-    --text:#EEEEE1; --text-secondary:#AFB6A0; --text-muted:#71786A;
-    --accent:#6FC172; --accent-dark:#8FE08F; --accent-bg:#213320;
-    --gold:#EFBE49; --gold-dark:#F3D488; --gold-bg:#372B10;
-    --danger:#EE968D; --danger-bg:#3A211E;
-    --success:#7ED17E; --success-bg:#213320;
-    --info:#7FB4D6; --info-bg:#1C2E38;
-    --shadow:0 1px 3px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
-    --shadow-md:0 10px 26px rgba(0,0,0,0.4);
-    --shadow-lg:0 18px 44px rgba(0,0,0,0.5);
+    --bg:#0C120D; --card:#161F16; --surface-alt:#1A241A; --border:#293429;
+    --text:#EDEFE6; --text-secondary:#A8B39D; --text-muted:#6C7666;
+    --accent:#57C579; --accent-dark:#8FE6A6; --accent-bg:#17301F; --accent-glow:rgba(87,197,121,.28);
+    --gold:#F0C15C; --gold-dark:#F5D585; --gold-bg:#2E2510;
+    --danger:#F0958A; --danger-bg:#391E1B;
+    --success:#6BD68B; --success-bg:#17301F;
+    --info:#84BFEC; --info-bg:#152736;
+    --glass-bg:rgba(22,31,22,.68); --glass-border:rgba(255,255,255,.08);
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 24px -8px rgba(0,0,0,.5);
+    --shadow-md:0 14px 32px -10px rgba(0,0,0,.55);
+    --shadow-lg:0 28px 60px -14px rgba(0,0,0,.65);
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html,body{height:100%;}
   body{
-    margin:0; background:var(--bg); color:var(--text);
+    margin:0; color:var(--text);
     font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    padding-bottom:0; -webkit-font-smoothing:antialiased;
-    transition:background .25s ease, color .25s ease;
+    padding-bottom:0; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    transition:background .3s ease, color .3s ease;
+    background:
+      radial-gradient(760px 420px at 92% -8%, var(--accent-glow), transparent 60%),
+      radial-gradient(620px 380px at -10% 8%, rgba(215,154,34,.16), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
   }
   ::selection{background:var(--accent); color:#fff;}
-  .app{max-width:560px; margin:0 auto; padding:14px 16px calc(var(--nav-h) + 100px);}
-  h1{font-size:21px; font-weight:800; margin:0; letter-spacing:-0.01em;}
-  h2{font-size:15.5px; font-weight:700; margin:0 0 0.75rem; color:var(--text);}
+  ::-webkit-scrollbar{width:0; height:0;}
+  .app{max-width:560px; margin:0 auto; padding:10px 16px calc(var(--nav-h) + 108px);}
+  h1{font-size:22px; font-weight:800; margin:0; letter-spacing:-0.015em;}
+  h2{font-size:15.5px; font-weight:800; margin:0 0 0.8rem; color:var(--text); letter-spacing:-0.005em;}
   .subtitle{color:var(--text-secondary); font-size:13px; margin:2px 0 14px; font-weight:500;}
 
   /* ---------- Header ---------- */
   .topbar{
     display:flex; align-items:center; justify-content:space-between;
-    padding:2px 0 10px; margin-bottom:4px;
+    padding:12px 4px 14px; margin:0 -4px 4px;
+    position:sticky; top:0; z-index:60;
+    background:linear-gradient(to bottom, var(--bg) 60%, transparent);
+    backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%);
   }
-  .topbar-id{display:flex; align-items:center; gap:10px;}
+  .topbar-id{display:flex; align-items:center; gap:11px;}
   .farm-avatar{
-    width:42px; height:42px; border-radius:14px; flex-shrink:0;
-    background:linear-gradient(145deg, var(--accent), var(--accent-dark));
+    width:44px; height:44px; border-radius:15px; flex-shrink:0;
+    background:linear-gradient(150deg, var(--accent), var(--accent-dark));
     display:flex; align-items:center; justify-content:center; font-size:21px;
-    box-shadow:var(--shadow); overflow:hidden;
+    box-shadow:0 6px 16px -4px var(--accent-glow), var(--shadow); overflow:hidden;
+    border:1px solid rgba(255,255,255,.18);
   }
   .farm-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-  .greeting{font-size:12px; color:var(--text-secondary); font-weight:600; margin-bottom:1px;}
+  .greeting{font-size:11.5px; color:var(--text-secondary); font-weight:700; margin-bottom:1px; text-transform:uppercase; letter-spacing:.04em;}
   .theme-toggle{
-    border:1px solid var(--border); background:var(--card); border-radius:14px;
-    width:42px; height:42px; font-size:18px; color:var(--text); cursor:pointer;
+    border:1px solid var(--glass-border); background:var(--glass-bg); backdrop-filter:blur(10px);
+    border-radius:15px; width:44px; height:44px; font-size:18px; color:var(--text); cursor:pointer;
     display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);
-    transition:transform .15s ease;
+    transition:transform .18s var(--ease), background .2s ease;
   }
-  .theme-toggle:active{transform:scale(0.9);}
+  .theme-toggle:active{transform:scale(0.88) rotate(-8deg);}
 
   /* ---------- Hero card (dashboard) ---------- */
   .hero-card{
-    background:linear-gradient(150deg, var(--accent) 0%, var(--accent-dark) 100%);
-    border-radius:var(--radius-lg); padding:20px 20px 18px; color:#fff;
-    box-shadow:var(--shadow-md); margin-top:14px; margin-bottom:12px; position:relative; overflow:hidden;
-    animation:cardIn .35s ease both;
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(255,255,255,.16), transparent 55%),
+      linear-gradient(155deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius:var(--radius-lg); padding:22px 22px 20px; color:#fff;
+    box-shadow:0 18px 40px -14px var(--accent-glow), var(--shadow-md);
+    margin-top:12px; margin-bottom:12px; position:relative; overflow:hidden;
+    animation:cardIn .4s var(--ease) both; border:1px solid rgba(255,255,255,.14);
   }
   .hero-card::after{
-    content:"🥚"; position:absolute; right:-6px; bottom:-22px; font-size:110px;
-    opacity:0.14; transform:rotate(-8deg); line-height:1;
+    content:"🥚"; position:absolute; right:-10px; bottom:-26px; font-size:120px;
+    opacity:0.13; transform:rotate(-8deg); line-height:1; filter:blur(.3px);
   }
-  .hero-label{font-size:13px; font-weight:700; opacity:0.92; display:flex; align-items:center; gap:6px;}
-  .hero-value{font-size:44px; font-weight:800; line-height:1.1; margin:4px 0 12px; letter-spacing:-0.02em;}
-  .hero-sub{display:flex; gap:18px; position:relative; z-index:1;}
-  .hero-sub-item{font-size:12.5px; opacity:0.9; font-weight:600;}
-  .hero-sub-item b{display:block; font-size:17px; font-weight:800; margin-top:1px;}
+  .hero-label{font-size:12.5px; font-weight:700; opacity:0.88; display:flex; align-items:center; gap:6px; text-transform:uppercase; letter-spacing:.05em;}
+  .hero-value{font-size:46px; font-weight:800; line-height:1.08; margin:6px 0 14px; letter-spacing:-0.03em;}
+  .hero-sub{display:flex; gap:20px; position:relative; z-index:1;}
+  .hero-sub-item{font-size:12px; opacity:0.85; font-weight:700; text-transform:uppercase; letter-spacing:.03em;}
+  .hero-sub-item b{display:block; font-size:18px; font-weight:800; margin-top:3px; letter-spacing:-0.01em; text-transform:none;}
 
   /* ---------- Cards / grids ---------- */
   .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
   .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
   .stat-card{
     background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
-    padding:0.9rem 0.85rem; box-shadow:var(--shadow); animation:cardIn .35s ease both;
-    display:flex; flex-direction:column; gap:6px;
+    padding:1rem 0.95rem; box-shadow:var(--shadow); animation:cardIn .4s var(--ease) both;
+    display:flex; flex-direction:column; gap:7px;
+    transition:transform .18s var(--ease), box-shadow .18s var(--ease), border-color .18s ease;
   }
+  .stat-card[onclick]{cursor:pointer;}
+  .stat-card[onclick]:active{transform:scale(0.965); box-shadow:var(--shadow-md);}
   .icon-chip{
-    width:30px; height:30px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:11px; display:flex; align-items:center; justify-content:center;
     font-size:15px; background:var(--accent-bg); flex-shrink:0;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.02);
   }
   .stat-card[data-tone="gold"] .icon-chip{background:var(--gold-bg);}
   .stat-card[data-tone="green"] .icon-chip{background:var(--accent-bg);}
   .stat-card[data-tone="red"] .icon-chip{background:var(--danger-bg);}
   .stat-card[data-tone="info"] .icon-chip{background:var(--info-bg);}
-  .stat-label{font-size:11.5px; color:var(--text-secondary); font-weight:600; line-height:1.3;}
-  .stat-value{font-size:19px; font-weight:800; color:var(--accent-dark); letter-spacing:-0.01em;}
+  .stat-label{font-size:11.5px; color:var(--text-secondary); font-weight:700; line-height:1.3;}
+  .stat-value{font-size:20px; font-weight:800; color:var(--accent-dark); letter-spacing:-0.015em;}
+  [data-theme="dark"] .stat-value{color:var(--accent);}
   .stat-card[data-tone="gold"] .stat-value{color:var(--gold-dark);}
+  [data-theme="dark"] .stat-card[data-tone="gold"] .stat-value{color:var(--gold);}
   .stat-card[data-tone="red"] .stat-value{color:var(--danger);}
   .stat-card[data-tone="info"] .stat-value{color:var(--info);}
   .stat-value.money::before{content:attr(data-cur) ' ';font-size:12px; font-weight:700; color:var(--text-secondary);}
   .stat-card.profit-card{
-    background:linear-gradient(140deg, var(--gold-bg), var(--card) 70%);
+    background:
+      radial-gradient(140% 160% at 100% 0%, rgba(255,255,255,.5), transparent 60%),
+      linear-gradient(140deg, var(--gold-bg), var(--card) 72%);
     border-color:var(--gold-bg); flex-direction:row; align-items:center; justify-content:space-between;
     margin-bottom:12px;
   }
-  .stat-card.profit-card .stat-value{font-size:23px;}
+  .stat-card.profit-card .stat-value{font-size:24px; color:var(--gold-dark);}
+  [data-theme="dark"] .stat-card.profit-card .stat-value{color:var(--gold);}
   .section-card{
     background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
-    padding:1rem; margin-bottom:1rem; box-shadow:var(--shadow); animation:cardIn .4s ease both;
+    padding:1.1rem; margin-bottom:1rem; box-shadow:var(--shadow); animation:cardIn .45s var(--ease) both;
   }
   .chart-wrap{position:relative; height:190px; margin-top:0.5rem;}
 
-  @keyframes cardIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes cardIn{ from{opacity:0; transform:translateY(10px) scale(.99);} to{opacity:1; transform:translateY(0) scale(1);} }
 
   /* ---------- Buttons ---------- */
   button{font-family:inherit; cursor:pointer;}
   .btn{
-    padding:12px 16px; border-radius:13px; border:none;
+    padding:13px 18px; border-radius:15px; border:none;
     background:var(--accent); color:#fff; font-size:15px; font-weight:700;
-    transition:transform .12s ease, opacity .12s ease;
+    transition:transform .14s var(--ease), opacity .14s ease, box-shadow .14s ease;
+    box-shadow:0 8px 20px -8px var(--accent-glow);
   }
-  .btn:active{opacity:0.88; transform:scale(0.97);}
+  .btn:active{opacity:0.9; transform:scale(0.965);}
   .btn.block{width:100%;}
-  .btn.secondary{background:var(--surface-alt); border:1px solid var(--border); color:var(--text);}
-  .btn.danger{background:var(--danger); color:#fff;}
-  .btn.small{padding:7px 12px; font-size:13px; border-radius:9px;}
-  .btn.ghost-toggle{background:var(--accent-bg); color:var(--accent-dark); border:1px solid transparent;}
+  .btn.secondary{background:var(--surface-alt); border:1px solid var(--border); color:var(--text); box-shadow:none;}
+  .btn.danger{background:var(--danger); color:#fff; box-shadow:0 8px 20px -8px rgba(196,69,58,.4);}
+  .btn.small{padding:8px 13px; font-size:13px; border-radius:10px;}
+  .btn.ghost-toggle{background:var(--accent-bg); color:var(--accent-dark); border:1px solid transparent; box-shadow:none;}
   .btn.ghost-toggle.is-active{background:var(--accent); color:#fff;}
 
   .fab-add{
-    position:fixed; right:18px; bottom:calc(var(--nav-h) + 14px); width:58px; height:58px; border-radius:19px;
+    position:fixed; right:18px; bottom:calc(var(--nav-h) + 18px); width:60px; height:60px; border-radius:20px;
     background:linear-gradient(150deg, var(--accent), var(--accent-dark)); color:#fff; font-size:28px; border:none;
-    box-shadow:0 10px 22px rgba(31,74,41,0.35); display:flex; align-items:center; justify-content:center;
-    z-index:40; line-height:0; transition:transform .15s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 14px 30px -6px var(--accent-glow), 0 4px 10px rgba(0,0,0,.12);
+    display:flex; align-items:center; justify-content:center;
+    z-index:70; line-height:0; transition:transform .18s var(--ease), box-shadow .18s ease;
+    border:1px solid rgba(255,255,255,.2);
   }
-  [data-theme="dark"] .fab-add{box-shadow:0 10px 26px rgba(0,0,0,0.55);}
-  .fab-add:active{transform:scale(0.88) rotate(6deg);}
+  [data-theme="dark"] .fab-add{box-shadow:0 14px 32px -6px rgba(0,0,0,.6), 0 0 0 1px rgba(87,197,121,.18);}
+  .fab-add:active{transform:scale(0.87) rotate(90deg);}
 
   /* ---------- Bottom nav ---------- */
   .bottomnav{
-    position:fixed; left:0; right:0; bottom:0; background:var(--card);
-    border-top:1px solid var(--border); display:grid; grid-template-columns:repeat(5,1fr);
-    z-index:50; padding:6px 4px calc(6px + env(safe-area-inset-bottom));
-    box-shadow:0 -6px 18px rgba(0,0,0,0.05); border-radius:20px 20px 0 0;
+    position:fixed; left:14px; right:14px; bottom:calc(10px + env(safe-area-inset-bottom));
+    background:var(--glass-bg); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid var(--glass-border);
+    display:grid; grid-template-columns:repeat(5,1fr);
+    z-index:50; padding:7px 5px; max-width:532px; margin:0 auto;
+    box-shadow:var(--shadow-lg); border-radius:24px;
   }
   .navbtn{
-    background:none; border:none; padding:6px 2px; text-align:center;
-    color:var(--text-muted); font-size:10px; font-weight:600; border-radius:12px;
-    display:flex; flex-direction:column; align-items:center; gap:2px;
-    transition:background .15s ease, color .15s ease, transform .1s ease;
+    background:none; border:none; padding:7px 2px; text-align:center;
+    color:var(--text-muted); font-size:10px; font-weight:700; border-radius:14px;
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    transition:background .18s var(--ease), color .18s ease, transform .12s ease;
   }
-  .navbtn:active{transform:scale(0.93);}
+  .navbtn:active{transform:scale(0.9);}
   .navbtn .ic{
     display:flex; align-items:center; justify-content:center; font-size:18px;
-    width:32px; height:26px; border-radius:9px; transition:background .15s ease;
+    width:34px; height:28px; border-radius:10px; transition:background .18s var(--ease), transform .18s var(--ease);
   }
   .navbtn.active{color:var(--accent-dark);}
-  .navbtn.active .ic{background:var(--accent-bg);}
+  [data-theme="dark"] .navbtn.active{color:var(--accent);}
+  .navbtn.active .ic{background:var(--accent-bg); transform:translateY(-1px);}
 
   /* ---------- "Más" sheet ---------- */
   .more-sheet-overlay{
-    display:none; position:fixed; inset:0; background:rgba(16,21,13,0.5);
+    display:none; position:fixed; inset:0; background:rgba(10,16,10,0.55); backdrop-filter:blur(3px);
     z-index:101; align-items:flex-end; justify-content:center;
   }
   .more-sheet-overlay.open{display:flex;}
   .more-sheet{
-    background:var(--card); width:100%; max-width:560px; border-radius:22px 22px 0 0;
-    padding:0.6rem 1.15rem calc(1.4rem + env(safe-area-inset-bottom));
-    animation:slideup .22s cubic-bezier(.22,1,.36,1);
+    background:var(--card); width:100%; max-width:560px; border-radius:26px 26px 0 0;
+    padding:0.7rem 1.15rem calc(1.5rem + env(safe-area-inset-bottom));
+    animation:slideup .28s var(--ease); border-top:1px solid var(--border);
+    box-shadow:0 -20px 50px rgba(0,0,0,.14);
   }
-  .more-sheet h3{font-size:16px; margin:0 0 12px; font-weight:800; color:var(--text);}
+  .more-sheet h3{font-size:16.5px; margin:0 0 14px; font-weight:800; letter-spacing:-0.01em; color:var(--text);}
   .more-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
   .more-item{
-    background:var(--surface-alt); border:1.5px solid var(--border); border-radius:16px;
-    padding:18px 8px; display:flex; flex-direction:column; align-items:center; gap:8px;
+    background:var(--surface-alt); border:1.5px solid var(--border); border-radius:18px;
+    padding:19px 8px; display:flex; flex-direction:column; align-items:center; gap:9px;
     color:var(--text-secondary); font-size:13px; font-weight:700;
-    transition:background .15s ease, border-color .15s ease, transform .12s ease;
+    transition:background .18s var(--ease), border-color .18s ease, transform .14s var(--ease);
   }
-  .more-item:active{transform:scale(0.96);}
-  .more-item .ic{font-size:26px; width:auto; height:auto; background:none;}
+  .more-item:active{transform:scale(0.95);}
+  .more-item .ic{font-size:27px; width:auto; height:auto; background:none;}
   .more-item.active{background:var(--accent-bg); border-color:var(--accent-bg); color:var(--accent-dark);}
 
   /* ---------- Views ---------- */
   .view{display:none;}
-  .view.active{display:block;}
+  .view.active{display:block; animation:cardIn .3s var(--ease) both;}
 
-  .subtabs{display:flex; gap:8px; margin-bottom:1rem; background:var(--surface-alt); padding:4px; border-radius:14px; border:1px solid var(--border);}
+  .subtabs{display:flex; gap:6px; margin-bottom:1rem; background:var(--surface-alt); padding:5px; border-radius:16px; border:1px solid var(--border);}
   .subtab{
-    flex:1; background:transparent; border:none; border-radius:11px;
-    color:var(--text-secondary); font-weight:700; font-size:13.5px; padding:9px;
-    transition:background .15s ease, color .15s ease;
+    flex:1; background:transparent; border:none; border-radius:12px;
+    color:var(--text-secondary); font-weight:700; font-size:13.5px; padding:10px;
+    transition:background .18s var(--ease), color .18s ease, box-shadow .18s ease;
   }
   .subtab.active{background:var(--card); color:var(--accent-dark); box-shadow:var(--shadow);}
+  [data-theme="dark"] .subtab.active{color:var(--accent);}
 
   /* ---------- List entries ---------- */
   .entry{
-    display:flex; align-items:flex-start; gap:10px;
-    padding:12px 0; border-bottom:1px solid var(--border); animation:cardIn .3s ease both;
+    display:flex; align-items:flex-start; gap:11px;
+    padding:13px 0; border-bottom:1px solid var(--border); animation:cardIn .3s var(--ease) both;
   }
   .entry:last-child{border-bottom:none;}
   .entry-icon{
-    width:38px; height:38px; border-radius:12px; flex-shrink:0; display:flex; align-items:center;
+    width:40px; height:40px; border-radius:13px; flex-shrink:0; display:flex; align-items:center;
     justify-content:center; font-size:17px; background:var(--accent-bg); margin-top:1px;
   }
   .entry-icon.gold{background:var(--gold-bg);}
   .entry-icon.red{background:var(--danger-bg);}
   .entry-icon.info{background:var(--info-bg);}
   .entry-main{min-width:0; flex:1;}
-  .entry-title{font-size:14.5px; font-weight:700;}
+  .entry-title{font-size:14.5px; font-weight:700; letter-spacing:-0.005em;}
   .entry-sub{font-size:12.5px; color:var(--text-secondary); margin-top:2px; font-weight:500;}
   .entry-note{font-size:12px; color:var(--text-muted); margin-top:3px; font-style:italic;}
   .entry-right{text-align:right; flex-shrink:0;}
-  .entry-value{font-size:16px; font-weight:800; color:var(--accent-dark);}
+  .entry-value{font-size:16px; font-weight:800; color:var(--accent-dark); letter-spacing:-0.01em;}
+  [data-theme="dark"] .entry-value{color:var(--accent);}
   .entry-value.gold{color:var(--gold-dark);}
+  [data-theme="dark"] .entry-value.gold{color:var(--gold);}
   .entry-value.red{color:var(--danger);}
   .entry-value.green{color:var(--success);}
-  .entry-actions{display:flex; gap:4px; margin-top:8px; justify-content:flex-end; flex-wrap:wrap;}
+  .entry-actions{display:flex; gap:5px; margin-top:9px; justify-content:flex-end; flex-wrap:wrap;}
   .icon-btn{
-    background:var(--surface-alt); border:1px solid var(--border); border-radius:9px;
-    color:var(--text-secondary); font-size:12px; padding:5px 10px; font-weight:600;
+    background:var(--surface-alt); border:1px solid var(--border); border-radius:10px;
+    color:var(--text-secondary); font-size:12px; padding:6px 11px; font-weight:700;
+    transition:transform .12s ease;
   }
+  .icon-btn:active{transform:scale(0.94);}
   .icon-btn.danger{color:var(--danger); border-color:var(--danger-bg); background:var(--danger-bg);}
   .badge{
-    display:inline-block; font-size:11px; padding:3px 9px; border-radius:99px;
-    background:var(--accent-bg); color:var(--accent-dark); font-weight:700;
+    display:inline-block; font-size:11px; padding:3.5px 10px; border-radius:99px;
+    background:var(--accent-bg); color:var(--accent-dark); font-weight:800; letter-spacing:.01em;
   }
+  [data-theme="dark"] .badge{color:var(--accent);}
   .badge.status-vendida{background:var(--danger-bg); color:var(--danger);}
   .badge.status-muerta{background:var(--danger-bg); color:var(--danger);}
   .badge.status-activa{background:var(--success-bg); color:var(--success);}
   .badge.stock-low{background:var(--danger-bg); color:var(--danger);}
 
   .progress-track{
-    height:8px; border-radius:99px; background:var(--border); overflow:hidden; margin-top:8px; width:100%;
+    height:9px; border-radius:99px; background:var(--border); overflow:hidden; margin-top:9px; width:100%;
   }
-  .progress-fill{height:100%; border-radius:99px; background:linear-gradient(90deg, var(--gold), var(--accent));}
+  .progress-fill{height:100%; border-radius:99px; background:linear-gradient(90deg, var(--gold), var(--accent)); transition:width .6s var(--ease);}
 
-  .stepper{display:inline-flex; align-items:center; gap:6px; background:var(--surface-alt); border:1px solid var(--border); border-radius:10px; padding:2px;}
-  .stepper .icon-btn{border:none; background:transparent; padding:5px 9px;}
+  .stepper{display:inline-flex; align-items:center; gap:6px; background:var(--surface-alt); border:1px solid var(--border); border-radius:12px; padding:2px;}
+  .stepper .icon-btn{border:none; background:transparent; padding:6px 10px;}
 
   .empty{
-    color:var(--text-muted); font-size:13.5px; text-align:center; padding:2.2rem 1rem;
+    color:var(--text-muted); font-size:13.5px; text-align:center; padding:2.4rem 1rem;
   }
-  .empty .ic{font-size:34px; display:block; margin-bottom:10px;}
+  .empty .ic{font-size:36px; display:block; margin-bottom:12px; opacity:.8;}
 
   /* ---------- Modal ---------- */
   .modal-overlay{
-    display:none; position:fixed; inset:0; background:rgba(16,21,13,0.5);
-    z-index:100; align-items:flex-end; justify-content:center; backdrop-filter:blur(1px);
+    display:none; position:fixed; inset:0; background:rgba(10,16,10,0.55);
+    z-index:100; align-items:flex-end; justify-content:center; backdrop-filter:blur(4px);
   }
   .modal-overlay.open{display:flex;}
   .modal{
-    background:var(--card); width:100%; max-width:560px; border-radius:22px 22px 0 0;
-    padding:0.6rem 1.15rem calc(1.5rem + env(safe-area-inset-bottom));
-    max-height:88vh; overflow-y:auto; animation:slideup .22s cubic-bezier(.22,1,.36,1);
+    background:var(--card); width:100%; max-width:560px; border-radius:26px 26px 0 0;
+    padding:0.7rem 1.15rem calc(1.6rem + env(safe-area-inset-bottom));
+    max-height:88vh; overflow-y:auto; animation:slideup .28s var(--ease);
+    border-top:1px solid var(--border); box-shadow:0 -20px 50px rgba(0,0,0,.14);
   }
-  .modal-handle{width:38px; height:4px; border-radius:99px; background:var(--border); margin:8px auto 14px;}
-  @keyframes slideup{from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;}}
-  .modal h3{font-size:17.5px; margin:0 0 1rem; font-weight:800;}
-  .field{margin-bottom:0.85rem;}
-  .field label{display:block; font-size:12.5px; color:var(--text-secondary); margin-bottom:5px; font-weight:700;}
+  .modal-handle{width:40px; height:4.5px; border-radius:99px; background:var(--border); margin:9px auto 15px;}
+  @keyframes slideup{from{transform:translateY(36px); opacity:0;} to{transform:translateY(0); opacity:1;}}
+  .modal h3{font-size:18px; margin:0 0 1rem; font-weight:800; letter-spacing:-0.01em;}
+  .field{margin-bottom:0.9rem;}
+  .field label{display:block; font-size:12.5px; color:var(--text-secondary); margin-bottom:6px; font-weight:700;}
   input,select,textarea{
-    width:100%; padding:11px 13px; border-radius:12px;
+    width:100%; padding:12px 14px; border-radius:13px;
     border:1.5px solid var(--border); background:var(--surface-alt); color:var(--text);
-    font-size:15.5px; font-family:inherit; transition:border-color .15s ease;
+    font-size:15.5px; font-family:inherit; transition:border-color .18s ease, box-shadow .18s ease;
   }
-  input:focus,select:focus,textarea:focus{outline:none; border-color:var(--accent);}
+  input:focus,select:focus,textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3.5px var(--accent-glow);}
   textarea{resize:vertical; min-height:56px;}
   .field .err{color:var(--danger); font-size:12px; margin-top:4px; display:none; font-weight:600;}
-  .modal-actions{display:flex; gap:8px; margin-top:0.4rem;}
+  .modal-actions{display:flex; gap:9px; margin-top:0.5rem;}
   .modal-actions .btn{flex:1;}
 
   /* ---------- Confirm ---------- */
   .confirm-overlay{
-    display:none; position:fixed; inset:0; background:rgba(16,21,13,0.5);
+    display:none; position:fixed; inset:0; background:rgba(10,16,10,0.55); backdrop-filter:blur(4px);
     z-index:110; align-items:center; justify-content:center; padding:1.5rem;
   }
   .confirm-overlay.open{display:flex;}
   .confirm-box{
-    background:var(--card); border-radius:var(--radius-lg); padding:1.3rem; max-width:340px; width:100%;
-    box-shadow:var(--shadow-lg); animation:cardIn .2s ease both;
+    background:var(--card); border-radius:var(--radius-lg); padding:1.4rem; max-width:340px; width:100%;
+    box-shadow:var(--shadow-lg); animation:cardIn .22s var(--ease) both; border:1px solid var(--border);
   }
-  .confirm-box p{font-size:14.5px; margin:0 0 1.1rem; font-weight:600;}
-  .confirm-actions{display:flex; gap:8px;}
+  .confirm-box p{font-size:14.5px; margin:0 0 1.15rem; font-weight:600;}
+  .confirm-actions{display:flex; gap:9px;}
   .confirm-actions .btn{flex:1;}
 
   /* ---------- Toast ---------- */
   .toast{
-    position:fixed; left:50%; bottom:calc(var(--nav-h) + 22px); transform:translateX(-50%) translateY(10px);
-    background:var(--accent-dark); color:#fff; padding:11px 20px; border-radius:99px;
-    font-size:13.5px; font-weight:600; opacity:0; transition:opacity 0.2s, transform 0.2s; z-index:200;
+    position:fixed; left:50%; bottom:calc(var(--nav-h) + 28px); transform:translateX(-50%) translateY(14px);
+    background:var(--accent-dark); color:#fff; padding:12px 22px; border-radius:99px;
+    font-size:13.5px; font-weight:700; opacity:0; transition:opacity .25s var(--ease), transform .25s var(--ease); z-index:200;
     pointer-events:none; white-space:nowrap; max-width:90vw; overflow:hidden; text-overflow:ellipsis;
     box-shadow:var(--shadow-lg); display:flex; align-items:center; gap:12px;
+    border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(10px);
   }
+  [data-theme="dark"] .toast{background:var(--accent-bg); color:var(--accent);}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto;}
   .toast .undo-btn{
     background:rgba(255,255,255,0.18); border:none; color:#fff; font-weight:800; font-size:13px;
-    padding:5px 12px; border-radius:99px; cursor:pointer; flex-shrink:0;
+    padding:6px 13px; border-radius:99px; cursor:pointer; flex-shrink:0;
   }
+  [data-theme="dark"] .toast .undo-btn{background:rgba(0,0,0,.12); color:var(--accent-dark);}
   .toast .undo-btn:active{background:rgba(255,255,255,0.32);}
 
   /* ---------- Aviso de respaldo ---------- */
   .backup-banner{
     display:flex; align-items:center; gap:10px; background:var(--gold-bg); border:1px solid var(--gold-dark);
-    color:var(--gold-dark); border-radius:var(--radius-md); padding:11px 14px; margin-bottom:12px; font-size:13px; font-weight:600;
+    color:var(--gold-dark); border-radius:var(--radius-md); padding:12px 15px; margin-bottom:12px; font-size:13px; font-weight:600;
   }
+  [data-theme="dark"] .backup-banner{color:var(--gold);}
   .backup-banner button{
     margin-left:auto; flex-shrink:0; background:var(--gold-dark); color:#fff; border:none; border-radius:99px;
-    padding:6px 12px; font-size:12.5px; font-weight:800; cursor:pointer;
+    padding:7px 13px; font-size:12.5px; font-weight:800; cursor:pointer;
   }
+  [data-theme="dark"] .backup-banner button{background:var(--gold); color:#241a05;}
   .backup-banner .close-x{ background:transparent; color:var(--gold-dark); font-size:16px; padding:0 2px; margin-left:4px; }
+  [data-theme="dark"] .backup-banner .close-x{color:var(--gold);}
 
   /* ---------- Buscador de listas ---------- */
   .list-search{
-    width:100%; padding:9px 12px; border-radius:var(--radius-sm); border:1px solid var(--border);
+    width:100%; padding:10px 13px; border-radius:var(--radius-sm); border:1px solid var(--border);
     background:var(--card); color:var(--text); font-size:13.5px; margin-bottom:10px; font-family:inherit;
+    transition:border-color .18s ease, box-shadow .18s ease;
   }
-  .list-search:focus{outline:none; border-color:var(--accent);}
+  .list-search:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3.5px var(--accent-glow);}
+
+
+  /* ---------- Incubación: diseño moderno ---------- */
+  #view-incubacion .list-search, #view-nacimientos .list-search{
+    border-radius:99px; padding:13px 17px; font-size:14px; box-shadow:var(--shadow); margin-bottom:16px;
+  }
+  .inc-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px;}
+  .inc-stat{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:13px 12px 12px; box-shadow:var(--shadow); animation:cardIn .4s var(--ease) both;
+    display:flex; flex-direction:column; gap:3px; position:relative; overflow:hidden;
+  }
+  .inc-stat-ic{
+    width:32px; height:32px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+    font-size:15px; background:var(--accent-bg); margin-bottom:7px;
+  }
+  .inc-stat.gold .inc-stat-ic{background:var(--gold-bg);}
+  .inc-stat.info .inc-stat-ic{background:var(--info-bg);}
+  .inc-stat-num{font-size:27px; font-weight:800; line-height:1; letter-spacing:-0.02em; color:var(--accent-dark);}
+  [data-theme="dark"] .inc-stat-num{color:var(--accent);}
+  .inc-stat.gold .inc-stat-num{color:var(--gold-dark);}
+  [data-theme="dark"] .inc-stat.gold .inc-stat-num{color:var(--gold);}
+  .inc-stat.info .inc-stat-num{color:var(--info);}
+  .inc-stat-lbl{font-size:11.5px; font-weight:700; color:var(--text-secondary); white-space:nowrap;}
+
+  .inc-section-title{
+    display:flex; align-items:center; gap:8px; font-size:15px; font-weight:800;
+    margin:20px 2px 11px; color:var(--text); letter-spacing:-0.005em;
+  }
+  .inc-count{
+    font-size:11.5px; font-weight:800; padding:3px 10px; border-radius:99px;
+    background:var(--accent-bg); color:var(--accent-dark);
+  }
+  [data-theme="dark"] .inc-count{color:var(--accent);}
+  .inc-list{display:flex; flex-direction:column; gap:12px;}
+
+  .inc-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:17px; box-shadow:var(--shadow); animation:cardIn .4s var(--ease) both;
+    position:relative; overflow:hidden;
+  }
+  .inc-card.alert{border-color:var(--danger); box-shadow:0 0 0 1px var(--danger) inset, var(--shadow);}
+  .inc-top{display:flex; align-items:center; gap:14px;}
+  .inc-ring{position:relative; width:80px; height:80px; flex-shrink:0;}
+  .inc-ring svg{width:100%; height:100%; transform:rotate(-90deg); display:block;}
+  .inc-ring .trk{fill:none; stroke:var(--border); stroke-width:7;}
+  .inc-ring .bar{
+    fill:none; stroke:var(--accent); stroke-width:7; stroke-linecap:round;
+    transition:stroke-dashoffset .8s var(--ease);
+  }
+  .inc-card.alert .inc-ring .bar{stroke:var(--danger);}
+  .inc-card.done .inc-ring .bar{stroke:var(--info);}
+  .inc-ring-center{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1;
+  }
+  .inc-ring-num{font-size:25px; font-weight:800; letter-spacing:-0.02em; color:var(--text);}
+  .inc-ring-lbl{font-size:10.5px; font-weight:700; color:var(--text-secondary); margin-top:3px; text-transform:uppercase; letter-spacing:.04em;}
+  .inc-head{min-width:0; flex:1;}
+  .inc-title{font-size:17.5px; font-weight:800; letter-spacing:-0.015em; display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;}
+  .inc-title small{font-size:13px; font-weight:600; color:var(--text-secondary);}
+  .inc-chip{
+    display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:800; padding:3.5px 11px;
+    border-radius:99px; margin-top:7px; background:var(--gold-bg); color:var(--gold-dark);
+  }
+  [data-theme="dark"] .inc-chip{color:var(--gold);}
+  .inc-chip.alert{background:var(--danger-bg); color:var(--danger);}
+  .inc-chip.done{background:var(--info-bg); color:var(--info);}
+  .inc-days-line{font-size:13px; color:var(--text-secondary); font-weight:600; margin-top:8px;}
+  .inc-days-line b{color:var(--text); font-weight:800;}
+  .inc-days-line .left{color:var(--accent-dark); font-weight:800;}
+  .inc-card.alert .inc-days-line .left{color:var(--danger);}
+  [data-theme="dark"] .inc-days-line .left{color:var(--accent);}
+
+  .inc-dates{
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px;
+    margin-top:15px; background:var(--surface-alt); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:11px 13px;
+  }
+  .inc-dates small{display:block; font-size:10.5px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.05em;}
+  .inc-dates b{display:block; font-size:13px; font-weight:800; margin-top:2px; color:var(--text);}
+  .inc-dates .to{text-align:right;}
+  .inc-arrow{color:var(--text-muted); font-size:15px; font-weight:700;}
+  .inc-remind{
+    margin-top:11px; padding:10px 13px; border-radius:var(--radius-sm); background:var(--info-bg); color:var(--info);
+    font-size:12.5px; font-weight:600; line-height:1.4;
+  }
+  .inc-remind b{font-weight:800;}
+  .inc-remind.now{background:var(--gold-bg); color:var(--gold-dark); box-shadow:0 0 0 1.5px var(--gold) inset;}
+  [data-theme="dark"] .inc-remind.now{color:var(--gold);}
+  .inc-remind.lock{background:var(--accent-bg); color:var(--accent-dark);}
+  [data-theme="dark"] .inc-remind.lock{color:var(--accent);}
+  .inc-note{
+    margin-top:11px; font-size:12.5px; color:var(--text-secondary); font-weight:500;
+    display:flex; gap:6px; align-items:flex-start;
+  }
+  .inc-actions{display:flex; gap:9px; margin-top:15px;}
+  .inc-btn{
+    border:none; border-radius:13px; font-size:13px; font-weight:700; padding:12px 15px;
+    background:var(--surface-alt); color:var(--text); border:1px solid var(--border);
+    transition:transform .14s var(--ease), opacity .14s ease; display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .inc-btn:active{transform:scale(0.96); opacity:.85;}
+  .inc-btn.primary{flex:1; background:var(--accent); color:#fff; border-color:transparent; box-shadow:0 8px 18px -8px var(--accent-glow);}
+  [data-theme="dark"] .inc-btn.primary{color:#0C120D;}
+  .inc-btn.danger{background:var(--danger-bg); color:var(--danger); border-color:transparent; padding:12px 14px;}
+
+
+  /* ---------- Nacimientos: diseño moderno (comparte estilos inc-* con Incubación) ---------- */
+  .bt-chart-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:15px 15px 11px; box-shadow:var(--shadow); animation:cardIn .4s var(--ease) both;
+  }
+  .bt-chart-hint{font-size:12px; color:var(--text-secondary); font-weight:500; margin:0 2px 6px;}
+  .bt-empty{
+    text-align:center; padding:24px 12px 18px; color:var(--text-secondary); font-size:13px; font-weight:500; line-height:1.45;
+  }
+  .bt-empty .ic{display:block; font-size:32px; margin-bottom:8px;}
+  .bt-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:17px; box-shadow:var(--shadow); animation:cardIn .4s var(--ease) both;
+  }
+  .bt-top{display:flex; align-items:center; gap:14px;}
+  .bt-count{
+    width:80px; height:80px; border-radius:24px; flex-shrink:0; background:var(--accent-bg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1;
+  }
+  .bt-count b{font-size:31px; font-weight:800; letter-spacing:-0.02em; color:var(--accent-dark);}
+  [data-theme="dark"] .bt-count b{color:var(--accent);}
+  .bt-count span{font-size:10.5px; font-weight:700; color:var(--accent-dark); margin-top:4px; text-transform:uppercase; letter-spacing:.04em; opacity:.85;}
+  [data-theme="dark"] .bt-count span{color:var(--accent);}
+  .bt-head{min-width:0; flex:1;}
+  .bt-date{font-size:17.5px; font-weight:800; letter-spacing:-0.015em;}
+  .bt-head .inc-chip{background:var(--accent-bg); color:var(--accent-dark);}
+  [data-theme="dark"] .bt-head .inc-chip{color:var(--accent);}
+  .bt-sub{font-size:12.5px; color:var(--text-secondary); font-weight:600; margin-top:7px;}
+  .bt-rate{margin-top:15px; background:var(--surface-alt); border:1px solid var(--border); border-radius:var(--radius-sm); padding:11px 13px;}
+  .bt-rate-row{display:flex; justify-content:space-between; align-items:baseline; font-size:12px; font-weight:700; color:var(--text-secondary);}
+  .bt-rate-row b{font-size:17px; font-weight:800; color:var(--accent-dark);}
+  [data-theme="dark"] .bt-rate-row b{color:var(--accent);}
+  .bt-rate.t-mid .bt-rate-row b{color:var(--gold-dark);}
+  .bt-rate.t-low .bt-rate-row b{color:var(--danger);}
+  [data-theme="dark"] .bt-rate .bt-rate-row b{color:var(--accent);}
+  [data-theme="dark"] .bt-rate.t-mid .bt-rate-row b{color:var(--gold);}
+  [data-theme="dark"] .bt-rate.t-low .bt-rate-row b{color:var(--danger);}
+  .bt-track{height:9px; border-radius:99px; background:var(--border); overflow:hidden; margin-top:9px;}
+  .bt-fill{height:100%; border-radius:99px; background:var(--accent); transition:width .7s var(--ease);}
+  .bt-rate.t-mid .bt-fill{background:var(--gold);}
+  .bt-rate.t-low .bt-fill{background:var(--danger);}
+  .bt-nolink{
+    margin-top:15px; border:1.5px dashed var(--border); border-radius:var(--radius-sm); padding:11px 13px;
+    font-size:12.5px; color:var(--text-secondary); font-weight:600; line-height:1.4;
+  }
 
   /* ---------- Incubación: aviso próximo a nacer ---------- */
   .entry.urgent{box-shadow:0 0 0 2px var(--danger) inset;}
   .badge.urgent{background:var(--danger-bg); color:var(--danger);}
 
-  .row-inline{display:flex; gap:8px;}
+  .row-inline{display:flex; gap:9px;}
   .row-inline > *{flex:1;}
-  .divider{height:1px; background:var(--border); margin:0.9rem 0;}
-  .config-item{display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid var(--border);}
+  .divider{height:1px; background:var(--border); margin:1rem 0;}
+  .config-item{display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border);}
   .config-item:last-child{border-bottom:none;}
   .config-item .lbl{font-size:14.5px; font-weight:600;}
   .config-item .val{font-size:13px; color:var(--text-secondary);}
 </style>
+
 </head>
 <body>
 
@@ -469,39 +668,37 @@
   <!-- ============ NACIMIENTOS ============ -->
   <div class="view" id="view-nacimientos">
     <div class="subtitle">Pollitos que ya nacieron</div>
-    <div class="grid3" style="margin-bottom:10px;">
-      <div class="stat-card" data-tone="green"><div class="stat-label">Total nacidos</div><div class="stat-value" id="b-total">0</div></div>
-      <div class="stat-card" data-tone="green"><div class="stat-label">Registros</div><div class="stat-value" id="b-batches">0</div></div>
-      <div class="stat-card" data-tone="gold"><div class="stat-label">% promedio</div><div class="stat-value" id="b-avgpct">0%</div></div>
+    <div class="inc-stats">
+      <div class="inc-stat"><span class="inc-stat-ic">🐥</span><div class="inc-stat-num" id="b-total">0</div><div class="inc-stat-lbl">Total nacidos</div></div>
+      <div class="inc-stat info"><span class="inc-stat-ic">📋</span><div class="inc-stat-num" id="b-batches">0</div><div class="inc-stat-lbl">Registros</div></div>
+      <div class="inc-stat gold"><span class="inc-stat-ic">📈</span><div class="inc-stat-num" id="b-avgpct">—</div><div class="inc-stat-lbl">% promedio</div></div>
     </div>
-    <div class="section-card">
-      <h2>📊 Porcentaje de nacimiento (según incubación vinculada)</h2>
-      <div class="chart-wrap"><canvas id="chartBirths"></canvas></div>
+
+    <div class="inc-section-title" style="margin-top:6px;">Éxito de nacimiento</div>
+    <div class="bt-chart-card">
+      <div class="bt-chart-hint">Porcentaje de huevos que nacieron, según la incubación vinculada</div>
+      <div class="chart-wrap" id="birthsChartWrap"><canvas id="chartBirths"></canvas></div>
+      <div class="bt-empty" id="birthsChartEmpty" style="display:none;"><span class="ic">📊</span>Aún no hay porcentajes.<br>Vincula un nacimiento a una incubación (en Editar) y aparecerá aquí.</div>
     </div>
-    <div class="section-card">
-      <h2>Historial de nacimientos</h2>
-      <input type="text" class="list-search" id="searchBirths" placeholder="🔎 Buscar por fecha o nota...">
-      <div id="birthsList"></div>
-    </div>
+
+    <div class="inc-section-title">Historial <span class="inc-count" id="birthsCount">0</span></div>
+    <input type="text" class="list-search" id="searchBirths" placeholder="🔎 Buscar por fecha o nota...">
+    <div class="inc-list" id="birthsList"></div>
   </div>
 
   <!-- ============ INCUBACIÓN ============ -->
   <div class="view" id="view-incubacion">
     <div class="subtitle">Huevos puestos a incubar</div>
-    <div class="grid3" style="margin-bottom:10px;">
-      <div class="stat-card" data-tone="gold"><div class="stat-label">En incubación</div><div class="stat-value" id="inc-active">0</div></div>
-      <div class="stat-card" data-tone="gold"><div class="stat-label">Huevos incubando</div><div class="stat-value" id="inc-eggs">0</div></div>
-      <div class="stat-card" data-tone="green"><div class="stat-label">Finalizadas</div><div class="stat-value" id="inc-finished">0</div></div>
+    <div class="inc-stats">
+      <div class="inc-stat gold"><span class="inc-stat-ic">🌡️</span><div class="inc-stat-num" id="inc-active">0</div><div class="inc-stat-lbl">Activas</div></div>
+      <div class="inc-stat gold"><span class="inc-stat-ic">🥚</span><div class="inc-stat-num" id="inc-eggs">0</div><div class="inc-stat-lbl">Huevos</div></div>
+      <div class="inc-stat info"><span class="inc-stat-ic">✅</span><div class="inc-stat-num" id="inc-finished">0</div><div class="inc-stat-lbl">Finalizadas</div></div>
     </div>
     <input type="text" class="list-search" id="searchIncubations" placeholder="🔎 Buscar por fecha, especie o nota...">
-    <div class="section-card">
-      <h2>🟡 En incubación</h2>
-      <div id="incubationActiveList"></div>
-    </div>
-    <div class="section-card">
-      <h2>📜 Historial / Finalizadas</h2>
-      <div id="incubationHistoryList"></div>
-    </div>
+    <div class="inc-section-title">En incubación <span class="inc-count" id="incActiveCount">0</span></div>
+    <div class="inc-list" id="incubationActiveList"></div>
+    <div class="inc-section-title">Historial <span class="inc-count" id="incHistCount">0</span></div>
+    <div class="inc-list" id="incubationHistoryList"></div>
   </div>
 
   <!-- ============ ALIMENTACIÓN ============ -->
@@ -667,7 +864,11 @@
    UTILIDADES GENERALES
    ========================================================= */
 function uid(){ return Date.now() + '_' + Math.floor(Math.random()*10000); }
-function todayISO(){ return new Date().toISOString().slice(0,10); }
+function isoFromDate(d){
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+/* Fecha de hoy en la hora LOCAL del dispositivo (no en UTC) */
+function todayISO(){ return isoFromDate(new Date()); }
 function toDate(iso){ return new Date(iso + 'T00:00:00'); }
 function fmtDate(iso){
   if(!iso) return '—';
@@ -741,7 +942,7 @@ function monthLabel(key){
 function addDaysISO(iso, days){
   const d = toDate(iso);
   d.setDate(d.getDate() + days);
-  return d.toISOString().slice(0,10);
+  return isoFromDate(d);
 }
 const INCUBATION_DAYS = 21; // valor por defecto (gallina), usado como referencia general
 const INCUBATION_SPECIES = {
@@ -749,6 +950,8 @@ const INCUBATION_SPECIES = {
   pata: {label: 'Pata', days: 28},
   codorniz: {label: 'Codorniz', days: 18},
   pava: {label: 'Pava', days: 28},
+  guinea: {label: 'Guinea', days: 28},
+  ganso: {label: 'Ganso', days: 30},
   personalizado: {label: 'Personalizado', days: null}
 };
 function calcEstimatedHatchDate(incubationDateISO, days){
@@ -1349,13 +1552,16 @@ function birthPct(b){
   if(eggs <= 0) return null;
   return round((safeNum(b.hatchedChicks) / eggs) * 100);
 }
+function birthTone(pct){ return pct >= 70 ? '' : (pct >= 40 ? 't-mid' : 't-low'); }
 function renderBirths(){
   const totalChicks = state.births.reduce((s,b)=> s + safeNum(b.hatchedChicks), 0);
   document.getElementById('b-total').textContent = totalChicks;
   document.getElementById('b-batches').textContent = state.births.length;
+  const countEl = document.getElementById('birthsCount');
+  if(countEl) countEl.textContent = state.births.length;
 
   const pcts = state.births.map(birthPct).filter(p=> p !== null);
-  document.getElementById('b-avgpct').textContent = (pcts.length ? round(pcts.reduce((a,b)=>a+b,0)/pcts.length) : 0) + '%';
+  document.getElementById('b-avgpct').textContent = pcts.length ? Math.round(pcts.reduce((a,b)=>a+b,0)/pcts.length) + '%' : '—';
 
   const recent = state.births.filter(b=> b.actualDate && daysAgo(b.actualDate) >= 0 && daysAgo(b.actualDate) <= 30);
   document.getElementById('d-recentBirths').textContent = recent.reduce((s,b)=> s+safeNum(b.hatchedChicks),0);
@@ -1370,26 +1576,33 @@ function renderBirths(){
     const sorted = [...filteredBirths].sort((a,b)=> (b.actualDate||'').localeCompare(a.actualDate||''));
     list.innerHTML = sorted.map(b=>{
       const pct = birthPct(b);
-      const pctBar = pct !== null ? `<div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div>` : '';
+      const chicks = safeNum(b.hatchedChicks);
       const linkedInc = b.linkedIncubationId ? state.incubations.find(i=> i.id === b.linkedIncubationId) : null;
+      const spLabel = linkedInc && linkedInc.species && INCUBATION_SPECIES[linkedInc.species] ? INCUBATION_SPECIES[linkedInc.species].label : '';
       const incLine = linkedInc
-        ? `Incubación vinculada: ${fmtDate(linkedInc.incubationDate)} · ${safeNum(linkedInc.eggsCount)} huevos`
-        : (b.incubationDate ? `Incubación: ${fmtDate(b.incubationDate)}` : '');
-      const ageTxt = chickAgeText(b.actualDate);
+        ? `🥚 ${safeNum(linkedInc.eggsCount)} huevos${spLabel?` · ${spLabel}`:''} · puestos el ${fmtDate(linkedInc.incubationDate)}`
+        : (b.incubationDate ? `🥚 Incubación: ${fmtDate(b.incubationDate)}` : '');
+      const rate = pct !== null
+        ? `<div class="bt-rate ${birthTone(pct)}">
+             <div class="bt-rate-row"><span>Éxito de nacimiento</span><b>${Math.round(pct)}%</b></div>
+             <div class="bt-track"><div class="bt-fill" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div>
+           </div>`
+        : `<div class="bt-nolink">Sin incubación vinculada: no se puede calcular el porcentaje. Puedes vincularla en Editar.</div>`;
       return `
-      <div class="entry">
-        <div class="entry-icon">🐣</div>
-        <div class="entry-main">
-          <div class="entry-title">${fmtDate(b.actualDate)} ${pct!==null?`<span class="badge">${pct}%</span>`:''}</div>
-          <div class="entry-sub" style="font-weight:800; color:var(--accent-dark);">🕓 ${ageTxt}</div>
-          ${incLine ? `<div class="entry-sub">${incLine}</div>` : ''}
-          <div class="entry-sub">Pollitos nacidos: ${safeNum(b.hatchedChicks)}</div>
-          ${pctBar}
-          ${b.notes ? `<div class="entry-note">${escapeHtml(b.notes)}</div>` : ''}
-          <div class="entry-actions" style="justify-content:flex-start;">
-            <button class="icon-btn" onclick="editBirthBatch('${b.id}')">Editar</button>
-            <button class="icon-btn danger" onclick="deleteBirthBatch('${b.id}')">Eliminar</button>
+      <div class="bt-card">
+        <div class="bt-top">
+          <div class="bt-count"><b>${chicks}</b><span>${chicks===1?'pollito':'pollitos'}</span></div>
+          <div class="bt-head">
+            <div class="bt-date">${fmtDate(b.actualDate)}</div>
+            <span class="inc-chip">🕓 ${chickAgeText(b.actualDate)}</span>
+            ${incLine ? `<div class="bt-sub">${incLine}</div>` : ''}
           </div>
+        </div>
+        ${rate}
+        ${b.notes ? `<div class="inc-note">📝 <span>${escapeHtml(b.notes)}</span></div>` : ''}
+        <div class="inc-actions">
+          <button class="inc-btn primary" style="background:var(--surface-alt); color:var(--text); border:1px solid var(--border);" onclick="editBirthBatch('${b.id}')">✏️ Editar</button>
+          <button class="inc-btn danger" aria-label="Eliminar" onclick="deleteBirthBatch('${b.id}')">🗑️</button>
         </div>
       </div>`;
     }).join('');
@@ -1409,6 +1622,8 @@ function incubationFieldDefs(){
       {value:'pata', label:'Pata (28 días)'},
       {value:'codorniz', label:'Codorniz (18 días)'},
       {value:'pava', label:'Pava (28 días)'},
+      {value:'guinea', label:'Guinea (28 días)'},
+      {value:'ganso', label:'Ganso (30 días)'},
       {value:'personalizado', label:'Otra / personalizado'}
     ], default:'gallina'},
     {key:'incubationDays', label:'Días de incubación (ajusta si elegiste "Otra")', type:'number', required:true, min:1, step:'1', default: INCUBATION_DAYS},
@@ -1472,14 +1687,40 @@ function deleteIncubation(id){
   });
 }
 function finishIncubation(id){
-  askConfirm('¿Marcar esta incubación como finalizada? Se conservará en el historial.', ()=>{
-    const item = state.incubations.find(i=> i.id === id);
-    if(!item) return;
+  const item = state.incubations.find(i=> i.id === id);
+  if(!item) return;
+  const linked = state.births.filter(b=> b.linkedIncubationId === id);
+  const closeIt = (dateISO)=>{
     item.status = 'finalizada';
-    item.finishedDate = todayISO();
+    item.finishedDate = dateISO || todayISO();
     persist('incubations');
+  };
+  // Si ya hay un nacimiento vinculado, solo se cierra la incubación (evita duplicar).
+  if(linked.length){
+    askConfirm('Ya hay un nacimiento registrado para esta incubación. ¿Marcarla como finalizada?', ()=>{
+      closeIt();
+      renderAll();
+      showToast('Incubación finalizada.');
+    });
+    return;
+  }
+  const defs = [
+    {key:'actualDate', label:'Fecha de nacimiento / cierre', type:'date', required:true, default: todayISO()},
+    {key:'hatchedChicks', label:'Pollitos nacidos (0 si no nació ninguno)', type:'number', required:true, min:0, step:'1', default: 0}
+  ];
+  openModal('Finalizar incubación', defs, {actualDate: todayISO(), hatchedChicks: ''}, (vals)=>{
+    const hatched = Math.round(safeNum(vals.hatchedChicks));
+    closeIt(vals.actualDate);
+    if(hatched > 0){
+      state.births.push({ id: uid(), actualDate: vals.actualDate, hatchedChicks: hatched, linkedIncubationId: id, notes: '' });
+      persist('births');
+    }
     renderAll();
-    showToast('Incubación finalizada.');
+    const eggs = safeNum(item.eggsCount);
+    const pct = eggs > 0 ? Math.round((hatched / eggs) * 100) : null;
+    showToast(hatched > 0
+      ? `Incubación finalizada · nacieron ${hatched}${eggs>0?` de ${eggs} (${pct}%)`:''}.`
+      : 'Incubación finalizada sin nacimientos.');
   });
 }
 function incubationCountdownText(inc){
@@ -1489,27 +1730,118 @@ function incubationCountdownText(inc){
   if(days === 0) return 'Hoy es el día estimado';
   return 'Fecha estimada superada';
 }
+/* Total de días que dura la incubación (fecha de puesta -> fecha estimada) */
+function incubationTotalDays(inc){
+  if(inc.incubationDate && inc.estimatedDate){
+    const t = Math.round((toDate(inc.estimatedDate) - toDate(inc.incubationDate)) / 86400000);
+    if(t > 0) return t;
+  }
+  const n = parseInt(inc.incubationDays, 10);
+  if(n > 0) return n;
+  const sp = inc.species && INCUBATION_SPECIES[inc.species];
+  if(sp && sp.days) return sp.days;
+  return INCUBATION_DAYS;
+}
+/* Días que lleva (o llevó, si ya finalizó) la incubación */
+function incubationElapsedDays(inc){
+  if(!inc.incubationDate) return null;
+  const start = toDate(inc.incubationDate);
+  let end;
+  if(inc.status === 'finalizada' && inc.finishedDate){ end = toDate(inc.finishedDate); }
+  else { end = new Date(); end.setHours(0,0,0,0); }
+  return Math.max(0, Math.round((end - start) / 86400000));
+}
+function incDaysWord(n){ return n === 1 ? 'día' : 'días'; }
+/* Hitos de la incubación: ovoscopia (día 7 y 14) y dejar de voltear 3 días antes de nacer */
+function incubationMilestones(total){
+  const list = [{day:7, icon:'🔦', short:'ovoscopia', text:'Ovoscopia: revisa con luz y retira los huevos sin desarrollo.'}];
+  if(total >= 21) list.push({day:14, icon:'🔦', short:'segunda ovoscopia', text:'Segunda ovoscopia: retira los huevos que se detuvieron.'});
+  const lockDay = total - 3;
+  if(lockDay > 7) list.push({day:lockDay, icon:'🔒', lock:true, short:'dejar de voltear y subir la humedad', text:'Deja de voltear los huevos y sube la humedad.'});
+  return list.sort((x,y)=> x.day - y.day);
+}
+function incubationReminder(elapsed, total, left){
+  if(elapsed === null || left === null || left < 0) return null;
+  const ms = incubationMilestones(total);
+  const hit = ms.find(m=> m.day === elapsed);
+  if(hit) return {cls:'now', html:`${hit.icon} <b>Hoy (día ${hit.day}):</b> ${hit.text}`};
+  const lock = ms.find(m=> m.lock);
+  if(lock && elapsed > lock.day) return {cls:'lock', html:'🔒 <b>Periodo de nacimiento:</b> no voltees ni abras la incubadora.'};
+  const next = ms.find(m=> m.day > elapsed);
+  if(next){
+    const d = next.day - elapsed;
+    return {cls:'', html:`${next.icon} <b>Día ${next.day}</b> (en ${d} ${incDaysWord(d)}): ${next.short}`};
+  }
+  return null;
+}
 function incubationCard(inc){
   const isActive = inc.status !== 'finalizada';
-  const days = isActive ? daysUntilEstimate(inc.estimatedDate) : null;
-  const isUrgent = isActive && days !== null && days <= 2 && days >= 0;
-  const statusBadge = isActive ? '🟡 En incubación' : '🟢 Finalizada';
-  const countdown = isActive ? incubationCountdownText(inc) : '';
+  const total = incubationTotalDays(inc);
+  const elapsed = incubationElapsedDays(inc);
+  const left = isActive ? daysUntilEstimate(inc.estimatedDate) : null;
+  const overdue = isActive && left !== null && left < 0;
+  const isUrgent = isActive && left !== null && left >= 0 && left <= 2;
+  const isAlert = overdue || isUrgent;
+  const pct = !isActive ? 1 : (elapsed === null ? 0 : Math.min(1, elapsed / total));
+  const R = 33, C = 2 * Math.PI * R;
+  const offset = (C * (1 - pct)).toFixed(1);
   const speciesLabel = inc.species && INCUBATION_SPECIES[inc.species] ? INCUBATION_SPECIES[inc.species].label : '';
+  const eggs = safeNum(inc.eggsCount);
+  const cls = !isActive ? ' done' : (isAlert ? ' alert' : '');
+
+  let chip;
+  if(!isActive) chip = '<span class="inc-chip done">✓ Finalizada</span>';
+  else if(overdue) chip = '<span class="inc-chip alert">⏰ Pasó la fecha</span>';
+  else if(isUrgent) chip = '<span class="inc-chip alert">⚠️ Por nacer</span>';
+  else chip = '<span class="inc-chip">🟡 En incubación</span>';
+
+  let daysLine = '';
+  if(elapsed !== null){
+    if(isActive){
+      let leftTxt;
+      if(left === null) leftTxt = '';
+      else if(left > 0) leftTxt = ` · <span class="left">faltan ${left} ${incDaysWord(left)}</span>`;
+      else if(left === 0) leftTxt = ' · <span class="left">¡nacen hoy!</span>';
+      else leftTxt = ` · <span class="left">${-left} ${incDaysWord(-left)} de retraso</span>`;
+      daysLine = `<b>Día ${elapsed}</b> de ${total}${leftTxt}`;
+    } else {
+      daysLine = `Duró <b>${elapsed} ${incDaysWord(elapsed)}</b> (previstos ${total})`;
+    }
+  }
+  const dateTo = isActive
+    ? `<small>Nace (estimado)</small><b>${fmtDate(inc.estimatedDate)}</b>`
+    : `<small>Finalizada</small><b>${fmtDate(inc.finishedDate)}</b>`;
+
   return `
-  <div class="entry${isUrgent ? ' urgent' : ''}">
-    <div class="entry-icon gold">🥚</div>
-    <div class="entry-main">
-      <div class="entry-title">${safeNum(inc.eggsCount)} huevos${speciesLabel?` · ${speciesLabel}`:''} <span class="badge${isUrgent?' urgent':''}">${statusBadge}</span></div>
-      <div class="entry-sub">Incubación: ${fmtDate(inc.incubationDate)} · Nacimiento estimado: ${fmtDate(inc.estimatedDate)}</div>
-      ${countdown ? `<div class="entry-sub"${isUrgent?' style="font-weight:800; color:var(--danger);"':''}>${isUrgent?'⚠️ ':''}${countdown}</div>` : ''}
-      ${(!isActive && inc.finishedDate) ? `<div class="entry-sub">Finalizada: ${fmtDate(inc.finishedDate)}</div>` : ''}
-      ${inc.notes ? `<div class="entry-note">${escapeHtml(inc.notes)}</div>` : ''}
-      <div class="entry-actions" style="justify-content:flex-start; flex-wrap:wrap; gap:6px;">
-        <button class="icon-btn" onclick="editIncubation('${inc.id}')">Editar</button>
-        ${isActive ? `<button class="icon-btn" onclick="finishIncubation('${inc.id}')">Finalizar incubación</button>` : ''}
-        <button class="icon-btn danger" onclick="deleteIncubation('${inc.id}')">Eliminar</button>
+  <div class="inc-card${cls}">
+    <div class="inc-top">
+      <div class="inc-ring">
+        <svg viewBox="0 0 78 78" aria-hidden="true">
+          <circle class="trk" cx="39" cy="39" r="${R}"></circle>
+          <circle class="bar" cx="39" cy="39" r="${R}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${offset}"></circle>
+        </svg>
+        <div class="inc-ring-center">
+          <span class="inc-ring-num">${elapsed === null ? '—' : elapsed}</span>
+          <span class="inc-ring-lbl">${elapsed === 1 ? 'día' : 'días'}</span>
+        </div>
       </div>
+      <div class="inc-head">
+        <div class="inc-title">${eggs} huevo${eggs===1?'':'s'}${speciesLabel?` <small>· ${speciesLabel}</small>`:''}</div>
+        ${chip}
+        ${daysLine ? `<div class="inc-days-line">${daysLine}</div>` : ''}
+      </div>
+    </div>
+    <div class="inc-dates">
+      <div><small>Puesta</small><b>${fmtDate(inc.incubationDate)}</b></div>
+      <span class="inc-arrow">→</span>
+      <div class="to">${dateTo}</div>
+    </div>
+    ${(()=>{ const r = isActive ? incubationReminder(elapsed, total, left) : null; return r ? `<div class="inc-remind ${r.cls}">${r.html}</div>` : ''; })()}
+    ${inc.notes ? `<div class="inc-note">📝 <span>${escapeHtml(inc.notes)}</span></div>` : ''}
+    <div class="inc-actions">
+      ${isActive ? `<button class="inc-btn primary" onclick="finishIncubation('${inc.id}')">✓ Finalizar</button>` : ''}
+      <button class="inc-btn" onclick="editIncubation('${inc.id}')">✏️ Editar</button>
+      <button class="inc-btn danger" aria-label="Eliminar" onclick="deleteIncubation('${inc.id}')">🗑️</button>
     </div>
   </div>`;
 }
@@ -1523,6 +1855,10 @@ function renderIncubations(){
   if(elActive) elActive.textContent = active.length;
   if(elEggs) elEggs.textContent = active.reduce((s,i)=> s+safeNum(i.eggsCount),0);
   if(elFinished) elFinished.textContent = finished.length;
+  const elActiveCount = document.getElementById('incActiveCount');
+  const elHistCount = document.getElementById('incHistCount');
+  if(elActiveCount) elActiveCount.textContent = active.length;
+  if(elHistCount) elHistCount.textContent = finished.length;
 
   const dashEl = document.getElementById('d-incubatingEggs');
   if(dashEl) dashEl.textContent = active.reduce((s,i)=> s+safeNum(i.eggsCount),0);
@@ -2090,7 +2426,7 @@ function last7DaysLabelsAndData(list, valueKey){
   const labels = [], data = [];
   for(let i=6;i>=0;i--){
     const d = new Date(); d.setDate(d.getDate()-i);
-    const iso = d.toISOString().slice(0,10);
+    const iso = isoFromDate(d);
     labels.push(d.toLocaleDateString('es-DO',{weekday:'short'}));
     data.push(round(list.filter(e=> e.date === iso).reduce((s,e)=> s+safeNum(e[valueKey]),0)));
   }
@@ -2100,7 +2436,7 @@ function lastNDaysLabelsAndData(n, list, valueKey){
   const labels = [], data = [];
   for(let i=n-1;i>=0;i--){
     const d = new Date(); d.setDate(d.getDate()-i);
-    const iso = d.toISOString().slice(0,10);
+    const iso = isoFromDate(d);
     labels.push(d.getDate()+'/'+(d.getMonth()+1));
     data.push(round(list.filter(e=> e.date === iso).reduce((s,e)=> s+safeNum(e[valueKey]),0)));
   }
@@ -2133,15 +2469,37 @@ function renderEggsChart(){
 function renderBirthsChart(){
   const canvas = document.getElementById('chartBirths');
   if(!canvas || currentView !== 'nacimientos') return;
+  const wrap = document.getElementById('birthsChartWrap');
+  const empty = document.getElementById('birthsChartEmpty');
   const colors = chartColors();
-  const sorted = [...state.births].sort((a,b)=> (a.actualDate||'').localeCompare(b.actualDate||'')).slice(-10);
-  const labels = sorted.map(b=> fmtDate(b.actualDate));
-  const data = sorted.map(b=> birthPct(b) ?? 0);
+  const withPct = [...state.births]
+    .map(b=> ({b, pct: birthPct(b)}))
+    .filter(x=> x.pct !== null)
+    .sort((x,y)=> (x.b.actualDate||'').localeCompare(y.b.actualDate||''))
+    .slice(-10);
   destroyChart('births');
+  if(withPct.length === 0){
+    if(wrap) wrap.style.display = 'none';
+    if(empty) empty.style.display = 'block';
+    return;
+  }
+  if(wrap) wrap.style.display = '';
+  if(empty) empty.style.display = 'none';
+  const labels = withPct.map(x=> toDate(x.b.actualDate).toLocaleDateString('es-DO',{day:'numeric', month:'short'}));
+  const data = withPct.map(x=> x.pct);
+  const bg = data.map(v=> v >= 70 ? colors.success : (v >= 40 ? colors.gold : colors.danger));
   charts.births = new Chart(canvas, {
     type:'bar',
-    data:{ labels, datasets:[{ label:'% nacimiento', data, backgroundColor: colors.success, borderRadius:5 }] },
-    options: Object.assign(baseOptions(colors), { scales: Object.assign(baseOptions(colors).scales, { y:{ beginAtZero:true, max:100, ticks:{color:colors.text} } }) })
+    data:{ labels, datasets:[{ label:'% nacimiento', data, backgroundColor: bg, borderRadius:10, borderSkipped:false, maxBarThickness:38 }] },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: c=> ' ' + Math.round(c.parsed.y) + '% de nacimiento' } } },
+      scales:{
+        x:{ grid:{ display:false }, border:{ display:false }, ticks:{ color: colors.text, font:{size:10} } },
+        y:{ beginAtZero:true, max:100, border:{ display:false }, grid:{ color: colors.grid },
+            ticks:{ color: colors.text, font:{size:10}, stepSize:25, callback: v=> v + '%' } }
+      }
+    }
   });
 }
 function renderFinanceChart(){
